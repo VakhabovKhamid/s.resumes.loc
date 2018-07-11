@@ -18,9 +18,6 @@ class AclController extends AppController
         $this->loadModel('Groups');
         $this->loadModel('Users');
         $this->loadModel('ArosAcos');
-
-        //$this->loadComponent('Auth');
-        //$this->Auth->allow();
     }
 
     public function beforeFilter(Event $event)
