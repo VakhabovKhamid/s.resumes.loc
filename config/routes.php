@@ -54,6 +54,14 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
+    $routes->connect('/login', ['prefix'=>'admin', 'controller'=>'users', 'action'=>'login']);
+
+    $routes->connect('/logout', ['prefix'=>'admin', 'controller'=>'users', 'action'=>'logout']);
+
+    $routes->connect('/users/login', ['prefix'=>'admin', 'controller'=>'users', 'action'=>'login']);
+
+    $routes->connect('/users/logout', ['prefix'=>'admin', 'controller'=>'users', 'action'=>'logout']);
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
@@ -76,4 +84,10 @@ Router::scope('/', function (RouteBuilder $routes) {
      * routes you want in your application.
      */
     $routes->fallbacks(DashedRoute::class);
+});
+
+Router::prefix('Admin', ['_namePrefix' => 'admin:'], function ($routes) {
+    $routes->connect('/', ['controller' => 'default', 'action' => 'index']);
+    $routes->connect('/:controller/', ['action'=>'index']);
+    $routes->connect('/:controller/:action/*');
 });

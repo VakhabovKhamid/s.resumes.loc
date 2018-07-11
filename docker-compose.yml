@@ -1,0 +1,29 @@
+version: '3'
+services:
+  apache_php:
+    build:
+      context: .
+      dockerfile: .docker/apache_php/Dockerfile
+    ports:
+      - "8083:80"
+    volumes:
+      - .docker/apache_php/vhost.conf:/etc/apache2/sites-available/000-default.conf
+      - .docker/apache_php/php.ini:/usr/local/etc/php/php.ini
+      - .:/srv/app
+    links:
+      - mysql
+    extra_hosts:
+            - "resume.local:127.0.0.1"
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 43306:3306
+    environment:
+      MYSQL_DATABASE: "resume"
+      MYSQL_USER: "resume"
+      MYSQL_PASSWORD: "ZaqXsw123$$"
+      MYSQL_ROOT_PASSWORD: "ZaqXsw123$$"
+    volumes:
+      - .docker/mysql/db:/var/lib/mysql
+      - .docker/mysql/dump:/tmp/dump
+      - .docker/mysql/docker.cnf:/etc/mysql/conf.d/docker.cnf
