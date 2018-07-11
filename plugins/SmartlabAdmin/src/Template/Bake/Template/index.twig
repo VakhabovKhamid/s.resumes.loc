@@ -1,0 +1,106 @@
+{#
+/**
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @since         2.0.0
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+#}
+<?php
+/**
+ * @var \{{ namespace }}\View\AppView $this
+ * @var \{{ entityClass }}[]|\Cake\Collection\CollectionInterface ${{ pluralVar }}
+ */
+?>
+{% set fields = Bake.filterFields(fields, schema, modelObject, indexColumns, ['binary', 'text']) %}
+<h2><?= __('{{ pluralHumanName }}') ?></h2>
+<hr>
+<div class="clearfix">
+    <div class="pull-left">
+    <?= $this->Paginator->counter(['format' => __('Page: {{ '{{' }}page{{ '}}' }} / {{ '{{' }}pages{{ '}}' }}, total records {{ '{{' }}count{{ '}}' }}')]) ?>
+    </div>
+    <div class="pull-right">
+        <div class="btn-group group-control">
+            <?= $this->Html->link('<span class="glyphicon glyphicon-plus"></span>', ['action' => 'add'],['escape' => false,'class' => 'btn btn-default btn-sm']) ?>
+            <button class="btn btn-default btn-sm btn-refresh">
+                <span class="glyphicon glyphicon-refresh"></span>
+            </button>
+            <button class="btn btn-default btn-sm btn-search">
+                <span class="glyphicon glyphicon-filter"></span>
+            </button>
+        </div>
+    </div>
+</div>
+<br>
+<table cellpadding="0" cellspacing="0" class="table table-bordered table-striped table-condensed">
+    <thead>
+        <tr>
+            {% for field in fields %}
+            <th scope="col"><?= $this->Paginator->sort('{{ field }}') ?></th>
+            {% endfor %}
+            <th scope="col" class="actions"><?= __('Actions') ?></th>
+        </tr>
+        <form action="" id='row-search' method="post">
+        <tr class="row-search">
+            {% for field in fields %}
+            <th>
+                <input type="text" name="{{ field }}">
+            </th>
+            {% endfor %}
+            <th>
+                <button class="btn btn-default btn-xs btn-filter" type="submit">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
+                <button class="btn btn-default btn-xs btn-filter-clear" type='button'>
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+            </th>
+        </tr>
+        </form>
+    </thead>
+    <tbody>
+        <?php foreach (${{ pluralVar }} as ${{ singularVar }}): ?>
+        <tr>
+{% for field in fields %}
+{% set isKey = false %}
+{% if associations.BelongsTo %}
+{% for alias, details in associations.BelongsTo if field == details.foreignKey %}
+{% set isKey = true %}
+            <td><?= ${{ singularVar }}->has('{{ details.property }}') ? $this->Html->link(${{ singularVar }}->{{ details.property }}->{{ details.displayField }}, ['controller' => '{{ details.controller }}', 'action' => 'view', ${{ singularVar }}->{{ details.property }}->{{ details.primaryKey[0] }}]) : '' ?></td>
+{% endfor %}
+{% endif %}
+{% if isKey is not same as(true) %}
+{% set columnData = Bake.columnData(field, schema) %}
+{% if columnData.type not in ['integer', 'float', 'decimal', 'biginteger', 'smallinteger', 'tinyinteger'] %}
+            <td><?= h(${{ singularVar }}->{{ field }}) ?></td>
+{% else %}
+            <td><?= $this->Number->format(${{ singularVar }}->{{ field }}) ?></td>
+{% endif %}
+{% endif %}
+{% endfor %}
+{% set pk = '$' ~ singularVar ~ '->' ~ primaryKey[0] %}
+            <td class="actions">
+                <?= $this->Html->link('<span class="fa fa-eye"></span>', ['action' => 'view', {{ pk|raw }}], ['escape' => false, 'class' => 'btn btn-default btn-sm']) ?>
+                <?= $this->Html->link('<span class="fa fa-pencil"></span>', ['action' => 'edit', {{ pk|raw }}], ['escape' => false, 'class' => 'btn btn-default btn-sm']) ?>
+                <?= $this->Form->postLink('<span class="fa fa-remove"></span>', ['action' => 'delete', {{ pk|raw }}], ['confirm' => __('Are you sure you want to delete # {0}?', {{ pk|raw }}), 'escape' => false, 'class' => 'btn btn-default btn-sm']) ?>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<div class="paginator text-right">
+    <ul class="pagination">
+        <?= $this->Paginator->first('<< ' . __('first')) ?>
+        <?= $this->Paginator->prev('< ' . __('previous')) ?>
+        <?= $this->Paginator->numbers() ?>
+        <?= $this->Paginator->next(__('next') . ' >') ?>
+        <?= $this->Paginator->last(__('last') . ' >>') ?>
+    </ul>
+</div>

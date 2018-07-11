@@ -198,3 +198,4 @@ Type::build('timestamp')
 //Inflector::rules('uninflected', ['dontinflectme']);
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
 Plugin::load('Acl', ['bootstrap' => true]);
+Plugin::load('SmartlabAdmin', ['bootstrap' => false, 'routes' => true]);
