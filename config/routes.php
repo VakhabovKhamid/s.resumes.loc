@@ -56,9 +56,9 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/login', ['prefix'=>'admin', 'controller'=>'users', 'action'=>'login']);
 
-    $routes->connect('/login-sms', ['prefix'=>'admin', 'controller'=>'users', 'action'=>'loginSms']);
+    $routes->connect('/login-sms', ['controller'=>'users', 'action'=>'loginSms']);
 
-    $routes->connect('/verify-code', ['prefix'=>'admin', 'controller'=>'users', 'action'=>'verifyCode']);
+    $routes->connect('/verify-code', ['controller'=>'users', 'action'=>'verifyCode']);
 
     $routes->connect('/logout', ['prefix'=>'admin', 'controller'=>'users', 'action'=>'logout']);
 
