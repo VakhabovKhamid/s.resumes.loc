@@ -18,9 +18,9 @@
     <?= $this->Form->create($group) ?>
     <fieldset>
         <legend><?= __('Add Group') ?></legend>
-        <?php
-            echo $this->Form->control('name');
-        ?>
+        <?= $this->Form->control('name'); ?>
+        <?= $this->Form->control('created_by', ['class' => 'form-control']); ?>
+        <?= $this->Form->control('modified_by', ['class' => 'form-control']); ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
     <?= $this->Form->end() ?>
