@@ -1,0 +1,20 @@
+<svg width="32" height="32" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" fill="none">
+<g id="Group 2">
+<g id="Mask">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M 16 0C 24.837 0 32 7.163 32 16C 32 24.837 24.837 32 16 32C 7.163 32 0 24.837 0 16C 0 7.163 7.163 0 16 0Z" fill="#EFF0F4"/>
+</g>
+<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">
+<g id="Mask_2">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M 16 0C 24.837 0 32 7.163 32 16C 32 24.837 24.837 32 16 32C 7.163 32 0 24.837 0 16C 0 7.163 7.163 0 16 0Z" fill="white"/>
+</g>
+</mask>
+<g mask="url(#mask0)">
+<g id="Silhouette">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M 13.008 17.504C 12.919 16.502 12.952 15.802 12.952 14.885C 13.399 14.648 14.198 13.128 14.333 11.844C 14.684 11.815 15.237 11.467 15.399 10.091C 15.486 9.353 15.139 8.938 14.928 8.807C 15.498 7.059 16.684 1.652 12.735 1.094C 12.329 0.367 11.288 0 9.936 0C 4.525 0.101 3.873 4.159 5.059 8.807C 4.848 8.938 4.501 9.353 4.588 10.091C 4.75 11.467 5.303 11.815 5.653 11.844C 5.788 13.127 6.619 14.648 7.066 14.885C 7.066 15.802 7.1 16.502 7.011 17.504C 6.24 19.613 2.283 19.779 0 21.813C 2.387 24.258 6.255 26.009 10.337 26.009C 14.419 26.009 19.217 22.728 20.015 21.833C 17.746 19.78 13.78 19.62 13.008 17.504Z" transform="translate(6 7)" fill="#C0C4CA"/>
+</g>
+</g>
+</g>
+</g>
+</svg>
+
