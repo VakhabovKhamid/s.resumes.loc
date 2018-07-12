@@ -12,12 +12,8 @@ namespace App\Auth;
 use App\Model\Entity\Group;
 use Cake\Auth\FormAuthenticate;
 use Cake\Controller\ComponentRegistry;
-use Cake\I18n\Date;
 use Cake\Network\Request;
 use Cake\Network\Response;
-use Cake\ORM\Locator\TableLocator;
-use Cake\ORM\TableRegistry;
-use Cake\Utility\Security;
 
 class VerifyCodeAuthenticate extends FormAuthenticate
 {
@@ -72,26 +68,10 @@ class VerifyCodeAuthenticate extends FormAuthenticate
         return $this->_findUserByToken($token, $request->getSession()->read('Auth.User.id'));
     }
 
-    protected function _findUser($username, $password = null)
-    {
-        $username = preg_replace('/[^0-9]+/', '', $username);
-
-        $config = $this->_config;
-        $table = TableRegistry::get($config['tokenModel']);
-        $result = $table->findByPhone($username);
-        //debug($result->get);die;
-        if (!$result->first()) {
-            $user = $this->_createUser($username);
-            return $user->token;
-        }
-
-        return $result->first();
-    }
-
     protected function _findUserByToken($token, $userId)
     {
         $config = $this->_config;
-        $table = TableRegistry::get($config['tokenModel']);
+        $table = $this->getTableLocator()->get($config['tokenModel']);
         $result = $table->find()->where(['token'=>$token, 'user_id'=>$userId])->first();
 
         if (!$result) {
@@ -100,13 +80,11 @@ class VerifyCodeAuthenticate extends FormAuthenticate
 
         $userId = $result->user_id;
 
-        $table = TableRegistry::get($config['userModel']);
-        $conditions = ['id' => $userId];
-        $data = [
-            'group_id' => Group::GROUP_USERS, //User group
-            'modified' => new \DateTime(),
-        ];
-        $table->updateAll($data, $conditions);
+        $table = $this->getTableLocator()->get($config['userModel']);
+        $user = $table->get($userId);
+        $user->group_id = Group::GROUP_USERS;
+        $user->modified = new \DateTime();
+        $table->save($user);
 
         $result = $table->find()->contain(['Tokens'])->where(['Users.id'=>$userId])->first();
 

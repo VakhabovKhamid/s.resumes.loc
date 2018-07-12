@@ -9,14 +9,12 @@
 namespace App\Auth;
 
 
-use App\Controller\Admin\GroupsController;
 use App\Model\Entity\Group;
 use Cake\Auth\FormAuthenticate;
 use Cake\Controller\ComponentRegistry;
 use Cake\I18n\Date;
 use Cake\Network\Request;
 use Cake\Network\Response;
-use Cake\ORM\Locator\TableLocator;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Security;
 
@@ -67,7 +65,7 @@ class SmsAuthenticate extends FormAuthenticate
         $username = preg_replace('/[^0-9]+/', '', $username);
 
         $config = $this->_config;
-        $table = TableRegistry::get($config['tokenModel']);
+        $table = $this->getTableLocator()->get($config['tokenModel']);
         $result = $table->findByPhone($username);
 
         if (!$result->first()) {
@@ -76,7 +74,7 @@ class SmsAuthenticate extends FormAuthenticate
         }
 
         $userId = $result->first()->user_id;
-        $table = TableRegistry::get($config['userModel']);
+        $table = $this->getTableLocator()->get($config['userModel']);
         $result = $table->find()->contain(['Tokens'])->where(['Users.id'=>$userId])->first();
 
         return $result;
@@ -105,7 +103,7 @@ class SmsAuthenticate extends FormAuthenticate
         $user = $table->newEntity($data, ['associated' => ['Tokens']]);
         $user->created_by = 1;
         $user->modified_by = 1;
-//dd($user);die;
+
         if($table->save($user)) {
             return $user;
         } else {
@@ -123,14 +121,15 @@ class SmsAuthenticate extends FormAuthenticate
     {
         $config = $this->_config;
         $fields = $config['fields'];
-        $table = TableRegistry::get($config['tokenModel']);
-        $conditions = [$fields['username'] => $token[$fields['username']]];
-        $data = [
-            $fields['token'] => rand(100000, 999999),
-            $fields['expires'] => new Date($config['token']['expires']),
-        ];
-        $table->updateAll($data, $conditions);
-        return $data[$fields['token']];
+        $table = $this->getTableLocator()->get($config['tokenModel']);
+        $findBy = 'findBy'.ucfirst($fields['username']);
+        $token = $table->{$findBy}($token[$fields['username']])->first();
+
+        $token->{$fields['token']} = rand(100000, 999999);
+        $token->{$fields['expires']} = new Date($config['token']['expires']);
+        $table->save($token);
+
+        return $token->{$fields['token']};
     }
 
 }
