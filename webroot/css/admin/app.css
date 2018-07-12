@@ -1,0 +1,36 @@
+#page-wrapper{
+    padding-top: 80px;
+    padding-bottom: 30px;
+}
+.toggle.btn{
+    min-height: 24px;
+    min-width: 48px;
+}
+.toggle.btn .btn{
+    padding: 1px 8px;
+}
+.toggle.btn .toggle-off.btn {
+    padding-left: 18px;
+}
+.toggle.btn .toggle-on.btn {
+    padding-right: 18px;
+}
+tr.row-search{
+    display: none;
+}
+tr.row-search th{
+    vertical-align: middle!important;
+}
+tr.row-search th input{
+    width: 100%;
+}
+th a:after{
+    float: right;
+    font-size: 10px;
+}
+th a.asc:after{
+    content: "▲";
+}
+th a.desc:after{
+    content: "▼";
+}

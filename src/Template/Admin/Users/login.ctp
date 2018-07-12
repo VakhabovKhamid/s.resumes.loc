@@ -1,8 +1,16 @@
-<?= $this->Form->create() ?>
+<?php
+/**
+ * @var \App\View\AppView $this
+ */
+?>
+<div class="users form">
+<?= $this->Flash->render('auth') ?>
+    <?= $this->Form->create() ?>
     <fieldset>
-        <legend><?= __('Login') ?></legend>
-        <?= $this->Form->input('username') ?>
-        <?= $this->Form->input('password') ?>
-        <?= $this->Form->submit(__('Login')) ?>
+        <legend><?= __('Please enter your username and password') ?></legend>
+        <?= $this->Form->control('username') ?>
+        <?= $this->Form->control('password') ?>
     </fieldset>
-<?= $this->Form->end() ?>
+    <?= $this->Form->button(__('Login')); ?>
+    <?= $this->Form->end() ?>
+</div>
