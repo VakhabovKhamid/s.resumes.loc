@@ -1,6 +1,8 @@
 <?php
 namespace App\Model\Table;
 
+use App\Model\Entity\Applicant;
+use Cake\I18n\Date;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -163,5 +165,126 @@ class ApplicantsTable extends Table
         $rules->add($rules->existsIn(['industry_id'], 'DictionaryIndustries'));
 
         return $rules;
+    }
+
+    public function getBirthDateDays()
+    {
+        $days = [];
+        for($i=1; $i<=31; $i++)
+        {
+            $days[$i] = $i;
+        }
+        return $days;
+    }
+
+    public function getBirthDateMonths()
+    {
+        return [
+            '1' => __('January'),
+            '2' => __('February'),
+            '3' => __('March'),
+            '4' => __('April'),
+            '5' => __('May'),
+            '6' => __('June'),
+            '7' => __('Jule'),
+            '8' => __('August'),
+            '9' => __('September'),
+            '10' => __('October'),
+            '11' => __('November'),
+            '12' => __('December')
+        ];
+    }
+
+    public function getBirthDateYears()
+    {
+        $years = [];
+        $startYear = (new Date("-16 years"))->year;
+        $endYear = (new Date("-65 years"))->year;
+        for($i=$startYear; $i>=$endYear; $i--)
+        {
+            $years[$i] = $i;
+        }
+        return $years;
+    }
+
+    public function getSexList()
+    {
+        return [
+            'M' => __('Мужской'),
+            'F' => __('Женский'),
+        ];
+    }
+
+    public function registerApplicant(Applicant $applicant, array $data, $userId)
+    {
+        $applicant = $this->patchEntity($applicant, $data, [
+            'associated' => [
+                'ApplicantDocuments' => [
+                    'accessibleFields' => [
+                        '*' => false,
+                        'anchor' => true,
+                        'name' => true,
+                    ]
+                ]
+            ]
+        ]);
+
+        $applicant->created_by = $userId;
+        $applicant->modified_by = $userId;
+        array_map(function($document) use ($userId) {
+            $document->created_by = $userId;
+            $document->modified_by = $userId;
+        }, $applicant->applicant_documents);
+
+        if($this->save($applicant)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function getSearchConditions(array $data)
+    {
+        $conditions = [];
+        if(empty($data['age_from'])) {
+            $dateFrom = new Date('-16 years');
+        } else {
+            $age = $data['age_from'];
+            $dateFrom = new Date('-'.$age.' years');
+        }
+
+        if (empty($data['age_to'])) {
+            $dateTo = new Date('-100 years');
+        } else {
+            $age = $data['age_to'];
+            $dateTo = new Date('-'.$age.' years');
+        }
+
+        $conditions['AND'] = [
+            'birth_date >=' => $dateTo,
+            'birth_date <=' => $dateFrom
+        ];
+
+        if(!empty($data['region_id'])) {
+            $conditions['address_region_id'] = $data['region_id'];
+        }
+
+        if(!empty($data['district_id'])) {
+            $conditions['address_district_id'] = $data['district_id'];
+        }
+
+        if(!empty($data['industry_id'])) {
+            $conditions['industry_id'] = $data['industry_id'];
+        }
+
+        if(!empty($data['education_level_id'])) {
+            $conditions['education_level_id'] = $data['education_level_id'];
+        }
+
+        if(!empty($data['sex'])) {
+            $conditions['sex'] = $data['sex'];
+        }
+
+        return $conditions;
     }
 }

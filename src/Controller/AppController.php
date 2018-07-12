@@ -12,6 +12,7 @@
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use App\Model\Entity\Group;
@@ -91,10 +92,11 @@ class AppController extends Controller
         $this->loadModel('Users');
     }
 
-    public function beforeFilter(Event $event) {
+    public function beforeFilter(Event $event)
+    {
         $this->Auth->allow(['display', 'login', 'logout', 'changelanguage', 'loginSms']);
 
-        $userId = (int) $this->getRequest()->getSession()->read('Auth.User.id');
+        $userId = (int)$this->getRequest()->getSession()->read('Auth.User.id');
         if ($userId) {
             //$this->AccessLog->save($this->name . "." . $this->action, $this->request);
             //

@@ -9,6 +9,8 @@
 namespace App\Auth;
 
 
+use App\Controller\Admin\GroupsController;
+use App\Model\Entity\Group;
 use Cake\Auth\FormAuthenticate;
 use Cake\Controller\ComponentRegistry;
 use Cake\I18n\Date;
@@ -87,7 +89,7 @@ class SmsAuthenticate extends FormAuthenticate
         $table = TableRegistry::get($config['userModel']);
         $data = [
             'username' => 'user-'.$username,
-            'group_id' => 4, //Guest group
+            'group_id' => Group::GROUP_GUEST, //Guest group
             'password' => Security::randomString(10),
             'email' => 'user-'.$username.'@test.com',
             'created' => new \DateTime(),

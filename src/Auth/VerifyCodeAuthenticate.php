@@ -9,6 +9,7 @@
 namespace App\Auth;
 
 
+use App\Model\Entity\Group;
 use Cake\Auth\FormAuthenticate;
 use Cake\Controller\ComponentRegistry;
 use Cake\I18n\Date;
@@ -102,7 +103,7 @@ class VerifyCodeAuthenticate extends FormAuthenticate
         $table = TableRegistry::get($config['userModel']);
         $conditions = ['id' => $userId];
         $data = [
-            'group_id' => 1, //User group
+            'group_id' => Group::GROUP_USERS, //User group
             'modified' => new \DateTime(),
         ];
         $table->updateAll($data, $conditions);
