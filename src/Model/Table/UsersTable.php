@@ -104,7 +104,7 @@ class UsersTable extends Table
         }
         switch ($user['group_id']) {
             case Group::GROUP_ADMINISTRATORS:
-                return ['prefix' => 'admin', 'controller' => 'default', 'action' => 'index'];
+                return ['prefix' => 'admin', 'controller' => 'users', 'action' => 'index'];
             case Group::GROUP_USERS:
                 return ['controller' => 'applicants', 'action' => 'preview'];
             case Group::GROUP_GUESTS:

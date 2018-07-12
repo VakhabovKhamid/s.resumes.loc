@@ -52,7 +52,7 @@ Router::scope('/', function (RouteBuilder $routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+    $routes->connect('/', ['controller' => 'Applicants', 'action' => 'preview']);
 
     $routes->connect('/login', ['prefix'=>'admin', 'controller'=>'users', 'action'=>'login']);
 
@@ -91,6 +91,13 @@ Router::scope('/', function (RouteBuilder $routes) {
 });
 
 Router::prefix('Admin', ['_namePrefix' => 'admin:'], function ($routes) {
+    $routes->connect('/', ['controller' => 'default', 'action' => 'index']);
+    $routes->connect('/:controller/', ['action'=>'index']);
+    $routes->connect('/:controller/:action/*');
+});
+
+
+Router::prefix('Api', ['_namePrefix' => 'api:'], function ($routes) {
     $routes->connect('/', ['controller' => 'default', 'action' => 'index']);
     $routes->connect('/:controller/', ['action'=>'index']);
     $routes->connect('/:controller/:action/*');

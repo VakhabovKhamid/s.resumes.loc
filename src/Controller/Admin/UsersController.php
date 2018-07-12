@@ -114,13 +114,13 @@ class UsersController extends AppController
 
     public function login() {
         $this->Auth->setConfig('authenticate', ['Form']);
-        $this->Auth->getEventManager()->off(('Auth.afterIdentify'));
 
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+                $redirectUrl = $this->Users->getRedirectUrlByUserGroup($user);
+                return $this->redirect($redirectUrl);
             }
             $this->Flash->error(__('Your username or password was incorrect.'));
         }
@@ -136,7 +136,7 @@ class UsersController extends AppController
             $this->redirect($this->Auth->logout());
         } else {
             $this->Flash->set(__('You are not logged in!'));
-            $this->redirect('/', null, false);
+            $this->redirect($this->Auth->logout());
         }
     }
 }

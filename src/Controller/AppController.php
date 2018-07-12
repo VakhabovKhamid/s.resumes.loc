@@ -60,24 +60,27 @@ class AppController extends Controller
                 'Acl.Actions' => ['actionPath' => 'controllers/']
             ],
             'loginAction' => [
+                'prefix' => false,
                 'plugin' => false,
                 'controller' => 'Users',
-                'action' => 'login'
+                'action' => 'login-sms'
             ],
             'loginRedirect' => [
+                'prefix' => false,
                 'plugin' => false,
-                'controller' => 'Pages',
-                'action' => 'display'
+                'controller' => 'Applicant',
+                'action' => 'preview'
             ],
             'logoutRedirect' => [
+                'prefix' => false,
                 'plugin' => false,
                 'controller' => 'Users',
-                'action' => 'login'
+                'action' => 'login-sms'
             ],
             'unauthorizedRedirect' => [
+                'prefix' => false,
                 'controller' => 'Users',
-                'action' => 'login',
-                'prefix' => false
+                'action' => 'login-sms'
             ],
             'authError' => 'You are not authorized to access that location.',
             'flash' => [

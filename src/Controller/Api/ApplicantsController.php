@@ -20,6 +20,7 @@ class ApplicantsController extends AppController
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('BryanCrowe/ApiPagination.ApiPagination');
+        $this->Auth->allow();
     }
 
     public function search()
