@@ -51,6 +51,9 @@ class DictionaryRegionsController extends AppController
         $dictionaryRegion = $this->DictionaryRegions->newEntity();
         if ($this->request->is('post')) {
             $dictionaryRegion = $this->DictionaryRegions->patchEntity($dictionaryRegion, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $dictionaryRegion->created_by = $userId;
+            $dictionaryRegion->modified_by = $userId;
             if ($this->DictionaryRegions->save($dictionaryRegion)) {
                 $this->Flash->success(__('The dictionary region has been saved.'));
 
@@ -75,6 +78,9 @@ class DictionaryRegionsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $dictionaryRegion = $this->DictionaryRegions->patchEntity($dictionaryRegion, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $dictionaryRegion->created_by = $userId;
+            $dictionaryRegion->modified_by = $userId;
             if ($this->DictionaryRegions->save($dictionaryRegion)) {
                 $this->Flash->success(__('The dictionary region has been saved.'));
 

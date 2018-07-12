@@ -67,6 +67,10 @@ class ApplicantsTable extends Table
             'foreignKey' => 'industry_id',
             'joinType' => 'INNER'
         ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'created_by',
+            'joinType' => 'INNER'
+        ]);
         $this->hasMany('ApplicantDocuments', [
             'foreignKey' => 'applicant_id'
         ]);
@@ -135,8 +139,8 @@ class ApplicantsTable extends Table
         $validator
             ->scalar('is_archive')
             ->maxLength('is_archive', 1)
-            ->requirePresence('is_archive', 'create')
-            ->notEmpty('is_archive');
+            ->regex('is_archive', ['Y', 'N'])
+            ->allowEmpty('is_archive');
 
         $validator
             ->requirePresence('created_by', 'create')

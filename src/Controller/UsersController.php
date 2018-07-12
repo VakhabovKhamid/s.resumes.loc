@@ -60,7 +60,9 @@ class UsersController extends AppController
             if ($user) {
                 $this->Auth->logout();
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+
+                $redirectUrl = $this->Users->getRedirectUrlByUserGroup($user);
+                return $this->redirect($redirectUrl);
             }
 
             $this->Flash->error(__('Verify code is incorrect'), [

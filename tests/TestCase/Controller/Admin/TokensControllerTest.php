@@ -16,7 +16,8 @@ class TokensControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.tokens'
+        'app.tokens',
+        'app.users'
     ];
 
     /**

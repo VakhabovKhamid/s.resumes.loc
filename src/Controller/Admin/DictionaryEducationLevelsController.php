@@ -51,6 +51,9 @@ class DictionaryEducationLevelsController extends AppController
         $dictionaryEducationLevel = $this->DictionaryEducationLevels->newEntity();
         if ($this->request->is('post')) {
             $dictionaryEducationLevel = $this->DictionaryEducationLevels->patchEntity($dictionaryEducationLevel, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $dictionaryEducationLevel->created_by = $userId;
+            $dictionaryEducationLevel->modified_by = $userId;
             if ($this->DictionaryEducationLevels->save($dictionaryEducationLevel)) {
                 $this->Flash->success(__('The dictionary education level has been saved.'));
 
@@ -75,6 +78,9 @@ class DictionaryEducationLevelsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $dictionaryEducationLevel = $this->DictionaryEducationLevels->patchEntity($dictionaryEducationLevel, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $dictionaryEducationLevel->created_by = $userId;
+            $dictionaryEducationLevel->modified_by = $userId;
             if ($this->DictionaryEducationLevels->save($dictionaryEducationLevel)) {
                 $this->Flash->success(__('The dictionary education level has been saved.'));
 

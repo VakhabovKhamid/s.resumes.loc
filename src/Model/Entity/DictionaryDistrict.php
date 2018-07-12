@@ -24,6 +24,7 @@ use Cake\ORM\Entity;
  */
 class DictionaryDistrict extends Entity
 {
+    use LocaliseTrait;
 
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -49,4 +50,11 @@ class DictionaryDistrict extends Entity
         'modified_by' => true,
         'dictionary_region' => true
     ];
+
+    protected function _getName()
+    {
+        $language = $this->getLanguageByLocale();
+        $name = 'name_'.$language;
+        return $this->_properties[$name];
+    }
 }

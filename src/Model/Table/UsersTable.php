@@ -106,9 +106,9 @@ class UsersTable extends Table
             case Group::GROUP_ADMINISTRATORS:
                 return ['prefix' => 'admin', 'controller' => 'default', 'action' => 'index'];
             case Group::GROUP_USERS:
-                return ['prefix' => false, 'controller' => 'applicants', 'action' => 'preview'];
+                return ['controller' => 'applicants', 'action' => 'preview'];
             case Group::GROUP_GUESTS:
-                return ['prefix' => 'admin', 'controller' => 'users', 'action' => 'verifyCode'];
+                return ['controller' => 'users', 'action' => 'verifyCode'];
             default:
                 return ['prefix' => 'admin', 'controller' => 'users', 'action' => 'login'];
         }

@@ -54,6 +54,9 @@ class DictionaryDistrictsController extends AppController
         $dictionaryDistrict = $this->DictionaryDistricts->newEntity();
         if ($this->request->is('post')) {
             $dictionaryDistrict = $this->DictionaryDistricts->patchEntity($dictionaryDistrict, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $dictionaryDistrict->created_by = $userId;
+            $dictionaryDistrict->modified_by = $userId;
             if ($this->DictionaryDistricts->save($dictionaryDistrict)) {
                 $this->Flash->success(__('The dictionary district has been saved.'));
 
@@ -79,6 +82,9 @@ class DictionaryDistrictsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $dictionaryDistrict = $this->DictionaryDistricts->patchEntity($dictionaryDistrict, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $dictionaryDistrict->created_by = $userId;
+            $dictionaryDistrict->modified_by = $userId;
             if ($this->DictionaryDistricts->save($dictionaryDistrict)) {
                 $this->Flash->success(__('The dictionary district has been saved.'));
 

@@ -54,6 +54,9 @@ class ApplicantsController extends AppController
         $applicant = $this->Applicants->newEntity();
         if ($this->request->is('post')) {
             $applicant = $this->Applicants->patchEntity($applicant, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $applicant->created_by = $userId;
+            $applicant->modified_by = $userId;
             if ($this->Applicants->save($applicant)) {
                 $this->Flash->success(__('The applicant has been saved.'));
 

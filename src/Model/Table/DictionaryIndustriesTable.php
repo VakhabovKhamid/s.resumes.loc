@@ -34,7 +34,7 @@ class DictionaryIndustriesTable extends Table
         parent::initialize($config);
 
         $this->setTable('dictionary_industries');
-        $this->setDisplayField('id');
+        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

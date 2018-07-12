@@ -15,20 +15,6 @@ use Cake\Event\Event;
  */
 class UsersController extends AppController
 {
-    public function initialize()
-    {
-        parent::initialize();
-
-        $this->modelFactory('Endpoint', ['Muffin\Webservice\Model\EndpointRegistry', 'get']);
-    }
-
-    public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-
-        $this->loadModel('ShortMessages', 'Endpoint');
-    }
-
     /**
      * Index method
      *
@@ -141,74 +127,16 @@ class UsersController extends AppController
     }
 
     public function logout() {
-        $this->Flash->success(__('Good-Bye'));
-        $this->redirect($this->Auth->logout());
-    }
-
-    public function loginSms()
-    {
-        $this->Auth->setConfig('authenticate', ['Sms']);
-
-        if ($this->request->is('post')) {
-            $user = $this->Auth->identify();
-
-            if ($user) {
-                $this->Auth->setUser($user);
-                $this->Flash->success(__('A one-time code has been send to you by sms.'));
-                return $this->redirect(['action' => 'verify-code']);
-            }
-
-            $this->Flash->error(__('Sms code is incorrect'), [
-                'key' => 'auth'
-            ]);
-        }
-    }
-
-    public function verifyCode()
-    {
-
-        $this->Auth->setConfig('authenticate', ['VerifyCode']);
-        $this->Auth->getEventManager()->off(('Auth.afterIdentify'));
-
-        if ($this->request->is('post')) {
-            $user = $this->Auth->identify();
-
-            if ($user) {
-
-                $this->Auth->logout();
-                $this->Auth->setUser($user);
-
-                $redirectUrl = $this->Users->getRedirectUrlByUserGroup($user);
-                return $this->redirect($redirectUrl);
-            }
-
-            $this->Flash->error(__('Verify code is incorrect'), [
-                'key' => 'auth'
-            ]);
-        }
-    }
-
-    public function implementedEvents()
-    {
-        return parent::implementedEvents() + [
-                'Auth.afterIdentify' => 'afterIdentify',
-            ];
-    }
-
-    public function afterIdentify(Event $event, $result, SmsAuthenticate $auth)
-    {
-        $token = $auth->token($result->token->toArray());
-
-        $sms = new ShortMessage();
-        $sms->phone = $result->token->phone;
-        $sms->text = $token;
-
-        $sendedMessage = $this->ShortMessages->save($sms);
-
-        if($sendedMessage) {
-            return $result;
+        $session = $this->getRequest()->getSession();
+        if ($session->read('Auth.User')) {
+            // Remove ACL from session
+            $session->delete('Auth');
+            // Logout
+            $this->Flash->success(__('Good-Bye'));
+            $this->redirect($this->Auth->logout());
         } else {
-            throw new \Exception('Sms not sended');
+            $this->Flash->set(__('You are not logged in!'));
+            $this->redirect('/', null, false);
         }
     }
 }

@@ -34,7 +34,7 @@ class DictionaryCountriesTable extends Table
         parent::initialize($config);
 
         $this->setTable('dictionary_countries');
-        $this->setDisplayField('id');
+        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

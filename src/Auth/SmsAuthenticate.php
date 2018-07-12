@@ -89,7 +89,7 @@ class SmsAuthenticate extends FormAuthenticate
         $table = TableRegistry::get($config['userModel']);
         $data = [
             'username' => 'user-'.$username,
-            'group_id' => Group::GROUP_GUEST, //Guest group
+            'group_id' => Group::GROUP_GUESTS, //Guest group
             'password' => Security::randomString(10),
             'email' => 'user-'.$username.'@test.com',
             'created' => new \DateTime(),

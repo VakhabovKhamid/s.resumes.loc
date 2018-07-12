@@ -34,7 +34,7 @@ class DictionaryEducationLevelsTable extends Table
         parent::initialize($config);
 
         $this->setTable('dictionary_education_levels');
-        $this->setDisplayField('id');
+        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

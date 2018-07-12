@@ -20,6 +20,9 @@ class TokensController extends AppController
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Users']
+        ];
         $tokens = $this->paginate($this->Tokens);
 
         $this->set(compact('tokens'));
@@ -35,7 +38,7 @@ class TokensController extends AppController
     public function view($id = null)
     {
         $token = $this->Tokens->get($id, [
-            'contain' => []
+            'contain' => ['Users']
         ]);
 
         $this->set('token', $token);
@@ -51,6 +54,9 @@ class TokensController extends AppController
         $token = $this->Tokens->newEntity();
         if ($this->request->is('post')) {
             $token = $this->Tokens->patchEntity($token, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $token->created_by = $userId;
+            $token->modified_by = $userId;
             if ($this->Tokens->save($token)) {
                 $this->Flash->success(__('The token has been saved.'));
 
@@ -58,7 +64,8 @@ class TokensController extends AppController
             }
             $this->Flash->error(__('The token could not be saved. Please, try again.'));
         }
-        $this->set(compact('token'));
+        $users = $this->Tokens->Users->find('list', ['limit' => 200]);
+        $this->set(compact('token', 'users'));
     }
 
     /**
@@ -75,6 +82,9 @@ class TokensController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $token = $this->Tokens->patchEntity($token, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $token->created_by = $userId;
+            $token->modified_by = $userId;
             if ($this->Tokens->save($token)) {
                 $this->Flash->success(__('The token has been saved.'));
 
@@ -82,7 +92,8 @@ class TokensController extends AppController
             }
             $this->Flash->error(__('The token could not be saved. Please, try again.'));
         }
-        $this->set(compact('token'));
+        $users = $this->Tokens->Users->find('list', ['limit' => 200]);
+        $this->set(compact('token', 'users'));
     }
 
     /**

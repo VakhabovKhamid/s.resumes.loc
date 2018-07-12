@@ -39,7 +39,22 @@ class ApplicantDocumentsTable extends Table
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
+        $this->addBehavior('AuditUser');
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Josegonzalez/Upload.Upload', [
+            'name' => [
+                'path' => 'webroot'.DS.'uploads'.DS.'applicant_documents'.DS.'{field-value:created_by}',
+                'transformer' => function (\Cake\Datasource\RepositoryInterface $table, \Cake\Datasource\EntityInterface $entity, $data, $field, $settings) {
+
+                    $extension = pathinfo($data['name'], PATHINFO_EXTENSION);
+                    $filename = md5($data['name'].microtime()).'.'.$extension; //hashed filename
+                    $entity->path = DS.'uploads'.DS.'applicant_documents'.DS.$entity->created_by.DS.$filename;
+
+                    return [$data['tmp_name'] => $filename];
+                },
+                'writer' => 'Josegonzalez\Upload\File\Writer\DefaultWriter'
+            ]
+        ]);
 
         $this->belongsTo('Applicants', [
             'foreignKey' => 'applicant_id',
@@ -65,22 +80,29 @@ class ApplicantDocumentsTable extends Table
             ->notEmpty('anchor');
 
         $validator
-            ->scalar('name')
-            ->maxLength('name', 120)
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->uploadedFile('name', [
+                'types' => [
+                    'application/pdf',
+                    'image/png',
+                    'image/pjpeg',
+                    'image/jpeg'
+                ],
+                'maxSize' => 10000000, // 10Mb
+                'optional' => false,
+            ]);
 
         $validator
             ->scalar('path')
             ->maxLength('path', 240)
-            ->requirePresence('path', 'create')
-            ->notEmpty('path');
+            ->allowEmpty('path');
 
         $validator
+            ->integer('created_by')
             ->requirePresence('created_by', 'create')
             ->notEmpty('created_by');
 
         $validator
+            ->integer('modified_by')
             ->requirePresence('modified_by', 'create')
             ->notEmpty('modified_by');
 

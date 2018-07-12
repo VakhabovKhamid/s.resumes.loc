@@ -36,7 +36,7 @@ class DictionaryDistrictsTable extends Table
         parent::initialize($config);
 
         $this->setTable('dictionary_districts');
-        $this->setDisplayField('id');
+        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

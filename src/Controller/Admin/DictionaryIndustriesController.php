@@ -51,6 +51,9 @@ class DictionaryIndustriesController extends AppController
         $dictionaryIndustry = $this->DictionaryIndustries->newEntity();
         if ($this->request->is('post')) {
             $dictionaryIndustry = $this->DictionaryIndustries->patchEntity($dictionaryIndustry, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $dictionaryIndustry->created_by = $userId;
+            $dictionaryIndustry->modified_by = $userId;
             if ($this->DictionaryIndustries->save($dictionaryIndustry)) {
                 $this->Flash->success(__('The dictionary industry has been saved.'));
 
@@ -75,6 +78,9 @@ class DictionaryIndustriesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $dictionaryIndustry = $this->DictionaryIndustries->patchEntity($dictionaryIndustry, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $dictionaryIndustry->created_by = $userId;
+            $dictionaryIndustry->modified_by = $userId;
             if ($this->DictionaryIndustries->save($dictionaryIndustry)) {
                 $this->Flash->success(__('The dictionary industry has been saved.'));
 

@@ -34,7 +34,7 @@ class DictionaryRegionsTable extends Table
         parent::initialize($config);
 
         $this->setTable('dictionary_regions');
-        $this->setDisplayField('id');
+        $this->setDisplayField('name');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

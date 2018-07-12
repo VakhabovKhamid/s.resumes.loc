@@ -51,6 +51,9 @@ class DictionaryCountriesController extends AppController
         $dictionaryCountry = $this->DictionaryCountries->newEntity();
         if ($this->request->is('post')) {
             $dictionaryCountry = $this->DictionaryCountries->patchEntity($dictionaryCountry, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $dictionaryCountry->created_by = $userId;
+            $dictionaryCountry->modified_by = $userId;
             if ($this->DictionaryCountries->save($dictionaryCountry)) {
                 $this->Flash->success(__('The dictionary country has been saved.'));
 
@@ -75,6 +78,9 @@ class DictionaryCountriesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $dictionaryCountry = $this->DictionaryCountries->patchEntity($dictionaryCountry, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $dictionaryCountry->created_by = $userId;
+            $dictionaryCountry->modified_by = $userId;
             if ($this->DictionaryCountries->save($dictionaryCountry)) {
                 $this->Flash->success(__('The dictionary country has been saved.'));
 

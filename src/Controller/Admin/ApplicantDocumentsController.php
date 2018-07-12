@@ -54,6 +54,9 @@ class ApplicantDocumentsController extends AppController
         $applicantDocument = $this->ApplicantDocuments->newEntity();
         if ($this->request->is('post')) {
             $applicantDocument = $this->ApplicantDocuments->patchEntity($applicantDocument, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $applicantDocument->created_by = $userId;
+            $applicantDocument->modified_by = $userId;
             if ($this->ApplicantDocuments->save($applicantDocument)) {
                 $this->Flash->success(__('The applicant document has been saved.'));
 
@@ -79,6 +82,9 @@ class ApplicantDocumentsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $applicantDocument = $this->ApplicantDocuments->patchEntity($applicantDocument, $this->request->getData());
+            $userId = $this->Auth->user('id');
+            $applicantDocument->created_by = $userId;
+            $applicantDocument->modified_by = $userId;
             if ($this->ApplicantDocuments->save($applicantDocument)) {
                 $this->Flash->success(__('The applicant document has been saved.'));
 
