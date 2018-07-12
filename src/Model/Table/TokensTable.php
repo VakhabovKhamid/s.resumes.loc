@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Tokens Model
  *
+ * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
+ *
  * @method \App\Model\Entity\Token get($primaryKey, $options = [])
  * @method \App\Model\Entity\Token newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Token[] newEntities(array $data, array $options = [])
@@ -38,6 +40,11 @@ class TokensTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
+        ]);
     }
 
     /**

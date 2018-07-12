@@ -7,10 +7,12 @@ use Cake\ORM\Entity;
  * Token Entity
  *
  * @property int $id
+ * @property int $user_id
  * @property string $token
  * @property \Cake\I18n\FrozenTime $expire
  * @property \Cake\I18n\FrozenTime $created
  * @property int $created_by
+ * @property string $phone
  */
 class Token extends Entity
 {
@@ -28,7 +30,9 @@ class Token extends Entity
         'token' => true,
         'expire' => true,
         'created' => true,
-        'created_by' => true
+        'created_by' => true,
+        'phone' => true,
+        'user_id' => true,
     ];
 
     /**

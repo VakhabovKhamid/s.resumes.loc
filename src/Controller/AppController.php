@@ -92,7 +92,7 @@ class AppController extends Controller
     }
 
     public function beforeFilter(Event $event) {
-        $this->Auth->allow(['display', 'login', 'logout', 'changelanguage']);
+        $this->Auth->allow(['display', 'login', 'logout', 'changelanguage', 'loginSms']);
 
         $userId = (int) $this->getRequest()->getSession()->read('Auth.User.id');
         if ($userId) {
