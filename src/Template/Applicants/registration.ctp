@@ -97,7 +97,7 @@
                 <div class="colp15-6">
                     <div class="formControl">
                         <label class="formLabel">Кем вы хотели бы работать</label>
-                        <div class="field FiledMain">
+                        <div class="field FiledMain" data-leng='<?= isset($applicant->id)?count($applicant->professional_skills):'1' ?>'>
                             <div class="row5">
                                 <div class="colp5-10">
                                     <?= $this->Form->control('professional_skills[]', ['value' => isset($applicant->professional_skills[0])?$applicant->professional_skills[0]:'','label' => false, 'class' => 'formField']); ?>
@@ -154,7 +154,7 @@
                 <div class="checkboxCf">
                     <label>
                       <input id="checkPublicOffer" type="checkbox"/>
-                      <span>Вы соглашаетесь с условиями <a href="#">Публичной оферты</a></span>
+                      <span>Вы соглашаетесь с условиями <a href="/static-page.html" target="_blank">Публичной оферты</a></span>
                     </label>
                     <p class="error-text">Пожалуйста отметьте что вы согласно с условиями Публичной оферты</p>
                 </div>
