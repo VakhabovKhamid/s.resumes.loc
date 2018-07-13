@@ -93,4 +93,41 @@ class ApplicantsController extends AppController
 
         }
     }
+
+    public function edit()
+    {
+        $applicant = $this->Applicants->find()->where(['created_by' => $this->Auth->user('id')])->firstOrFail();
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $applicant = $this->Applicants->patchEntity($applicant, $this->request->getData());
+            if ($this->Applicants->save($applicant)) {
+                $this->Flash->success(__('The applicant has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The applicant could not be saved. Please, try again.'));
+        }
+        $countries = $this->Applicants->DictionaryCountries->find('list', ['limit' => 200]);
+        $regions = $this->Applicants->DictionaryRegions->find('list', ['limit' => 200]);
+        $districts = $this->Applicants->DictionaryDistricts->find('list', ['limit' => 200]);
+        $educationLevels = $this->Applicants->DictionaryEducationLevels->find('list', ['limit' => 200]);
+        $industries = $this->Applicants->Industries->find('list', ['limit' => 200]);
+        $birthDateDays = $this->Applicants->getBirthDateDays();
+        $birthDateMonths = $this->Applicants->getBirthDateMonths();
+        $birthDateYears = $this->Applicants->getBirthDateYears();
+        $sexList = $this->Applicants->getSexList();
+        $this->set(compact(
+                'applicant',
+                'countries',
+                'regions',
+                'districts',
+                'educationLevels',
+                'industries',
+                'birthDateDays',
+                'birthDateMonths',
+                'birthDateYears',
+                'sexList'
+            )
+        );
+        $this->render('registration');
+    }
 }

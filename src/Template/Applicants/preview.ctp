@@ -70,7 +70,7 @@
   <div class="textRight">
     <?= $this->Form->postLink('Удалить', ['action' => 'delete'], ['confirm' => __('Are you sure you want to delete?'), 'escape' => false, 'class' => 'btn0 btnRed']) ?>
     &nbsp;
-    <a href="form.html" class="btn0 btn1">Редактировать</a>
+    <?= $this->Html->link('Редактировать', ['action' => 'edit'], ['class' => 'btn0 btn1']) ?>
   </div>
 </div>
 </div>
