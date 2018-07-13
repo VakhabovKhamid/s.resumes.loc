@@ -33,4 +33,35 @@ font-family: "OpenSansSemiBold";
     width: 100%;
     padding: 0; }
   .btnNav {
-    display: block; } }
+    display: block; }
+  .contentBlockBold {
+    padding: 20px; }
+  .mainContainer {
+    padding: 0 15px; }
+  .row15 {
+    margin: 0; }
+    .row15 [class^="colp15-"] {
+      width: 100%;
+      float: none;
+      display: block;
+      padding: 0; }
+  .formSubmit .btn0 {
+    margin: 0 0 20px; }
+  .logo a .logoText {
+    font-size: 14px; }
+  .title-1 {
+    font-size: 22px; }
+  h1, .h1 {
+    font-size: 22px; }
+  h2, .h2 {
+    font-size: 20px; }
+  h3, .h3 {
+    font-size: 18px; }
+  h4, .h4 {
+    font-size: 16px; }
+  h5, .h5 {
+    font-size: 14px; }
+  h6, .h6 {
+    font-size: 13px; }
+  .title-3 {
+    font-size: 18px; } }

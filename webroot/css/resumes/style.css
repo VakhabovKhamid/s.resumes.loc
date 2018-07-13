@@ -12,7 +12,7 @@ body {
 body {
   font-size: 14px;
   background: #F4F8F9;
-  min-width: 1200px;
+  min-width: 320px;
   color: #2F2F2F; }
 
 a {
@@ -1309,7 +1309,7 @@ textarea.formField {
   padding: 40px; }
 
 .hButtons .btn0 {
-  margin: 10px; }
+  margin: 10px 0; }
 
 .fieldText {
   font-size: 14px;
@@ -1410,3 +1410,11 @@ textarea.formField {
   margin: 0 0 10px; }
   .FiledClone .btnAddField {
     display: none; }
+
+.error-text {
+  display: none;
+  font-size: 13px;
+  color: red; }
+
+.error .error-text {
+  display: block; }
