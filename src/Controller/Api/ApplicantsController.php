@@ -26,16 +26,18 @@ class ApplicantsController extends AppController
     public function search()
     {
         if($this->request->is('ajax')) {
-            $this->response->disableCache();
+            $this->response->withDisabledCache();
 
             $data = $this->request->getData();
             $searchConditions = $this->Applicants->getSearchConditions($data);
 
             $this->paginate = [
                 'contain' => ['DictionaryCountries', 'DictionaryRegions', 'DictionaryDistricts', 'DictionaryEducationLevels', 'DictionaryIndustries', 'ApplicantDocuments', 'Users'],
-                'conditions' => $searchConditions
+                'conditions' => $searchConditions,
+                'limit' => 2,
             ];
             $applicants = $this->paginate($this->Applicants);
+            //dd($applicants);
             //TODO Delete this code
             $countries = $this->Applicants->DictionaryCountries;
             foreach ($applicants as $applicant) {

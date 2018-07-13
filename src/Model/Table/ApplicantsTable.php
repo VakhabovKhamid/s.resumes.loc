@@ -139,7 +139,7 @@ class ApplicantsTable extends Table
         $validator
             ->scalar('is_archive')
             ->maxLength('is_archive', 1)
-            ->regex('is_archive', ['Y', 'N'])
+            ->inList('is_archive', ['Y', 'N'])
             ->allowEmpty('is_archive');
 
         $validator
