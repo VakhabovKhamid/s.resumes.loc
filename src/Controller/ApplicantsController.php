@@ -11,6 +11,15 @@ namespace App\Controller;
 
 class ApplicantsController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+
+        $this->loadComponent('RequestHandler');
+        $this->loadModel('DictionaryDistricts');
+
+    }
+
     public function registration()
     {
         $applicant = $this->Applicants->newEntity();
@@ -67,5 +76,19 @@ class ApplicantsController extends AppController
         $applicant = $applicant->toArray();
         $applicant = $applicant[0];
         $this->set(compact('applicant','sexList'));
+    }
+
+    public function getDistrictsList()
+    {
+        if($this->request->is('ajax')) {
+            $region_id = $this->request->getQuery('region_id');
+            $districts = $this->DictionaryDistricts->find('list', [
+                'conditions' => [
+                    'DictionaryDistricts.region_id' => $region_id
+                ]
+            ])->toArray();
+            $this->set(compact('districts'));
+            $this->set('_serialize', ['districts']);
+        }
     }
 }

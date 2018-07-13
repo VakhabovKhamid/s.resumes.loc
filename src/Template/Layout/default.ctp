@@ -41,6 +41,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->script('/js/resumes/jquery.fancybox.min.js') ?>
     <?= $this->Html->script('/js/resumes/multiple-select.js') ?>
     <?= $this->Html->script('/js/resumes/script.js') ?>
+    <?= $this->Html->script('/js/resumes/app.js') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
