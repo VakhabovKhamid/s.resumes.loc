@@ -1,7 +1,10 @@
 <?php
 namespace App\Controller\Admin;
 
+use App\Auth\SmsAuthenticate;
 use App\Controller\AppController;
+use App\Model\Resource\ShortMessage;
+use Cake\Event\Event;
 
 /**
  * Users Controller
@@ -12,7 +15,6 @@ use App\Controller\AppController;
  */
 class UsersController extends AppController
 {
-
     /**
      * Index method
      *
@@ -111,18 +113,30 @@ class UsersController extends AppController
     }
 
     public function login() {
+        $this->Auth->setConfig('authenticate', ['Form']);
+
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
+                $redirectUrl = $this->Users->getRedirectUrlByUserGroup($user);
+                return $this->redirect($redirectUrl);
             }
             $this->Flash->error(__('Your username or password was incorrect.'));
         }
     }
 
     public function logout() {
-        $this->Flash->success(__('Good-Bye'));
-        $this->redirect($this->Auth->logout());
+        $session = $this->getRequest()->getSession();
+        if ($session->read('Auth.User')) {
+            // Remove ACL from session
+            $session->delete('Auth');
+            // Logout
+            $this->Flash->success(__('Good-Bye'));
+            $this->redirect($this->Auth->logout());
+        } else {
+            $this->Flash->set(__('You are not logged in!'));
+            $this->redirect($this->Auth->logout());
+        }
     }
 }

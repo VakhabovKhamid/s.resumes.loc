@@ -1,0 +1,67 @@
+/*
+font-family: "OpenSansLight";
+font-family: "OpenSansBold";
+font-family: "OpenSansItalic";
+font-family: "OpenSansLightItalic";
+font-family: "OpenSansRegular";
+font-family: "OpenSansSemiBold";
+*/
+@media screen and (max-width: 767px) {
+  body {
+    width: 100%;
+    min-width: 320px;
+    overflow-x: hidden; }
+  .mainContainer {
+    width: 100%; }
+  .row20 {
+    margin: 0; }
+  .colp20-12,
+  .colp20-11,
+  .colp20-10,
+  .colp20-9,
+  .colp20-8,
+  .colp20-7,
+  .colp20-6,
+  .colp20-5,
+  .colp20-4,
+  .colp20-3,
+  .colp20-2,
+  .colp20-1 {
+    display: block;
+    margin: 0 0 20px;
+    float: none;
+    width: 100%;
+    padding: 0; }
+  .btnNav {
+    display: block; }
+  .contentBlockBold {
+    padding: 20px; }
+  .mainContainer {
+    padding: 0 15px; }
+  .row15 {
+    margin: 0; }
+    .row15 [class^="colp15-"] {
+      width: 100%;
+      float: none;
+      display: block;
+      padding: 0; }
+  .formSubmit .btn0 {
+    margin: 0 0 20px; }
+  .logo a .logoText {
+    font-size: 14px; }
+  .title-1 {
+    font-size: 22px; }
+  h1, .h1 {
+    font-size: 22px; }
+  h2, .h2 {
+    font-size: 20px; }
+  h3, .h3 {
+    font-size: 18px; }
+  h4, .h4 {
+    font-size: 16px; }
+  h5, .h5 {
+    font-size: 14px; }
+  h6, .h6 {
+    font-size: 13px; }
+  .title-3 {
+    font-size: 18px; } }

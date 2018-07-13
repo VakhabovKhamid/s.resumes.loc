@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Users Model
  *
  * @property \App\Model\Table\GroupsTable|\Cake\ORM\Association\BelongsTo $Groups
+ * @property \App\Model\Table\TokensTable|\Cake\ORM\Association\BelongsTo $Tokens
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -47,6 +48,8 @@ class UsersTable extends Table
             'foreignKey' => 'group_id',
             'joinType' => 'INNER'
         ]);
+
+        $this->hasOne('Tokens');
     }
 
     /**
@@ -88,5 +91,26 @@ class UsersTable extends Table
         $rules->add($rules->existsIn(['group_id'], 'Groups'));
 
         return $rules;
+    }
+
+    /**
+     * @param array $user
+     * @return array
+     */
+    public function getRedirectUrlByUserGroup($user)
+    {
+        if(!$user) {
+            return ['prefix' => 'admin', 'controller' => 'users', 'action' => 'login'];
+        }
+        switch ($user['group_id']) {
+            case Group::GROUP_ADMINISTRATORS:
+                return ['prefix' => 'admin', 'controller' => 'users', 'action' => 'index'];
+            case Group::GROUP_USERS:
+                return ['controller' => 'applicants', 'action' => 'preview'];
+            case Group::GROUP_GUESTS:
+                return ['controller' => 'users', 'action' => 'verifyCode'];
+            default:
+                return ['prefix' => 'admin', 'controller' => 'users', 'action' => 'login'];
+        }
     }
 }

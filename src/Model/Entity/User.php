@@ -17,6 +17,7 @@ use Cake\ORM\TableRegistry;
  * @property int $group_id
  *
  * @property \App\Model\Entity\Group $group
+ * @property \App\Model\Entity\Token $token
  * @property \App\Model\Entity\Employee[] $employees
  */
 class User extends Entity
@@ -40,7 +41,7 @@ class User extends Entity
         'group_id' => true,
         'aro' => true,
         'group' => true,
-        'licenses' => true,
+        'token' => true,
         '_joinData' => true,
     ];
 

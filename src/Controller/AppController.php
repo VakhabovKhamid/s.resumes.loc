@@ -12,6 +12,7 @@
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use App\Model\Entity\Group;
@@ -59,24 +60,27 @@ class AppController extends Controller
                 'Acl.Actions' => ['actionPath' => 'controllers/']
             ],
             'loginAction' => [
+                'prefix' => false,
                 'plugin' => false,
                 'controller' => 'Users',
-                'action' => 'login'
+                'action' => 'login-sms'
             ],
             'loginRedirect' => [
+                'prefix' => false,
                 'plugin' => false,
-                'controller' => 'Pages',
-                'action' => 'display'
+                'controller' => 'Applicant',
+                'action' => 'preview'
             ],
             'logoutRedirect' => [
+                'prefix' => false,
                 'plugin' => false,
                 'controller' => 'Users',
-                'action' => 'login'
+                'action' => 'login-sms'
             ],
             'unauthorizedRedirect' => [
+                'prefix' => false,
                 'controller' => 'Users',
-                'action' => 'login',
-                'prefix' => false
+                'action' => 'login-sms'
             ],
             'authError' => 'You are not authorized to access that location.',
             'flash' => [
@@ -91,10 +95,11 @@ class AppController extends Controller
         $this->loadModel('Users');
     }
 
-    public function beforeFilter(Event $event) {
-        $this->Auth->allow(['display', 'login', 'logout', 'changelanguage']);
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['display', 'login', 'logout', 'changelanguage', 'loginSms']);
 
-        $userId = (int) $this->getRequest()->getSession()->read('Auth.User.id');
+        $userId = (int)$this->getRequest()->getSession()->read('Auth.User.id');
         if ($userId) {
             //$this->AccessLog->save($this->name . "." . $this->action, $this->request);
             //

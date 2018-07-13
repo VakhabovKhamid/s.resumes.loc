@@ -29,7 +29,6 @@ class AclController extends AppController
     {
         $this->request->allowMethod('post');
         $group = $this->Groups->newEntity();
-
         $connection = ConnectionManager::get('default');
         $connection->execute('TRUNCATE TABLE `aros_acos`;');
 

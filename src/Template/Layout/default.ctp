@@ -26,32 +26,75 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
+    <?= $this->Html->css('/css/resumes/defaultStyles.css') ?>
+    <?= $this->Html->css('/css/resumes/icons.css') ?>
+    <?= $this->Html->css('/css/resumes/fonts.css') ?>
+    <?= $this->Html->css('/css/resumes/font-awesome.css') ?>
+    <?= $this->Html->css('/css/resumes/jquery.fancybox.min.css') ?>
+    <?= $this->Html->css('/css/resumes/multiple-select.css') ?>
+    <?= $this->Html->css('/css/resumes/style.css') ?>
+    <?= $this->Html->css('/css/resumes/media.css') ?>
+    <?= $this->Html->css('/css/resumes/app.css') ?>
+
+    <?= $this->Html->script('/js/resumes/jquery.js') ?>
+    <?= $this->Html->script('/js/resumes/jquery.inputmask.bundle.min.js') ?>
+    <?= $this->Html->script('/js/resumes/jquery.fancybox.min.js') ?>
+    <?= $this->Html->script('/js/resumes/multiple-select.js') ?>
+    <?= $this->Html->script('/js/resumes/script.js') ?>
+    <?= $this->Html->script('/js/resumes/app.js') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+
 </head>
 <body>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
-        </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="https://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="https://api.cakephp.org/3.0/">API</a></li>
-            </ul>
+    <!-- start #mainWrap-->
+    <div id="mainWrap">
+      <!-- start #header-->
+      <div id="header">
+        <div class="mainContainer">
+          <div class="header">
+            <div class="logo"><a href="/"><img src="/images/gerb.svg" alt=""/><span class="logoText">Единая национальная<br> система труда</span></a></div>
+            <?php if ($this->request->session()->read('Auth.User')): ?>
+            <div class="headerUserBlock">
+              <div class="btnPersonalArea">
+                <a class="PersonalAreaLink">
+                  <div style="background-image: url(/images/userDefault.svg);" class="userAvatar"></div>
+                  <div class="icon-arrow-min-bottom"></div>
+                </a>
+                <div class="subMenuPersonalArea">
+                  <ul>
+                    <li><a href="/logout">Logout <i class="fa fa-sign-out fa-fw"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <?php endif ?>
+          </div>
         </div>
-    </nav>
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
+      </div>
+      <!-- end #header-->
+      <!-- start #content-->
+      <div id="content">
+        <div class="pagePadding">
+            <div class="mainContainer">
+            <?= $this->Flash->render() ?>
+            </div>
+            <?= $this->fetch('content') ?>
+        </div>
+      </div>
+      <!-- end #content-->
     </div>
-    <footer>
-    </footer>
+    <!-- end #mainWrap-->
+    <!-- start #footer-->
+    <div id="footer">
+      <div class="mainContainer">
+        <div class="footer">
+          <div class="footerText textCenter"><?= date('Y') ?> Министерство занятости и трудовых отношений Республики Узбекистан</div>
+        </div>
+      </div>
+    </div>
+    <!-- end #footer-->
 </body>
 </html>
