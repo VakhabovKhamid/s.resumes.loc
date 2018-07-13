@@ -10,7 +10,7 @@ $(document).ready(function(){
             parent,
             child,
             { region_id : parent.val() },
-            '/applicants/get-districts-list'
+            '/dictionary-districts/ajax-region-districts'
         );
     });
     $(function() {
@@ -20,7 +20,7 @@ $(document).ready(function(){
             parent,
             child,
             { region_id : parent.val() },
-            '/applicants/get-districts-list'
+            '/dictionary-districts/ajax-region-districts'
         );
     });
 

@@ -21,7 +21,7 @@ class ApplicantsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['DictionaryCountries', 'DictionaryRegions', 'DictionaryDistricts', 'DictionaryEducationLevels', 'DictionaryIndustries']
+            'contain' => ['DictionaryCountries', 'DictionaryRegions', 'DictionaryDistricts', 'DictionaryEducationLevels']
         ];
         $applicants = $this->paginate($this->Applicants);
 

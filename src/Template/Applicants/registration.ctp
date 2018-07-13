@@ -90,7 +90,7 @@
                     <div class="formControl">
                         <label class="formLabel">Отрасль</label>
                         <div class="field">
-                            <?= $this->Form->control('industry_id', ['options' => $industries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true]); ?>
+                            <?= $this->Form->control('industries._ids', ['options' => $industries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true]); ?>
                         </div>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
                         <div class="field FiledMain">
                             <div class="row5">
                                 <div class="colp5-10">
-                                    <?= $this->Form->control('professional_skills', ['label' => false, 'class' => 'formField']); ?>
+                                    <?= $this->Form->control('professional_skills[]', ['label' => false, 'class' => 'formField']); ?>
                                 </div>
                                 <div class="colp5-2">
                                     <button type="button" class="btn0 btn1 btnF btnAddField">+</button>
@@ -118,7 +118,7 @@
                     <div class="formControl">
                         <label class="formLabel">Какой стране вы хотели бы работать</label>
                         <div class="field">
-                            <?= $this->Form->control('desirable_countries', ['options' => $countries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true]); ?>
+                            <?= $this->Form->control('desirable_countries._ids', ['options' => $countries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true]); ?>
                         </div>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                     <div class="formControl">
                         <label class="formLabel">Какой стране вы не хотели бы работать</label>
                         <div class="field">
-                            <?= $this->Form->control('undesirable_countries', ['options' => $countries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true]); ?>
+                            <?= $this->Form->control('undesirable_countries._ids', ['options' => $countries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true]); ?>
                         </div>
                     </div>
                 </div>

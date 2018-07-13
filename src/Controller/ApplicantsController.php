@@ -11,14 +11,6 @@ namespace App\Controller;
 
 class ApplicantsController extends AppController
 {
-    public function initialize()
-    {
-        parent::initialize();
-
-        $this->loadComponent('RequestHandler');
-        $this->loadModel('DictionaryDistricts');
-
-    }
 
     public function registration()
     {
@@ -39,7 +31,7 @@ class ApplicantsController extends AppController
         $regions = $this->Applicants->DictionaryRegions->find('list', ['limit' => 200]);
         $districts = $this->Applicants->DictionaryDistricts->find('list', ['limit' => 200]);
         $educationLevels = $this->Applicants->DictionaryEducationLevels->find('list', ['limit' => 200]);
-        $industries = $this->Applicants->DictionaryIndustries->find('list', ['limit' => 200]);
+        $industries = $this->Applicants->Industries->find('list', ['limit' => 200]);
         $birthDateDays = $this->Applicants->getBirthDateDays();
         $birthDateMonths = $this->Applicants->getBirthDateMonths();
         $birthDateYears = $this->Applicants->getBirthDateYears();
@@ -63,7 +55,16 @@ class ApplicantsController extends AppController
     {
         $id = $this->request->getSession()->read('Auth.User.id');
         $applicant = $this->Applicants->find('all', [
-            'contain' => ['DictionaryCountries', 'DictionaryRegions', 'DictionaryDistricts', 'DictionaryEducationLevels', 'DictionaryIndustries', 'ApplicantDocuments', 'Users'],
+            'contain' => [
+                'DesirableCountries',
+                'UndesirableCountries',
+                'DictionaryRegions',
+                'DictionaryDistricts',
+                'DictionaryEducationLevels',
+                'Industries',
+                'ApplicantDocuments',
+                'Users' => ['Tokens']
+            ],
             'conditions' => [
                 'Applicants.created_by' => $id
             ]
@@ -78,17 +79,18 @@ class ApplicantsController extends AppController
         $this->set(compact('applicant','sexList'));
     }
 
-    public function getDistrictsList()
+    public function delete()
     {
-        if($this->request->is('ajax')) {
-            $region_id = $this->request->getQuery('region_id');
-            $districts = $this->DictionaryDistricts->find('list', [
-                'conditions' => [
-                    'DictionaryDistricts.region_id' => $region_id
-                ]
-            ])->toArray();
-            $this->set(compact('districts'));
-            $this->set('_serialize', ['districts']);
+        $this->request->allowMethod(['post', 'delete']);
+
+        $applicant = $this->Applicants->find()->where(['created_by' => $this->Auth->user('id')])->firstOrFail();
+        if ($this->Applicants->delete($applicant)) {
+            $this->Flash->success(__('The applicant has been deleted.'));
+            return $this->redirect(['action' => 'registration']);
+        } else {
+            $this->Flash->error(__('The applicant could not be deleted. Please, try again.'));
+            return $this->redirect(['action' => 'preview']);
+
         }
     }
 }
