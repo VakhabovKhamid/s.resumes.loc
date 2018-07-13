@@ -319,7 +319,7 @@ $(document).ready(function(){
 
 
     $(function() {
-        var i = 1;
+        var i = $('.FiledMain').attr('data-leng');
         $('.btnAddField').click(function(e) {
             e.preventDefault();
             if (i != 5) {

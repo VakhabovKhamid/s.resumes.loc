@@ -29,7 +29,7 @@ class ApplicantsController extends AppController
         }
         $countries = $this->Applicants->DictionaryCountries->find('list', ['limit' => 200]);
         $regions = $this->Applicants->DictionaryRegions->find('list', ['limit' => 200]);
-        $districts = $this->Applicants->DictionaryDistricts->find('list', ['limit' => 200]);
+        //$districts = $this->Applicants->DictionaryDistricts->find('list', ['limit' => 200]);
         $educationLevels = $this->Applicants->DictionaryEducationLevels->find('list', ['limit' => 200]);
         $industries = $this->Applicants->Industries->find('list', ['limit' => 200]);
         $birthDateDays = $this->Applicants->getBirthDateDays();
@@ -40,7 +40,7 @@ class ApplicantsController extends AppController
                 'applicant',
                 'countries',
                 'regions',
-                'districts',
+                //'districts',
                 'educationLevels',
                 'industries',
                 'birthDateDays',
@@ -96,19 +96,44 @@ class ApplicantsController extends AppController
 
     public function edit()
     {
-        $applicant = $this->Applicants->find()->where(['created_by' => $this->Auth->user('id')])->firstOrFail();
+//        $applicant = $this->Applicants->find()->where(['created_by' => $this->Auth->user('id')])->firstOrFail();
+
+        $applicant = $this->Applicants->find('all', [
+            'contain' => [
+                'DesirableCountries',
+                'UndesirableCountries',
+                'DictionaryRegions',
+                'DictionaryDistricts',
+                'DictionaryEducationLevels',
+                'Industries'
+                //'ApplicantDocuments',
+                //'Users' => ['Tokens']
+            ],
+            'conditions' => [
+                'Applicants.created_by' => $this->Auth->user('id')
+            ]
+        ])->firstOrFail();
+
+
+            $districts = $this->Applicants->DictionaryDistricts->find('list', [
+                'conditions' => [
+                    'DictionaryDistricts.region_id' => $applicant->address_region_id
+                ]
+            ])->toArray();
+
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $applicant = $this->Applicants->patchEntity($applicant, $this->request->getData());
             if ($this->Applicants->save($applicant)) {
                 $this->Flash->success(__('The applicant has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'preview']);
             }
             $this->Flash->error(__('The applicant could not be saved. Please, try again.'));
         }
         $countries = $this->Applicants->DictionaryCountries->find('list', ['limit' => 200]);
         $regions = $this->Applicants->DictionaryRegions->find('list', ['limit' => 200]);
-        $districts = $this->Applicants->DictionaryDistricts->find('list', ['limit' => 200]);
+        //$districts = $this->Applicants->DictionaryDistricts->find('list', ['limit' => 200]);
         $educationLevels = $this->Applicants->DictionaryEducationLevels->find('list', ['limit' => 200]);
         $industries = $this->Applicants->Industries->find('list', ['limit' => 200]);
         $birthDateDays = $this->Applicants->getBirthDateDays();
@@ -119,13 +144,13 @@ class ApplicantsController extends AppController
                 'applicant',
                 'countries',
                 'regions',
-                'districts',
                 'educationLevels',
                 'industries',
                 'birthDateDays',
                 'birthDateMonths',
                 'birthDateYears',
-                'sexList'
+                'sexList',
+                'districts'
             )
         );
         $this->render('registration');

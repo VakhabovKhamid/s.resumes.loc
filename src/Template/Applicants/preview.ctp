@@ -7,7 +7,7 @@
 <div class="mainContainer minContainer1000">
 <div class="contentBlockBold">
   <div class="title-1 uppercase"><?= $applicant->latin_surname ?> <?= $applicant->latin_name ?></div>
-  <div class="dateBlock">Дата создание: <strong><?= $applicant->created->format('d.m.Y') ?></strong></div>
+  <div class="dateBlock">Дата создания: <strong><?= $applicant->created->format('d.m.Y') ?></strong></div>
   <hr/>
   <div class="resumeTable">
     <table>
@@ -47,14 +47,14 @@
         <td><?= $applicant->professional_skills?implode(', ', $applicant->professional_skills):'' ?></td>
       </tr>
       <tr>
-        <th>Какой стране вы хотели бы работать:</th>
+        <th>В какой стране вы хотели бы работать:</th>
           <?php
           $desirable_countries = array_map(function($desirable_country){ return $desirable_country->name; }, $applicant->desirable_countries);
           ?>
         <td><?= implode(', ', $desirable_countries) ?></td>
       </tr>
       <tr>
-        <th>Какой стране вы не хотели бы работать:</th>
+        <th>В какой стране вы не хотели бы работать:</th>
           <?php
           $undesirable_countries = array_map(function($undesirable_country){ return $undesirable_country->name; }, $applicant->undesirable_countries);
           ?>

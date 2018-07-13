@@ -13,16 +13,6 @@ $(document).ready(function(){
             '/dictionary-districts/ajax-region-districts'
         );
     });
-    $(function() {
-        var parent = $('#address-region-id'),
-            child = $('#address-district-id');
-        ajaxSelect(
-            parent,
-            child,
-            { region_id : parent.val() },
-            '/dictionary-districts/ajax-region-districts'
-        );
-    });
 
     function ajaxSelect(parent, child, data, url) {
         clearSelect(child);
@@ -72,5 +62,15 @@ $(document).ready(function(){
         select.append(options);
         select.removeAttr('disabled');
     }
+
+    function deleteClone(btn) {
+        btn.click(function(e) {
+            e.preventDefault();
+            $(this).parents('.FiledClone').remove();
+            i--;
+        })
+    }
+
+    deleteClone($('.btnAddRemove'));
 
 });
