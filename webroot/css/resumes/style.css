@@ -1393,3 +1393,20 @@ textarea.formField {
     *vertical-align: auto;
     *zoom: 1;
     *display: inline; }
+
+.btnF {
+  height: 36px;
+  font-size: 20px;
+  width: 36px;
+  padding: 5px;
+  margin: 5px; }
+
+.FiledMain {
+  margin: 0 0 10px; }
+  .FiledMain .btnAddRemove {
+    display: none; }
+
+.FiledClone {
+  margin: 0 0 10px; }
+  .FiledClone .btnAddField {
+    display: none; }

@@ -9,7 +9,7 @@
         <?= $this->Form->create() ?>
             <div class="formControl">
                 <div class="field">
-                    <?= $this->Form->control('phone', ['class'=>'phone formField', 'layout'=>false]) ?>
+                    <?= $this->Form->control('phone', ['class'=>'phone formField', 'label'=>false, 'autofocus' => true]) ?>
                 </div>
             </div>
             <hr/>

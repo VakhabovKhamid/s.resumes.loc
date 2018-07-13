@@ -34,12 +34,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->css('/css/resumes/multiple-select.css') ?>
     <?= $this->Html->css('/css/resumes/style.css') ?>
     <?= $this->Html->css('/css/resumes/media.css') ?>
+    <?= $this->Html->css('/css/resumes/app.css') ?>
 
     <?= $this->Html->script('/js/resumes/jquery.js') ?>
     <?= $this->Html->script('/js/resumes/jquery.inputmask.bundle.min.js') ?>
     <?= $this->Html->script('/js/resumes/jquery.fancybox.min.js') ?>
     <?= $this->Html->script('/js/resumes/multiple-select.js') ?>
     <?= $this->Html->script('/js/resumes/script.js') ?>
+    <?= $this->Html->script('/js/resumes/app.js') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>

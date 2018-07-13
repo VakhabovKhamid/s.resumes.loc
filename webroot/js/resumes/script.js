@@ -1,18 +1,18 @@
 (function($) {
-	$.fn.tabs = function( body ){
-		var boddy = $(body);
-		var navs = $(this).find('a');
-		navs.click(function(e){
-			e.preventDefault();
-			var id = $(this).attr('href');
-			$(this).parent().addClass('active').parent().find('li').not($(this).parent()).removeClass('active');
-			boddy.each(function(){
-				$(this).hide();
-			});
-			$(body+id).fadeIn(250);
+    $.fn.tabs = function( body ){
+        var boddy = $(body);
+        var navs = $(this).find('a');
+        navs.click(function(e){
+            e.preventDefault();
+            var id = $(this).attr('href');
+            $(this).parent().addClass('active').parent().find('li').not($(this).parent()).removeClass('active');
+            boddy.each(function(){
+                $(this).hide();
+            });
+            $(body+id).fadeIn(250);
 
-		});
-	}
+        });
+    }
 })(jQuery);
 
 
@@ -29,35 +29,35 @@ function hideModal(modal) {
     $('body').removeClass('openModal');
 }
 $(document).ready(function(){
-	
-	$('.questionsList h4').click(function(e){
-		$(this).toggleClass('active').parent().find('h4').not($(this)).removeClass('active');
-		$(this).nextUntil('h4').slideToggle().parent().find('p').not($(this).nextUntil('h4')).slideUp();
-	});
+    
+    $('.questionsList h4').click(function(e){
+        $(this).toggleClass('active').parent().find('h4').not($(this)).removeClass('active');
+        $(this).nextUntil('h4').slideToggle().parent().find('p').not($(this).nextUntil('h4')).slideUp();
+    });
 
-	$('.showTrInfo').click(function(e) {
-		e.preventDefault();
+    $('.showTrInfo').click(function(e) {
+        e.preventDefault();
 
-		if($(this).parents('tr').hasClass('opened')){
-			$(this).parents('tr').removeClass('opened');
-			$(this).parents('tr').next('tr.details').hide();
-		}else{
-			
-			$(this).parents('table').find('tr.details').hide();
-			$(this).parents('table').find('tr').removeClass('opened');
+        if($(this).parents('tr').hasClass('opened')){
+            $(this).parents('tr').removeClass('opened');
+            $(this).parents('tr').next('tr.details').hide();
+        }else{
+            
+            $(this).parents('table').find('tr.details').hide();
+            $(this).parents('table').find('tr').removeClass('opened');
 
-			$(this).parents('tr').addClass('opened');
-			$(this).parents('tr').next('tr.details').show();
-		}
+            $(this).parents('tr').addClass('opened');
+            $(this).parents('tr').next('tr.details').show();
+        }
 
 
-	});
+    });
 
     $('.modalWindowMask, .modalWindowClose').click(function(){
         hideModal($(this).parents('.modalWindow'));
     });
 
-	$(function(){
+    $(function(){
     $('.hoverEffect').prepend('<span class="activeBg"></span>');
 
     $('.hoverEffect li').hover(function(){
@@ -78,194 +78,194 @@ $(document).ready(function(){
   });
 
 
-	$('#searchFIO').on('input' , function(){
-		var val = $(this).val();
-		var val2 = val.toLowerCase();
-		var list = $(this).parents('tbody').find('.fieldFIO');
-		list.each(function(){
-			var t_text = $(this).text();
-			var t_text2 = t_text.toLowerCase();
-			if(~t_text2.indexOf(val2)) {
-				$(this).parents('tr').show();
-			}else{
-				$(this).parents('tr').hide();
-			}
-		});
-	});
+    $('#searchFIO').on('input' , function(){
+        var val = $(this).val();
+        var val2 = val.toLowerCase();
+        var list = $(this).parents('tbody').find('.fieldFIO');
+        list.each(function(){
+            var t_text = $(this).text();
+            var t_text2 = t_text.toLowerCase();
+            if(~t_text2.indexOf(val2)) {
+                $(this).parents('tr').show();
+            }else{
+                $(this).parents('tr').hide();
+            }
+        });
+    });
 
-	$('#searchPosition').on('input' , function(){
-		var val = $(this).val();
-		var val2 = val.toLowerCase();
-		var list = $(this).parents('tbody').find('.fieldPosition');
-		list.each(function(){
-			var t_text = $(this).text();
-			var t_text2 = t_text.toLowerCase();
-			if(~t_text2.indexOf(val2)) {
-				$(this).parents('tr').show();
-			}else{
-				$(this).parents('tr').hide();
-			}
-		});
-	});
+    $('#searchPosition').on('input' , function(){
+        var val = $(this).val();
+        var val2 = val.toLowerCase();
+        var list = $(this).parents('tbody').find('.fieldPosition');
+        list.each(function(){
+            var t_text = $(this).text();
+            var t_text2 = t_text.toLowerCase();
+            if(~t_text2.indexOf(val2)) {
+                $(this).parents('tr').show();
+            }else{
+                $(this).parents('tr').hide();
+            }
+        });
+    });
 
-	$('.filterField').on('input' , function(){
-		var valueF = $(this).attr('data-value');
-		var val = $(this).val();
-		var val2 = val.toLowerCase();
-		var list = $(valueF);
-		list.each(function(){
-			// if ($(this).parents('tr').css('display') != 'none') {
-				var t_text = $(this).text();
-				var t_text2 = t_text.toLowerCase();
-				if(~t_text2.indexOf(val2)) {
-					$(this).parents('tr').show();
-				}else{
-					$(this).parents('tr').hide();
-				}
-			// }
-		});
-	});
+    $('.filterField').on('input' , function(){
+        var valueF = $(this).attr('data-value');
+        var val = $(this).val();
+        var val2 = val.toLowerCase();
+        var list = $(valueF);
+        list.each(function(){
+            // if ($(this).parents('tr').css('display') != 'none') {
+                var t_text = $(this).text();
+                var t_text2 = t_text.toLowerCase();
+                if(~t_text2.indexOf(val2)) {
+                    $(this).parents('tr').show();
+                }else{
+                    $(this).parents('tr').hide();
+                }
+            // }
+        });
+    });
 
-	$('a, button').click(function(e){
-		if ($(this).hasAttr('data-modal')) {
-			e.preventDefault();
-			var modal = $(this).attr('data-modal');
-			if ($(modal).length > 0) {
+    $('a, button').click(function(e){
+        if ($(this).hasAttr('data-modal')) {
+            e.preventDefault();
+            var modal = $(this).attr('data-modal');
+            if ($(modal).length > 0) {
                 showModal($(modal));
-			}else{
-				console.log('Объект не найден!')
-			}
-		}
-	});	
+            }else{
+                console.log('Объект не найден!')
+            }
+        }
+    }); 
 
-	if ($('#fixedBlock').length > 0) {
-		var elemTop = $('#fixedBlock').offset().top;
-		$(window).resize(function(){
-			var elemWidth = $('#fixedBlockParent').width();
-			$('#fixedBlock').css({width: elemWidth});
-		});
-		$(window).scroll(function(){
-			var elemWidth = $('#fixedBlockParent').width();
-			var _ = $(this);
-			$('#fixedBlock').css({width: elemWidth});
-			if(_.width() > 940){
-				var _top = _.scrollTop();
-				if (_top >= elemTop) {
-					$('#fixedBlock').addClass('fixedBlock');				
-					var pTop = $('#fixedBlockParentRow').offset().top + $('#fixedBlockParentRow').height();
-					var newTop = pTop-$('#fixedBlock').height();
-					if (_top >= newTop) {
-						$('#fixedBlock').removeClass('fixedBlock');				
-						$('#fixedBlock').addClass('absolutedBlock');				
-					}else{
-						$('#fixedBlock').addClass('fixedBlock');				
-						$('#fixedBlock').removeClass('absolutedBlock');
-					}
-				}else{
-					$('#fixedBlock').removeClass('fixedBlock');				
-				}
-			}else{
-				$('#fixedBlock').removeClass('fixedBlock');				
-				$('#fixedBlock').removeClass('absolutedBlock');
-			}
-		});
-	}
+    if ($('#fixedBlock').length > 0) {
+        var elemTop = $('#fixedBlock').offset().top;
+        $(window).resize(function(){
+            var elemWidth = $('#fixedBlockParent').width();
+            $('#fixedBlock').css({width: elemWidth});
+        });
+        $(window).scroll(function(){
+            var elemWidth = $('#fixedBlockParent').width();
+            var _ = $(this);
+            $('#fixedBlock').css({width: elemWidth});
+            if(_.width() > 940){
+                var _top = _.scrollTop();
+                if (_top >= elemTop) {
+                    $('#fixedBlock').addClass('fixedBlock');                
+                    var pTop = $('#fixedBlockParentRow').offset().top + $('#fixedBlockParentRow').height();
+                    var newTop = pTop-$('#fixedBlock').height();
+                    if (_top >= newTop) {
+                        $('#fixedBlock').removeClass('fixedBlock');             
+                        $('#fixedBlock').addClass('absolutedBlock');                
+                    }else{
+                        $('#fixedBlock').addClass('fixedBlock');                
+                        $('#fixedBlock').removeClass('absolutedBlock');
+                    }
+                }else{
+                    $('#fixedBlock').removeClass('fixedBlock');             
+                }
+            }else{
+                $('#fixedBlock').removeClass('fixedBlock');             
+                $('#fixedBlock').removeClass('absolutedBlock');
+            }
+        });
+    }
 
-	$(function(){
-		var data = {
-			"name" : 'ООО "Smart Technologies Group"',
-			"address":"Ташкент, Мирзо-Улугбекский район, улица Паркентская, дом 13а, квартира 235",
-			"register_data": "01.11.2016",
-			"company_type": "Общество с ограниченой ответственностью",
-			"oked": "12762",
-			"okpo": "54872365",
-			"coato": "5486193872",
-			"opf": "5499",
-			"fc": "556",
-			"inn": "984151348",
-			"fio": "Махкамов Б.А",
-		};
+    $(function(){
+        var data = {
+            "name" : 'ООО "Smart Technologies Group"',
+            "address":"Ташкент, Мирзо-Улугбекский район, улица Паркентская, дом 13а, квартира 235",
+            "register_data": "01.11.2016",
+            "company_type": "Общество с ограниченой ответственностью",
+            "oked": "12762",
+            "okpo": "54872365",
+            "coato": "5486193872",
+            "opf": "5499",
+            "fc": "556",
+            "inn": "984151348",
+            "fio": "Махкамов Б.А",
+        };
 
-		$('#importDataCompany').click(function(){
+        $('#importDataCompany').click(function(){
 
-			if ($('#fieldInn').val().length < 1) {
-				$('#fieldInn').addClass('error');
-			}else{
-				$('#fieldInn').removeClass('error');
-				$('#name').val(data.name);
-				$('#address').val(data.address);
-				$('#register_data').val(data.register_data);
-				$('#company_type').val(data.company_type);
-				$('#oked').val(data.oked);
-				$('#okpo').val(data.okpo);
-				$('#coato').val(data.coato);
-				$('#opf').val(data.opf);
-				$('#fc').val(data.fc);
-				$('#fio').val(data.fio);
-			}
+            if ($('#fieldInn').val().length < 1) {
+                $('#fieldInn').addClass('error');
+            }else{
+                $('#fieldInn').removeClass('error');
+                $('#name').val(data.name);
+                $('#address').val(data.address);
+                $('#register_data').val(data.register_data);
+                $('#company_type').val(data.company_type);
+                $('#oked').val(data.oked);
+                $('#okpo').val(data.okpo);
+                $('#coato').val(data.coato);
+                $('#opf').val(data.opf);
+                $('#fc').val(data.fc);
+                $('#fio').val(data.fio);
+            }
 
-		});
+        });
 
-	});
+    });
 
-	$(function(){
-		var data = {
-			"number_p" : 'AA 8976941',
-			"name":"Рустам",
-			"last_name": "Турдалиев",
-			"middle_name": "Ахмадович",
-			"inn": "548613564",
-			"b_date": "30.12.1993",
-			"sex": "мужской",
-			"b_address": "Ташкент, Мирзо-Улугбекский район",
-			"p_address": "Ташкент, Мирзо-Улугбекский район, улица Паркентская, дом 23а, квартира 153",
-			"l_address": "Ташкент, Мирзо-Улугбекский район, улица Паркентская, дом 23а, квартира 153",
-		};
+    $(function(){
+        var data = {
+            "number_p" : 'AA 8976941',
+            "name":"Рустам",
+            "last_name": "Турдалиев",
+            "middle_name": "Ахмадович",
+            "inn": "548613564",
+            "b_date": "30.12.1993",
+            "sex": "мужской",
+            "b_address": "Ташкент, Мирзо-Улугбекский район",
+            "p_address": "Ташкент, Мирзо-Улугбекский район, улица Паркентская, дом 23а, квартира 153",
+            "l_address": "Ташкент, Мирзо-Улугбекский район, улица Паркентская, дом 23а, квартира 153",
+        };
 
-		$('#importDataEmployee').click(function(){
+        $('#importDataEmployee').click(function(){
 
-			if ($('#pinfl').val().length < 1) {
-				$('#pinfl').addClass('error');
-			}else{
-				$('#pinfl').removeClass('error');
-				$('#number_p').val(data.number_p);
-				$('#name').val(data.name);
-				$('#last_name').val(data.last_name);
-				$('#middle_name').val(data.middle_name);
-				$('#inn').val(data.inn);
-				$('#b_address').val(data.b_address);
-				$('#b_date').val(data.b_date);
-				$('#p_address').val(data.p_address);
-				$('#l_address').val(data.l_address);
-				$('#sex').val(data.sex);
-			}
+            if ($('#pinfl').val().length < 1) {
+                $('#pinfl').addClass('error');
+            }else{
+                $('#pinfl').removeClass('error');
+                $('#number_p').val(data.number_p);
+                $('#name').val(data.name);
+                $('#last_name').val(data.last_name);
+                $('#middle_name').val(data.middle_name);
+                $('#inn').val(data.inn);
+                $('#b_address').val(data.b_address);
+                $('#b_date').val(data.b_date);
+                $('#p_address').val(data.p_address);
+                $('#l_address').val(data.l_address);
+                $('#sex').val(data.sex);
+            }
 
-		});
+        });
 
-	});
+    });
 
-	$('.checkboxToggle label input').change(function(){
+    $('.checkboxToggle label input').change(function(){
 
-		if ($(this).is(':checked')) {
-			$(this).parents('.checkboxToggle').addClass('checked');
-		}else{
-			$(this).parents('.checkboxToggle').removeClass('checked');
-		}
+        if ($(this).is(':checked')) {
+            $(this).parents('.checkboxToggle').addClass('checked');
+        }else{
+            $(this).parents('.checkboxToggle').removeClass('checked');
+        }
 
-	});
+    });
 
-	$(".phone").inputmask("+998 (00) 000 00 00");
-	$('.pinfl').inputmask("0 000000 000 000 0");
+    $(".phone").inputmask("+998 (00) 000 00 00");
+    $('.pinfl').inputmask("0 000000 000 000 0");
     $('.cartNumber').inputmask("0000 0000 0000 0000");
-	$('.series_doc').inputmask("AA0000000");
+    $('.series_doc').inputmask("AA0000000");
 
-	$(function(){
-		if($('#selectCountries').length){
-			$.each(countries, function(k, v){
-				$('#selectCountries').append("<option>"+v.geoAreaName+"</option>");
-			});
-		}
-	})
+    $(function(){
+        if($('#selectCountries').length){
+            $.each(countries, function(k, v){
+                $('#selectCountries').append("<option>"+v.geoAreaName+"</option>");
+            });
+        }
+    })
 
     $('.btnPersonalArea a.PersonalAreaLink').click(function(e){
         e.preventDefault();
@@ -316,6 +316,38 @@ $(document).ready(function(){
         noMatchesFound: 'Не найдено',
         // styler: changeInputs
     });
+
+
+    $(function() {
+        var i = 1;
+        $('.btnAddField').click(function(e) {
+            e.preventDefault();
+            if (i != 5) {
+                var clone = $(this).parents('.FiledMain').clone();
+                clone.removeClass('FiledMain');
+                clone.addClass('FiledClone');
+                deleteClone(clone.find('.btnAddRemove'));
+                clearValues(clone);
+                $(this).parents('.FiledMain').after(clone);
+                i++;
+            }
+        });
+
+        function deleteClone(btn) {
+            btn.click(function(e) {
+                e.preventDefault();
+                $(this).parents('.FiledClone').remove();
+                i--;
+            })
+        }
+
+        function clearValues(clone) {
+            clone.find('input').each(function() {
+                $(this).val('');
+            });
+        }
+    });
+
 
 
 });

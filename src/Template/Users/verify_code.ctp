@@ -4,7 +4,7 @@
         <?= $this->Form->create() ?>
             <div class="formControl">
                 <div class="field">
-                    <?= $this->Form->control('token', ['class'=>'formField', 'layout'=>false]) ?>
+                    <?= $this->Form->control('token', ['class'=>'formField', 'label'=>false,'autofocus' => true]) ?>
                 </div>
                 <!-- <div class="fieldText textRight"><span class="timer"><span class="minute">05</span><span>:</span><span class="secound">00</span></span></div> -->
             </div>

@@ -12,6 +12,10 @@
   <div class="resumeTable">
     <table>
       <tr>
+        <th>Серийный номер паспорта:</th>
+        <td><?= $applicant->document_seria_number ?></td>
+      </tr>
+      <tr>
         <th>Дата рождения:</th>
         <td><?= $applicant->birth_date->format('d.m.Y') ?></td>
       </tr>
@@ -21,15 +25,15 @@
       </tr>
       <tr>
         <th>Область:</th>
-        <td><?= $applicant->dictionary_region->name_ru_c ?></td>
+        <td><?= $applicant->dictionary_region->name ?></td>
       </tr>
       <tr>
         <th>Район:</th>
-        <td><?= $applicant->dictionary_district->name_ru_c ?></td>
+        <td><?= $applicant->dictionary_district->name ?></td>
       </tr>
       <tr>
         <th>Уровень образование:</th>
-        <td><?= $applicant->dictionary_education_level->name_ru_c ?></td>
+        <td><?= $applicant->dictionary_education_level->name ?></td>
       </tr>
       <tr>
         <th>Отрасль:</th>
@@ -40,33 +44,17 @@
         <td><?= $applicant->professional_skills?$applicant->professional_skills:'' ?></td>
       </tr>
       <tr>
-        <th>Куда вы хотите:</th>
+        <th>Какой стране вы хотели бы работать:</th>
         <td><?= $applicant->dictionary_industry->name_ru_c ?></td>
       </tr>
       <tr>
-        <th>Куда вы не хотите:</th>
+        <th>Какой стране вы не хотели бы работать:</th>
         <td>Россия</td>
       </tr>
       <tr>
         <th>Телефон:</th>
         <td><?= $applicant->user->phone ?></td>
       </tr>
-      <?php if (count($applicant->applicant_documents)): ?>
-        <?php 
-            $docLabels = [
-                'photo' => 'Фото',
-                'passport' => 'Копия паспорта',
-            ];
-        ?>
-          <?php foreach ($applicant->applicant_documents as $doc): ?>
-            <tr>
-                <th><?= isset($docLabels[$doc->anchor])?$docLabels[$doc->anchor]:'' ?>:</th>
-                <td>
-                    <a href="<?= $doc->path ?>" class="fancybox"><img src="<?= $doc->path ?>" alt="" width="80"/></a>
-                </td>
-            </tr>
-          <?php endforeach ?>
-      <?php endif ?>
     </table>
   </div>
   <hr/>
