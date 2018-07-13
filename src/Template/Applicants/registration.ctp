@@ -1,7 +1,7 @@
 <div class="mainContainer minContainer1000">
     <div class="contentBlockBold">
         <div class="title-1 textCenter">Добавить резюме для работы за рубежом</div>
-            <?= $this->Form->create($applicant, ['type'=>'file']) ?>
+            <?= $this->Form->create($applicant, ['type'=>'file', 'id' => 'registration-form']) ?>
             <div class="title-3">Персональная информация</div>
             <div class="row15">
                 <div class="colp15-6">
@@ -135,9 +135,11 @@
             <div class="formSubmit">
                 <div class="checkboxCf">
                     <label>
-                      <input type="checkbox"/><span>Вы соглашаетесь с условиями <a href="/static-page.html">Публичной оферты</a></span>
+                      <input id="checkPublicOffer" type="checkbox"/>
+                      <span>Вы соглашаетесь с условиями <a href="#">Публичной оферты</a></span>
                     </label>
-                  </div>
+                    <p class="error-text">Пожалуйста отметьте что вы согласно с условиями Публичной оферты</p>
+                </div>
                 <div class="row15">
                     <div class="colp15-6"><a href="auth2.html" class="btn0 btnDefault btnBold btnBlock">Назад</a></div>
                     <div class="colp15-6">

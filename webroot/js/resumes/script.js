@@ -348,6 +348,15 @@ $(document).ready(function(){
         }
     });
 
+    $('#registration-form').submit(function(e) {
+        if (!$('#checkPublicOffer').prop('checked')) {
+            e.preventDefault();
+            $('.checkboxCf').addClass('error');
+        }else{
+            $('.checkboxCf').removeClass('error');
+        }
+    })
+
 
 
 });

@@ -19,7 +19,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <html>
 <head>
     <?= $this->Html->charset() ?>
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
@@ -56,6 +56,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="mainContainer">
           <div class="header">
             <div class="logo"><a href="/"><img src="/images/gerb.svg" alt=""/><span class="logoText">Единая национальная<br> система труда</span></a></div>
+            <?php if ($this->request->session()->read('Auth.User')): ?>
             <div class="headerUserBlock">
               <div class="btnPersonalArea">
                 <a class="PersonalAreaLink">
@@ -69,6 +70,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 </div>
               </div>
             </div>
+            <?php endif ?>
           </div>
         </div>
       </div>
