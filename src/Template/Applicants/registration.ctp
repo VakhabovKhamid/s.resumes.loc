@@ -160,9 +160,15 @@
                 </div>
                 <?php endif ?>
                 <div class="row15">
-                    <div class="colp15-6"><a href="auth2.html" class="btn0 btnDefault btnBold btnBlock">Назад</a></div>
                     <div class="colp15-6">
-                        <?= $this->Form->button(__('Submit'), ['class' => 'btn0 btnBlock btn1 btnBold']) ?>
+                        <?php if (isset($applicant->id)): ?>
+                            <?= $this->Html->link('Назад', ['action' => 'preview'],['class' => 'btn0 btnDefault btnBold btnBlock']) ?>
+                        <?php else: ?>
+                            &nbsp;
+                        <?php endif ?>
+                    </div>
+                    <div class="colp15-6">
+                        <?= $this->Form->button(__('Сохранить'), ['class' => 'btn0 btnBlock btn1 btnBold']) ?>
                     </div>
                 </div>
             </div>
