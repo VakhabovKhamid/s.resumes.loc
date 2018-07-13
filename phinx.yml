@@ -1,0 +1,35 @@
+paths:
+    migrations: ./config/Migrations
+    seeds: ./config/Seeds
+
+environments:
+    default_migration_table: phinxlog
+    default_database: ehct_resumes
+    production:
+        adapter: mysql
+        host: mysql
+        name: ehct_resumes
+        user: ehct_resumes
+        pass: 'Qwerty123$'
+        port: 3306
+        charset: utf8
+
+    development:
+        adapter: mysql
+        host: mysql
+        name: ehct_resumes_dev
+        user: ehct_resumes_dev
+        pass: 'Qwerty123$'
+        port: 3306
+        charset: utf8
+
+    testing:
+        adapter: mysql
+        host: mysql
+        name: ehct_resumes_test
+        user: ehct_resumes_test
+        pass: 'Qwerty123$'
+        port: 3306
+        charset: utf8
+
+version_order: creation
