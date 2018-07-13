@@ -133,7 +133,7 @@
             <div class="row15">
                 <div class="colp15-6">
                     <div class="formControl">
-                        <label class="formLabel">Какой стране вы хотели бы работать</label>
+                        <label class="formLabel">В какой стране вы хотели бы работать</label>
                         <div class="field">
                             <?= $this->Form->control('desirable_countries._ids', ['options' => $countries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true]); ?>
                         </div>
@@ -141,7 +141,7 @@
                 </div>
                 <div class="colp15-6">
                     <div class="formControl">
-                        <label class="formLabel">Какой стране вы не хотели бы работать</label>
+                        <label class="formLabel">В какой стране вы не хотели бы работать</label>
                         <div class="field">
                             <?= $this->Form->control('undesirable_countries._ids', ['options' => $countries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true]); ?>
                         </div>
