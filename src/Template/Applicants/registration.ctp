@@ -1,7 +1,7 @@
 <div class="mainContainer minContainer1000">
     <div class="contentBlockBold">
         <div class="title-1 textCenter">Добавить резюме для работы за рубежом</div>
-            <?= $this->Form->create($applicant, ['type'=>'file', 'id' => 'registration-form']) ?>
+            <?= $this->Form->create($applicant, ['type'=>'file', 'id' => isset($applicant->id)?'registration-form-edit':'registration-form']) ?>
             <div class="title-3">Персональная информация</div>
             <div class="row15">
                 <div class="colp15-6">
@@ -38,17 +38,17 @@
                         <div class="row5">
                             <div class="colp5-3">
                                 <div class="field">
-                                    <?= $this->Form->control('birth_date.day', ['options' => $birthDateDays, 'label' => false, 'class' => 'formField', 'empty' => 'День']); ?>
+                                    <?= $this->Form->control('birth_date.day', ['value' => $applicant->birth_date?$applicant->birth_date->format('j'):'', 'options' => $birthDateDays, 'label' => false, 'class' => 'formField', 'empty' => 'День']); ?>
                                 </div>
                             </div>
                             <div class="colp5-5">
                                 <div class="field">
-                                    <?= $this->Form->control('birth_date.month', ['options' => $birthDateMonths, 'label' => false, 'class' => 'formField', 'empty' => 'Месяц']); ?>
+                                    <?= $this->Form->control('birth_date.month', ['value' => $applicant->birth_date?$applicant->birth_date->format('n'):'', 'options' => $birthDateMonths, 'label' => false, 'class' => 'formField', 'empty' => 'Месяц']); ?>
                                 </div>
                             </div>
                             <div class="colp5-4">
                                 <div class="field">
-                                    <?= $this->Form->control('birth_date.year', ['options' => $birthDateYears, 'label' => false, 'class' => 'formField', 'empty' => 'Год']); ?>
+                                    <?= $this->Form->control('birth_date.year', ['value' => $applicant->birth_date?$applicant->birth_date->format('Y'):'', 'options' => $birthDateYears, 'label' => false, 'class' => 'formField', 'empty' => 'Год']); ?>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                 <div class="colp15-6">
                     <div class="formControl">
                         <label class="formLabel required">Район</label>
-                        <?= $this->Form->control('address_district_id', ['options' => [], 'label' => false, 'class' => 'formField', 'empty' => 'Выберите']); ?>
+                        <?= $this->Form->control('address_district_id', ['options' => isset($districts)?$districts:[], 'label' => false, 'class' => 'formField', 'empty' => 'Выберите']); ?>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                         <div class="field FiledMain">
                             <div class="row5">
                                 <div class="colp5-10">
-                                    <?= $this->Form->control('professional_skills[]', ['label' => false, 'class' => 'formField']); ?>
+                                    <?= $this->Form->control('professional_skills[]', ['value' => isset($applicant->professional_skills[0])?$applicant->professional_skills[0]:'','label' => false, 'class' => 'formField']); ?>
                                 </div>
                                 <div class="colp5-2">
                                     <button type="button" class="btn0 btn1 btnF btnAddField">+</button>
@@ -108,6 +108,23 @@
                                 </div>
                             </div>
                         </div>
+                        <?php if (isset($applicant->id) && count($applicant->professional_skills) > 0): ?>
+                            <?php foreach ($applicant->professional_skills as $key => $value): ?>
+                                <?php if ($key != 0): ?>
+                                <div class="field FiledClone">
+                                    <div class="row5">
+                                        <div class="colp5-10">
+                                            <?= $this->Form->control('professional_skills[]', ['value' => $value,'label' => false, 'class' => 'formField']); ?>
+                                        </div>
+                                        <div class="colp5-2">
+                                            <button type="button" class="btn0 btn1 btnF btnAddField">+</button>
+                                            <button type="button" class="btn0 btnRed btnF btnAddRemove">-</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php endif ?>
+                            <?php endforeach ?>
+                        <?php endif ?>
                     </div>
                 </div>
             </div>
@@ -133,6 +150,7 @@
             </div>
             <hr/>
             <div class="formSubmit">
+                <?php if (!isset($applicant->id)): ?>
                 <div class="checkboxCf">
                     <label>
                       <input id="checkPublicOffer" type="checkbox"/>
@@ -140,6 +158,7 @@
                     </label>
                     <p class="error-text">Пожалуйста отметьте что вы согласно с условиями Публичной оферты</p>
                 </div>
+                <?php endif ?>
                 <div class="row15">
                     <div class="colp15-6"><a href="auth2.html" class="btn0 btnDefault btnBold btnBlock">Назад</a></div>
                     <div class="colp15-6">
