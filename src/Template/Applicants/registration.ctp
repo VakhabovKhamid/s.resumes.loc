@@ -135,7 +135,7 @@
             <div class="formSubmit">
                 <div class="checkboxCf">
                     <label>
-                      <input type="checkbox"/><span>Вы соглашаетесь с условиями <a href="#">Публичной оферты</a></span>
+                      <input type="checkbox"/><span>Вы соглашаетесь с условиями <a href="/static-page.html">Публичной оферты</a></span>
                     </label>
                   </div>
                 <div class="row15">
