@@ -73,5 +73,21 @@ class Applicant extends Entity
         'applicant_documents' => true,
         '_joinData' => true,
         'document_seria_number' => true,
+        'industry_string' => true,
     ];
+
+    protected function _getIndustryString()
+    {
+        if (isset($this->_properties['industry_string'])) {
+            return $this->_properties['industry_string'];
+        }
+        if (empty($this->industries)) {
+            return '';
+        }
+        $industries = new Collection($this->industries);
+        $str = $industries->reduce(function ($string, $industry) {
+            return $string . $industry->id . ', ';
+        }, '');
+        return trim($str, ', ');
+    }
 }

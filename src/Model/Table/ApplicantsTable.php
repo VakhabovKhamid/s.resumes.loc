@@ -309,19 +309,19 @@ class ApplicantsTable extends Table
         ];
 
         if(!empty($data['region_id'])) {
-            $conditions['address_region_id'] = $data['region_id'];
+            $conditions['address_region_id IN'] = $data['region_id'];
         }
 
         if(!empty($data['district_id'])) {
-            $conditions['address_district_id'] = $data['district_id'];
+            $conditions['address_district_id IN'] = $data['district_id'];
         }
 
-        if(!empty($data['industry_id'])) {
-            $conditions['industry_id'] = $data['industry_id'];
-        }
+        /*if(!empty($data['industry_id'])) {
+            $conditions['Industries.id IN'] = $data['industry_id'];
+        }*/
 
         if(!empty($data['education_level_id'])) {
-            $conditions['education_level_id'] = $data['education_level_id'];
+            $conditions['education_level_id IN'] = array_map(function($level){return (int)$level; }, $data['education_level_id']);
         }
 
         if(!empty($data['sex'])) {
