@@ -19,8 +19,6 @@ use Cake\ORM\Entity;
  * @property int $education_level_id
  * @property int $industry_id
  * @property string $professional_skills
- * @property string $desirable_countries
- * @property string $undesirable_countries
  * @property string $is_archive
  * @property \Cake\I18n\FrozenTime $created
  * @property int $created_by
@@ -61,6 +59,7 @@ class Applicant extends Entity
         'professional_skills' => true,
         'desirable_countries' => true,
         'undesirable_countries' => true,
+        'industries' => true,
         'is_archive' => true,
         'created' => true,
         'created_by' => true,
@@ -71,6 +70,24 @@ class Applicant extends Entity
         'dictionary_district' => true,
         'dictionary_education_level' => true,
         'dictionary_industry' => true,
-        'applicant_documents' => true
+        'applicant_documents' => true,
+        '_joinData' => true,
+        'document_seria_number' => true,
+        'industry_string' => true,
     ];
+
+    protected function _getIndustryString()
+    {
+        if (isset($this->_properties['industry_string'])) {
+            return $this->_properties['industry_string'];
+        }
+        if (empty($this->industries)) {
+            return '';
+        }
+        $industries = new Collection($this->industries);
+        $str = $industries->reduce(function ($string, $industry) {
+            return $string . $industry->id . ', ';
+        }, '');
+        return trim($str, ', ');
+    }
 }

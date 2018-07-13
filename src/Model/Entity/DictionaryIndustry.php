@@ -43,7 +43,8 @@ class DictionaryIndustry extends Entity
         'created' => true,
         'created_by' => true,
         'modified' => true,
-        'modified_by' => true
+        'modified_by' => true,
+        '_joinData' => true,
     ];
 
     protected function _getName()

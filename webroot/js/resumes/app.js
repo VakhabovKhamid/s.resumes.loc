@@ -10,17 +10,7 @@ $(document).ready(function(){
             parent,
             child,
             { region_id : parent.val() },
-            '/applicants/get-districts-list'
-        );
-    });
-    $(function() {
-        var parent = $('#address-region-id'),
-            child = $('#address-district-id');
-        ajaxSelect(
-            parent,
-            child,
-            { region_id : parent.val() },
-            '/applicants/get-districts-list'
+            '/dictionary-districts/ajax-region-districts'
         );
     });
 
@@ -72,5 +62,15 @@ $(document).ready(function(){
         select.append(options);
         select.removeAttr('disabled');
     }
+
+    function deleteClone(btn) {
+        btn.click(function(e) {
+            e.preventDefault();
+            $(this).parents('.FiledClone').remove();
+            i--;
+        })
+    }
+
+    deleteClone($('.btnAddRemove'));
 
 });

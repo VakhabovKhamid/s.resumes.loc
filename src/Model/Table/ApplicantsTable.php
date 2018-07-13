@@ -2,7 +2,9 @@
 namespace App\Model\Table;
 
 use App\Model\Entity\Applicant;
+use Cake\Database\Schema\TableSchema;
 use Cake\I18n\Date;
+use Cake\ORM\Entity;
 use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
@@ -63,16 +65,32 @@ class ApplicantsTable extends Table
             'foreignKey' => 'education_level_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('DictionaryIndustries', [
-            'foreignKey' => 'industry_id',
-            'joinType' => 'INNER'
-        ]);
         $this->belongsTo('Users', [
             'foreignKey' => 'created_by',
             'joinType' => 'INNER'
         ]);
         $this->hasMany('ApplicantDocuments', [
-            'foreignKey' => 'applicant_id'
+            'foreignKey' => 'applicant_id',
+            'dependent' => true,
+            'cascadeCallbacks' => true,
+        ]);
+
+        $this->belongsToMany('DesirableCountries', [
+            'through' => 'ApplicantDesirableCountries',
+            'className' => 'DictionaryCountries',
+            'targetForeignKey' => 'dictionary_country_id',
+        ]);
+
+        $this->belongsToMany('UndesirableCountries', [
+            'through' => 'ApplicantUndesirableCountries',
+            'className' => 'DictionaryCountries',
+            'targetForeignKey' => 'dictionary_country_id',
+        ]);
+
+        $this->belongsToMany('Industries', [
+            'through' => 'ApplicantIndustries',
+            'className' => 'DictionaryIndustries',
+            'targetForeignKey' => 'dictionary_industry_id',
         ]);
     }
 
@@ -108,6 +126,7 @@ class ApplicantsTable extends Table
             ->scalar('sex')
             ->maxLength('sex', 1)
             ->requirePresence('sex', 'create')
+            ->inList('sex', ['M', 'F'])
             ->notEmpty('sex');
 
         $validator
@@ -121,25 +140,9 @@ class ApplicantsTable extends Table
             ->allowEmpty('address_extended');
 
         $validator
-            ->scalar('professional_skills')
-            ->maxLength('professional_skills', 80)
-            ->requirePresence('professional_skills', 'create')
-            ->notEmpty('professional_skills');
-
-        $validator
-            ->scalar('desirable_countries')
-            ->maxLength('desirable_countries', 4294967295)
-            ->allowEmpty('desirable_countries');
-
-        $validator
-            ->scalar('undesirable_countries')
-            ->maxLength('undesirable_countries', 4294967295)
-            ->allowEmpty('undesirable_countries');
-
-        $validator
             ->scalar('is_archive')
             ->maxLength('is_archive', 1)
-            ->regex('is_archive', ['Y', 'N'])
+            ->inList('is_archive', ['Y', 'N'])
             ->allowEmpty('is_archive');
 
         $validator
@@ -149,6 +152,15 @@ class ApplicantsTable extends Table
         $validator
             ->requirePresence('modified_by', 'create')
             ->notEmpty('modified_by');
+
+        $validator
+            ->scalar('document_seria_number')
+            ->regex('document_seria_number', '/^[A-Za-z]{2}\d{7}$/')
+            ->maxLength('document_seria_number', 20)
+            ->requirePresence('document_seria_number', 'create')
+            ->notEmpty('document_seria_number');
+
+        $validator->allowEmpty('professional_skills');
 
         return $validator;
     }
@@ -166,9 +178,15 @@ class ApplicantsTable extends Table
         $rules->add($rules->existsIn(['address_region_id'], 'DictionaryRegions'));
         $rules->add($rules->existsIn(['address_district_id'], 'DictionaryDistricts'));
         $rules->add($rules->existsIn(['education_level_id'], 'DictionaryEducationLevels'));
-        $rules->add($rules->existsIn(['industry_id'], 'DictionaryIndustries'));
+        //$rules->add($rules->existsIn(['industry_id'], 'DictionaryIndustries'));
 
         return $rules;
+    }
+
+    protected function _initializeSchema(TableSchema $schema)
+    {
+        $schema->setColumnType('professional_skills', 'json');
+        return $schema;
     }
 
     public function getBirthDateDays()
@@ -221,24 +239,45 @@ class ApplicantsTable extends Table
 
     public function registerApplicant(Applicant $applicant, array $data, $userId)
     {
-        $applicant = $this->patchEntity($applicant, $data, [
-            'associated' => [
-                'ApplicantDocuments' => [
-                    'accessibleFields' => [
-                        '*' => false,
-                        'anchor' => true,
-                        'name' => true,
-                    ]
-                ]
-            ]
-        ]);
+//dd($data);
 
+        $applicant = $this->patchEntity($applicant, $data, [
+            'associated' => ['DesirableCountries._joinData', 'UndesirableCountries._joinData', 'Industries._joinData']
+        ]);
         $applicant->created_by = $userId;
         $applicant->modified_by = $userId;
-        array_map(function($document) use ($userId) {
-            $document->created_by = $userId;
-            $document->modified_by = $userId;
-        }, $applicant->applicant_documents);
+
+        array_map(function($country) use($userId) {
+            $country->created_by = $userId;
+            $country->modified_by = $userId;
+
+            $country->_joinData = new Entity([
+                'created_by' => $userId,
+                'modified_by' => $userId
+            ], ['markNew' => true]);
+
+        }, $applicant->desirable_countries);
+
+        array_map(function($country) use($userId) {
+            $country->created_by = $userId;
+            $country->modified_by = $userId;
+
+            $country->_joinData = new Entity([
+                'created_by' => $userId,
+                'modified_by' => $userId
+            ], ['markNew' => true]);
+
+        }, $applicant->undesirable_countries);
+        array_map(function($industry) use($userId) {
+            $industry->created_by = $userId;
+            $industry->modified_by = $userId;
+
+            $industry->_joinData = new Entity([
+                'created_by' => $userId,
+                'modified_by' => $userId
+            ], ['markNew' => true]);
+
+        }, $applicant->industries);
 
         if($this->save($applicant)) {
             return true;
@@ -270,19 +309,19 @@ class ApplicantsTable extends Table
         ];
 
         if(!empty($data['region_id'])) {
-            $conditions['address_region_id'] = $data['region_id'];
+            $conditions['address_region_id IN'] = $data['region_id'];
         }
 
         if(!empty($data['district_id'])) {
-            $conditions['address_district_id'] = $data['district_id'];
+            $conditions['address_district_id IN'] = $data['district_id'];
         }
 
-        if(!empty($data['industry_id'])) {
-            $conditions['industry_id'] = $data['industry_id'];
-        }
+        /*if(!empty($data['industry_id'])) {
+            $conditions['Industries.id IN'] = $data['industry_id'];
+        }*/
 
         if(!empty($data['education_level_id'])) {
-            $conditions['education_level_id'] = $data['education_level_id'];
+            $conditions['education_level_id IN'] = array_map(function($level){return (int)$level; }, $data['education_level_id']);
         }
 
         if(!empty($data['sex'])) {

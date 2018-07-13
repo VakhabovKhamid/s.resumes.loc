@@ -187,6 +187,7 @@ Type::build('datetime')
     ->useImmutable();
 Type::build('timestamp')
     ->useImmutable();
+Type::map('json', 'Cake\Database\Type\JsonType');
 
 /*
  * Custom Inflector rules, can be set to correctly pluralize or singularize

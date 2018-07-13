@@ -128,7 +128,7 @@
             <td><?= h($applicant->address_extended) ?></td>
             <td><?= $applicant->has('dictionary_education_level') ? $this->Html->link($applicant->dictionary_education_level->id, ['controller' => 'DictionaryEducationLevels', 'action' => 'view', $applicant->dictionary_education_level->id]) : '' ?></td>
             <td><?= $applicant->has('dictionary_industry') ? $this->Html->link($applicant->dictionary_industry->id, ['controller' => 'DictionaryIndustries', 'action' => 'view', $applicant->dictionary_industry->id]) : '' ?></td>
-            <td><?= h($applicant->professional_skills) ?></td>
+            <td><?= implode(', ', $applicant->professional_skills) ?></td>
             <td><?= h($applicant->is_archive) ?></td>
             <td><?= h($applicant->created) ?></td>
             <td><?= $this->Number->format($applicant->created_by) ?></td>
