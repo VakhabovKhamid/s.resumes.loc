@@ -1,5 +1,17 @@
 <?php
     //var_dump($groups, $users, $allAcos);
+  foreach ($allAcos as $key => $value) {
+    $arrKey = explode('.', $key);
+    array_pop($arrKey);
+    $newKey = false;
+    if ($arrKey) {
+      $newKey = implode('.', $arrKey);
+    }
+    $allAcos[$key]['type'] = 'child';
+    if (isset($allAcos[$newKey])) {
+      $allAcos[$newKey]['type'] = 'parent';
+    }
+  }
 ?>
 <style>
 .col-primary {
@@ -34,44 +46,52 @@
     </thead>
     <tbody>
     <?php foreach ($allAcos as $acoCode => $aco):
-          preg_match('/(([A-Za-z]+)\.?([A-Z]{1}[a-z]+)?)/', $acoCode, $matches);
-          $menuGroup = $matches[0];
-          $classMenuGroup = str_replace(".", "", $menuGroup);
+        $classMenuGroup = str_replace(".", "", $acoCode);
       ?>
-    <tr class="<?=($acoCode != $menuGroup) ? "$classMenuGroup collapsed collapse" : "col-group group-$classMenuGroup collapsed";?>">
-    <td id="<?=$acoCode?>" class="col-primary">
-        <? if ($acoCode == $menuGroup): ?>
-          <a data-toggle="collapse" data-parent="tbody" href=".<?=$classMenuGroup?>">
-          <?=h($aco['title']); ?>
-          </a>
-        <? else: ?>
-          <a target="_blank" href="/<?=str_replace('.', '/', $acoCode)?>">
-          <?="&nbsp;&nbsp;&nbsp;".h($aco['title']); ?>
-          </a>        
-        <? endif; ?>
-        </td>
-        <?php foreach ($groups as $groupId => $group): ?>
-        <td>
-        <?php if ($acoCode != $menuGroup):
-                $access = isset($group['Permissions'][$acoCode]);
+      <?php if ($aco['type'] == 'parent'): ?>
+        <tr class="col-group group-<?=$classMenuGroup?> collapsed">
+          <td id="<?=$acoCode?>" class="col-primary">
+            <a data-toggle="collapse" data-parent="tbody" href=".<?=$classMenuGroup?>">
+              <?=h($acoCode); ?>
+            </a>
+          </td>
+          <?php foreach ($groups as $groupId => $group): ?>
+          <td>
+            <div class="row" style="text-align: center; font-weight: normal; font-size: 11px;">
+              <div class="col-md-6">Доступ</div>
+              <div class="col-md-6">Логирование</div>
+            </div>
+          </td>
+          <?php endforeach; ?>
+        </tr>
+      <?php else: ?>
+        <?php 
+          $split = explode('.', $acoCode);
+          $action = end($split);
+          array_pop($split);
+          $classMenuGroup = implode('',$split);
         ?>
-          <div class="row" style="text-align: center;">
-            <div class="col-md-6">
-              <input <?=($access)?"checked":""?> type="checkbox" data-toggle="toggle" name="<?="data[Access][$groupId][$acoCode]"?>"/>
+        <tr class="<?=$classMenuGroup?> collapsed collapse">
+          <td id="<?=$acoCode?>" class="col-primary">
+            <a target="_blank" href="/<?=str_replace('.', '/', $acoCode)?>">
+            <?=h($action); ?>
+            </a>  
+          </td>
+          <?php foreach ($groups as $groupId => $group): ?>
+          <?php $access = isset($group['Permissions'][$acoCode]); ?>
+          <td>
+            <div class="row" style="text-align: center;">
+              <div class="col-md-6">
+                <input <?=($access)?"checked":""?> type="checkbox" data-toggle="toggle" name="<?="data[Access][$groupId][$acoCode]"?>"/>
+              </div>
+              <div class="col-md-6">
+                <input type="checkbox" data-toggle="toggle" disabled="disabled" />
+              </div>
             </div>
-            <div class="col-md-6">
-              <input type="checkbox" data-toggle="toggle" disabled="disabled" />
-            </div>
-          </div>
-        <? else: ?>
-          <div class="row" style="text-align: center; font-weight: normal; font-size: 11px;">
-            <div class="col-md-6">Доступ</div>
-            <div class="col-md-6">Логирование</div>
-          </div>
-        <? endif; ?>
-        </td>
-        <?php endforeach; ?>
-      </tr>
+          </td>
+          <?php endforeach; ?>
+        </tr>
+      <?php endif ?>
     <?php endforeach; ?>
     </tbody>
   </table>
