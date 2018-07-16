@@ -3,6 +3,8 @@ namespace App\Model\Table;
 
 use App\Model\Entity\Applicant;
 use Cake\Database\Schema\TableSchema;
+use Cake\Datasource\EntityInterface;
+use Cake\Event\Event;
 use Cake\I18n\Date;
 use Cake\ORM\Entity;
 use Cake\ORM\Query;
@@ -130,7 +132,7 @@ class ApplicantsTable extends Table
             ->notEmpty('sex');
 
         $validator
-            ->date('birth_date')
+            ->date('birth_date', 'dmy')
             ->requirePresence('birth_date', 'create')
             ->notEmpty('birth_date');
 
@@ -187,6 +189,12 @@ class ApplicantsTable extends Table
     {
         $schema->setColumnType('professional_skills', 'json');
         return $schema;
+    }
+
+    public function beforeSave(Event $event, EntityInterface $entity, \ArrayObject $options)
+    {
+        $date = \DateTime::createFromFormat('d-m-Y', $entity->birth_date);
+        $entity->birth_date = $date->format('Y-m-d');
     }
 
     public function getBirthDateDays()
