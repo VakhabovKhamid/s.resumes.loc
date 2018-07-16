@@ -1,7 +1,7 @@
 <div class="mainContainer minContainer1000">
     <div class="contentBlockBold">
         <div class="title-1 textCenter">Добавить резюме для работы за рубежом</div>
-            <div class="alert alert-danger hide" id="serverError">Данный момент нет связи с сервисом id.gov.uz. Заполните поля в ручную или попробуйте еще раз.</div>
+            <div class="alert alert-danger hide" id="serverErrorSoliq">Данный момент нет связи с сервисом soliq.uz. Заполните поля в ручную или попробуйте еще раз.</div>
             <?= $this->Form->create($applicant, ['type'=>'file', 'id' => isset($applicant->id)?'registration-form-edit':'registration-form']) ?>
             <div class="title-3">Персональная информация</div>
             <div class="row15">

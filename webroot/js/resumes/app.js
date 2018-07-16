@@ -112,7 +112,11 @@ $(document).ready(function(){
     });
 
     $('#desirable-countries-ids').change(function(){
-        var val = $(this).val();
+        countriesSelects($(this));
+    });
+    countriesSelects($('#desirable-countries-ids'));
+    function countriesSelects(firstList) {
+        var val = firstList.val();
         $('#undesirable-countries-ids').find('option').each(function(){
             if (val && val.indexOf($(this).attr('value')) != '-1') {
                 $(this).attr('disabled', true);
@@ -120,8 +124,8 @@ $(document).ready(function(){
                 $(this).removeAttr('disabled');
             }
         });
-        $('#undesirable-countries-ids').multipleSelect('refresh');
-    });
+        $('#undesirable-countries-ids').multipleSelect('refresh'); 
+    }
 
 
     $('#importDataEmployee').click(function(e){
@@ -178,13 +182,13 @@ $(document).ready(function(){
                         }
                         form.removeClass('loader');
                     }else{
-                       $('#serverError').show();
+                       $('#serverErrorSoliq').show();
                         clearInputsDisabled();
                         form.removeClass('loader');
                     }
                 },
                 error: function (request, status, error) {
-                    $('#serverError').show();
+                    $('#serverErrorSoliq').show();
                     clearInputsDisabled();
                     form.removeClass('loader');
                     console.log(error);
