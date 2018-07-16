@@ -45,7 +45,7 @@
                     <div class="formControl">
                         <label class="formLabel required">Дата рождения</label>
                         <div class="field disabled">
-                            <?= $this->Form->control('birth_date', ['type' => 'text','label' => false, 'class' => 'formField jq-date-field', 'placeholder' => 'dd-mm-yyyy']); ?>
+                            <?= $this->Form->control('birth_date', ['type' => 'text','label' => false, 'class' => 'formField jq-date-field', 'placeholder' => 'dd-mm-yyyy', 'value' => $applicant->birth_date?$applicant->birth_date->format('d-m-Y'):'']); ?>
                         </div>
                         <?php /* ?>
                         <div class="row5">
@@ -98,7 +98,7 @@
             <div class="row15">
                 <div class="colp15-6">
                     <div class="formControl">
-                        <label class="formLabel required">Уровень образование</label>
+                        <label class="formLabel">Уровень образование</label>
                         <?= $this->Form->control('education_level_id', ['options' => $educationLevels, 'label' => false, 'class' => 'formField', 'empty' => 'Выберите']); ?>
                     </div>
                 </div>
