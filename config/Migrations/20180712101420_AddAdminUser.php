@@ -19,7 +19,7 @@ class AddAdminUser extends AbstractMigration
         $user = $usersTbl->newEntity();
         $user->id = 1;
         $user->username = 'admin';
-        $user->password = '$2y$10$M.bqnHyEtqxPYydliKnXP.o1KCwEWr9M5YSt6aijzcws74Tz.YGmK';
+        $user->password = '12345';
         $user->group_id = 1;
         $user->created = new Date();
         $user->modified = new Date();
