@@ -63,15 +63,6 @@ $(document).ready(function(){
         select.removeAttr('disabled');
     }
 
-    function deleteClone(btn) {
-        btn.click(function(e) {
-            e.preventDefault();
-            $(this).parents('.FiledClone').remove();
-            i--;
-        })
-    }
-
-    deleteClone($('.btnAddRemove'));
 
     $('.field.disabled input').focus(function() {
         $(this).blur();
@@ -84,7 +75,8 @@ $(document).ready(function(){
         var i = $('.FiledMain').attr('data-leng');
         $('.btnAddField').click(function(e) {
             e.preventDefault();
-            if (i != 3) {
+            console.log(checkValueClones());
+            if (i != 3 && checkValueClones()) {
                 var clone = $(this).parents('.wrapCloneFields').find('.FiledMain').clone();
                 clone.removeClass('FiledMain');
                 clone.addClass('FiledClone');
@@ -96,19 +88,40 @@ $(document).ready(function(){
             }
         });
 
+        function checkValueClones() {
+            var error = false;
+            $('.FiledClone, .FiledMain').each(function(){
+                var input = $(this).find('input');
+                if (input.val() == '') {
+                    input.addClass('error');
+                    error = true;
+                }else{
+                    input.removeClass('error');
+                }
+            });
+            if (!error) {
+                return true;
+            }
+            return false;
+        }
+
         function deleteClone(btn) {
             btn.click(function(e) {
                 e.preventDefault();
                 $(this).parents('.FiledClone').remove();
+                console.log(i);
                 i--;
             })
         }
+
+        deleteClone($('.btnAddRemove'));
 
         function clearValues(clone) {
             clone.find('input').each(function() {
                 $(this).val('');
             });
         }
+        
     });
 
     $('#desirable-countries-ids').change(function(){
