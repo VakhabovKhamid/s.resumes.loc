@@ -98,7 +98,7 @@ Router::prefix('Admin', ['_namePrefix' => 'admin:'], function ($routes) {
 
 
 Router::prefix('Api', ['_namePrefix' => 'api:'], function ($routes) {
-    $routes->connect('/', ['controller' => 'default', 'action' => 'index']);
+    $routes->connect('/', ['controller' => 'reports', 'action' => 'index','methods'=>['GET']]);
     $routes->connect('/:controller/', ['action'=>'index']);
     $routes->connect('/:controller/:action/*');
 });
