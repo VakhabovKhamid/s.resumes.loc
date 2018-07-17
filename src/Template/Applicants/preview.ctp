@@ -6,6 +6,10 @@
 ?>
 <div class="mainContainer minContainer1000">
 <div class="contentBlockBold">
+  <div class="textCenter">
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum nostrum placeat, fugit praesentium. Suscipit voluptas, mollitia quis quidem nihil ad quibusdam explicabo rem fuga tempora autem nostrum, dolore laboriosam magnam!</p>
+  </div>
+  <hr>
   <div class="title-1 uppercase"><?= $applicant->latin_surname ?> <?= $applicant->latin_name ?></div>
   <div class="dateBlock">Дата создания: <strong><?= $applicant->created->format('d.m.Y') ?></strong></div>
   <hr/>
