@@ -208,41 +208,41 @@ $(document).ready(function(){
 
     });
 
-    $(function(){
-        var data = {
-            "number_p" : 'AA 8976941',
-            "name":"Рустам",
-            "last_name": "Турдалиев",
-            "middle_name": "Ахмадович",
-            "inn": "548613564",
-            "b_date": "30.12.1993",
-            "sex": "мужской",
-            "b_address": "Ташкент, Мирзо-Улугбекский район",
-            "p_address": "Ташкент, Мирзо-Улугбекский район, улица Паркентская, дом 23а, квартира 153",
-            "l_address": "Ташкент, Мирзо-Улугбекский район, улица Паркентская, дом 23а, квартира 153",
-        };
+    // $(function(){
+    //     var data = {
+    //         "number_p" : 'AA 8976941',
+    //         "name":"Рустам",
+    //         "last_name": "Турдалиев",
+    //         "middle_name": "Ахмадович",
+    //         "inn": "548613564",
+    //         "b_date": "30.12.1993",
+    //         "sex": "мужской",
+    //         "b_address": "Ташкент, Мирзо-Улугбекский район",
+    //         "p_address": "Ташкент, Мирзо-Улугбекский район, улица Паркентская, дом 23а, квартира 153",
+    //         "l_address": "Ташкент, Мирзо-Улугбекский район, улица Паркентская, дом 23а, квартира 153",
+    //     };
 
-        $('#importDataEmployee').click(function(){
+    //     $('#importDataEmployee').click(function(){
 
-            if ($('#pinfl').val().length < 1) {
-                $('#pinfl').addClass('error');
-            }else{
-                $('#pinfl').removeClass('error');
-                $('#number_p').val(data.number_p);
-                $('#name').val(data.name);
-                $('#last_name').val(data.last_name);
-                $('#middle_name').val(data.middle_name);
-                $('#inn').val(data.inn);
-                $('#b_address').val(data.b_address);
-                $('#b_date').val(data.b_date);
-                $('#p_address').val(data.p_address);
-                $('#l_address').val(data.l_address);
-                $('#sex').val(data.sex);
-            }
+    //         if ($('#pinfl').val().length < 1) {
+    //             $('#pinfl').addClass('error');
+    //         }else{
+    //             $('#pinfl').removeClass('error');
+    //             $('#number_p').val(data.number_p);
+    //             $('#name').val(data.name);
+    //             $('#last_name').val(data.last_name);
+    //             $('#middle_name').val(data.middle_name);
+    //             $('#inn').val(data.inn);
+    //             $('#b_address').val(data.b_address);
+    //             $('#b_date').val(data.b_date);
+    //             $('#p_address').val(data.p_address);
+    //             $('#l_address').val(data.l_address);
+    //             $('#sex').val(data.sex);
+    //         }
 
-        });
+    //     });
 
-    });
+    // });
 
     $('.checkboxToggle label input').change(function(){
 

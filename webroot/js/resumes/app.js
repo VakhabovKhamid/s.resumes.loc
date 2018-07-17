@@ -152,31 +152,25 @@ $(document).ready(function(){
                 dataType: 'json',
                 type: "post",
                 success: function(data) {
-                    console.log(data);
                     if (data) {
                         $('#document-seria-number').removeClass('error');
-                        if (data.person.surname_latin!=''){
-                            $('#latin-surname').val(data.person.surname_latin);
+                        if (data.person.sname!=''){
+                            $('#latin-surname').val(data.person.sname);
                         }else{
                             clearInputDisabled($('#latin-surname'));
                         }
-                        if (data.person.name_latin!=''){
-                            $('#latin-name').val(data.person.name_latin);
+                        if (data.person.fname!=''){
+                            $('#latin-name').val(data.person.fname);
                         }else{
                             clearInputDisabled($('#latin-name'));
                         }
-                        if (data.person.name_latin!=''){
-                            $('#latin-name').val(data.person.name_latin);
-                        }else{
-                            clearInputDisabled($('#latin-name'));
-                        }
-                        if (data.person.birth_date!=''){
-                            $('#birth-date').val(data.person.birth_date);
+                        if (data.person.date_birth!=''){
+                            $('#birth-date').val(data.person.date_birth);
                         }else{
                             clearInputDisabled($('#birth-date'));
                         }
-                        if (data.person.sex!=''){
-                            $('#sex').val(data.person.sex);
+                        if (data.person.gender!=''){
+                            $('#sex').val(data.person.gender);
                         }else{
                             clearInputDisabled($('#sex'));
                         }

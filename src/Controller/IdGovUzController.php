@@ -38,6 +38,10 @@ class IdGovUzController extends AppController
             $soliqUzForm = new SoliqUzPersonalDataRetrieveForm($this->Taxpayers);
             if($soliqUzForm->validate($data)) {
                 $person = $soliqUzForm->execute($data);
+                unset($person['address']);
+                unset($person['ns10_code']);
+                unset($person['ns11_code']);
+                unset($person['tin']);
             }
 
             $this->set(compact('person'));
