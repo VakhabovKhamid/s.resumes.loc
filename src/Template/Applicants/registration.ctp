@@ -17,7 +17,7 @@
                     <div class="formControl">
                         <label class="formLabel">&nbsp;</label>
                         <div class="field">
-                            <button class="btn0 btn1 btnBlock btnBold" id='importDataEmployee'>Заполнить форму</button>
+                            <button class="btn0 btn1 btnBlock btnBold" id='importDataEmployee' type="button">Заполнить форму</button>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="colp15-6">
                     <div class="formControl">
                         <label class="formLabel required">Фамилия</label>
-                        <div class="field disabled">
+                        <div class="field">
                             <?= $this->Form->control('latin_surname', ['label' => false, 'class' => 'formField']); ?>
                         </div>
                     </div>
@@ -34,7 +34,7 @@
                 <div class="colp15-6">
                     <div class="formControl">
                         <label class="formLabel required">Имя</label>
-                        <div class="field disabled">
+                        <div class="field">
                             <?= $this->Form->control('latin_name', ['label' => false, 'class' => 'formField']); ?>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                 <div class="colp15-6">
                     <div class="formControl">
                         <label class="formLabel required">Дата рождения</label>
-                        <div class="field disabled">
+                        <div class="field">
                             <?= $this->Form->control('birth_date', ['type' => 'text','label' => false, 'class' => 'formField jq-date-field', 'placeholder' => 'dd-mm-yyyy', 'value' => $applicant->birth_date?$applicant->birth_date->format('d-m-Y'):'']); ?>
                         </div>
                         <?php /* ?>
@@ -71,7 +71,7 @@
                 <div class="colp15-6">
                     <div class="formControl">
                         <label class="formLabel required">Пол</label>
-                        <div class="field disabled">
+                        <div class="field">
                             <?= $this->Form->control('sex', ['options' => $sexList, 'label' => false, 'class' => 'formField', 'empty' => 'Выберите']); ?>
                         </div>
                     </div>
