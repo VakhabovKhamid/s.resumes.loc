@@ -74,6 +74,13 @@ class RbacShell extends Shell
         $this->out('Settings permissions done.');
     }
 
+    public function sync(){
+        $this->out('Start updating rules in acos table...');
+        $shell = new ShellDispatcher();
+        $shell->run(['cake', 'acl_extras', 'aco_update']);
+        $this->out('Done');
+    }
+
     public function addRule($parent=null,$child=null){
         if($parent === null){
             $this->abort("parent argument is required");
