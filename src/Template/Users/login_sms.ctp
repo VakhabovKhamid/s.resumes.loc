@@ -15,7 +15,7 @@
             <hr/>
             <div class="formSubmit">
                 <?= $this->Form->button('Получить код', ['class'=>'btn0 btn1 btnBold btnBlock']); ?><br/>
-                <a href="index.html" class="btn0 btnDefault btnBold btnBlock">Назад</a>
+                <?= $this->Html->link('Назад', ['controller' => 'pages', 'action' => 'home'],['class'=>'btn0 btnDefault btnBold btnBlock']); ?><br/>
             </div>
         <?= $this->Form->end() ?>
     </div>
