@@ -53,7 +53,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="mainContainer">
           <div class="header">
             <div class="logo"><a href="/"><img src="/images/gerb.svg" alt=""/><span class="logoText">Единая национальная<br> система труда</span></a></div>
-            <?php if ($this->request->getSession()->read('Auth.User') && $this->request->action != 'verifyCode'): ?>
+            <?php if ($this->Permissions->isAuthorized() && $this->request->action != 'verifyCode'): ?>
             <div class="headerUserBlock">
               <div class="btnPersonalArea">
                 <a class="PersonalAreaLink">
