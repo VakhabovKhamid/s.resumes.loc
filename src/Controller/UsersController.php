@@ -43,9 +43,7 @@ class UsersController extends AppController
                 return $this->redirect(['action' => 'verify-code']);
             }
 
-            $this->Flash->error(__('Sms code is incorrect'), [
-                'key' => 'auth'
-            ]);
+            $this->Flash->error(__('Phone is incorrect'));
         }
     }
 
@@ -66,9 +64,7 @@ class UsersController extends AppController
                 return $this->redirect($redirectUrl);
             }
 
-            $this->Flash->error(__('Verify code is incorrect'), [
-                'key' => 'auth'
-            ]);
+            $this->Flash->error(__('Verify code is incorrect'));
         }
     }
 
