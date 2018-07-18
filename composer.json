@@ -31,7 +31,8 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "SmartlabAdmin\\": "./plugins/SmartlabAdmin/src/"
+            "SmartlabAdmin\\": "./plugins/SmartlabAdmin/src/",
+            "Config\\Helpers\\": "./config/Helpers"
         }
     },
     "autoload-dev": {

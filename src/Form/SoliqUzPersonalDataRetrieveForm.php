@@ -53,6 +53,8 @@ class SoliqUzPersonalDataRetrieveForm extends Form
 
         if($result) {
             $person = $result->first();
+            $person['gender'] = $person['gender'] == '1' ? 'M' : 'F';
+            $person['date_birth'] = str_replace('.','-',$person['date_birth']);
         }
 
         return $person;

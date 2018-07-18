@@ -63,15 +63,6 @@ $(document).ready(function(){
         select.removeAttr('disabled');
     }
 
-    function deleteClone(btn) {
-        btn.click(function(e) {
-            e.preventDefault();
-            $(this).parents('.FiledClone').remove();
-            i--;
-        })
-    }
-
-    deleteClone($('.btnAddRemove'));
 
     $('.field.disabled input').focus(function() {
         $(this).blur();
@@ -84,7 +75,8 @@ $(document).ready(function(){
         var i = $('.FiledMain').attr('data-leng');
         $('.btnAddField').click(function(e) {
             e.preventDefault();
-            if (i != 3) {
+            console.log(checkValueClones());
+            if (i != 3 && checkValueClones()) {
                 var clone = $(this).parents('.wrapCloneFields').find('.FiledMain').clone();
                 clone.removeClass('FiledMain');
                 clone.addClass('FiledClone');
@@ -96,19 +88,40 @@ $(document).ready(function(){
             }
         });
 
+        function checkValueClones() {
+            var error = false;
+            $('.FiledClone, .FiledMain').each(function(){
+                var input = $(this).find('input');
+                if (input.val() == '') {
+                    input.addClass('error');
+                    error = true;
+                }else{
+                    input.removeClass('error');
+                }
+            });
+            if (!error) {
+                return true;
+            }
+            return false;
+        }
+
         function deleteClone(btn) {
             btn.click(function(e) {
                 e.preventDefault();
                 $(this).parents('.FiledClone').remove();
+                console.log(i);
                 i--;
             })
         }
+
+        deleteClone($('.btnAddRemove'));
 
         function clearValues(clone) {
             clone.find('input').each(function() {
                 $(this).val('');
             });
         }
+        
     });
 
     $('#desirable-countries-ids').change(function(){
@@ -152,31 +165,25 @@ $(document).ready(function(){
                 dataType: 'json',
                 type: "post",
                 success: function(data) {
-                    console.log(data);
                     if (data) {
                         $('#document-seria-number').removeClass('error');
-                        if (data.person.surname_latin!=''){
-                            $('#latin-surname').val(data.person.surname_latin);
+                        if (data.person.sname!=''){
+                            $('#latin-surname').val(data.person.sname);
                         }else{
                             clearInputDisabled($('#latin-surname'));
                         }
-                        if (data.person.name_latin!=''){
-                            $('#latin-name').val(data.person.name_latin);
+                        if (data.person.fname!=''){
+                            $('#latin-name').val(data.person.fname);
                         }else{
                             clearInputDisabled($('#latin-name'));
                         }
-                        if (data.person.name_latin!=''){
-                            $('#latin-name').val(data.person.name_latin);
-                        }else{
-                            clearInputDisabled($('#latin-name'));
-                        }
-                        if (data.person.birth_date!=''){
-                            $('#birth-date').val(data.person.birth_date);
+                        if (data.person.date_birth!=''){
+                            $('#birth-date').val(data.person.date_birth);
                         }else{
                             clearInputDisabled($('#birth-date'));
                         }
-                        if (data.person.sex!=''){
-                            $('#sex').val(data.person.sex);
+                        if (data.person.gender!=''){
+                            $('#sex').val(data.person.gender);
                         }else{
                             clearInputDisabled($('#sex'));
                         }
