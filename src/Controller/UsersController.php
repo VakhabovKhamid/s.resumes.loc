@@ -37,7 +37,8 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
 
             if ($user) {
-                $this->Auth->setUser($user);
+                //$this->Auth->setUser($user);
+                $this->request->getSession()->write('Auth.User.phone', $this->request->getData('phone'));
                 $this->Flash->success(__('A one-time code has been send to you by sms.'));
                 return $this->redirect(['action' => 'verify-code']);
             }

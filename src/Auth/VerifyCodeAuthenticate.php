@@ -65,14 +65,15 @@ class VerifyCodeAuthenticate extends FormAuthenticate
         }
         $this->getConfig('fields.username', $this->getConfig('fields.token'));
 
-        return $this->_findUserByToken($token, $request->getSession()->read('Auth.User.id'));
+        return $this->_findUserByToken($token, $request->getSession()->read('Auth.User.phone'));
     }
 
-    protected function _findUserByToken($token, $userId)
+    protected function _findUserByToken($token, $phone)
     {
+        $phone = preg_replace('/[^0-9]+/', '', $phone);
         $config = $this->_config;
         $table = $this->getTableLocator()->get($config['tokenModel']);
-        $result = $table->find()->where(['token'=>$token, 'user_id'=>$userId])->first();
+        $result = $table->find()->where(['token'=>$token, 'phone'=>$phone])->first();
 
         if (!$result) {
             return false;
