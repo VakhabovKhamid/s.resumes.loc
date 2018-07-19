@@ -98,7 +98,9 @@ class AppController extends Controller
 
     public function beforeFilter(Event $event)
     {
-        $this->Auth->allow(['display', 'login', 'logout', 'changelanguage', 'loginSms']);
+        $this->Auth->allow(['display', 'login', 'logout', 'changelanguage', 'loginSms', 'home']);
+
+        $this->loginAsGuest();
 
         $userId = (int)$this->getRequest()->getSession()->read('Auth.User.id');
         if ($userId) {
@@ -131,5 +133,24 @@ class AppController extends Controller
             //Configure::write('Config.language', $language);
             I18n::setLocale($language);
         }
+    }
+
+    public function loginAsGuest()
+    {
+        if($this->Auth->user()) {
+            return;
+        }
+
+        $this->Auth->setConfig('authenticate', ['Guest']);
+        $this->Auth->getEventManager()->off(('Auth.afterIdentify'));
+
+        $user = $this->Auth->identify();
+
+        if(!$user) {
+            return false;
+        }
+
+        $this->Auth->setUser($user);
+        return true;
     }
 }

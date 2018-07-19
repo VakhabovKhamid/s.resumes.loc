@@ -11,7 +11,7 @@
             <hr/>
             <div class="formSubmit">
                 <?= $this->Form->button('Войти', ['class'=>'btn0 btn1 btnBold btnBlock']); ?><br/>
-                <a href="auth1.html" class="btn0 btnDefault btnBold btnBlock">Назад</a>
+                <?= $this->Html->link('Назад', ['controller' => 'users', 'action' => 'login_sms'],['class'=>'btn0 btnDefault btnBold btnBlock']); ?><br/>
             </div>
         <?= $this->Form->end() ?>
     </div>

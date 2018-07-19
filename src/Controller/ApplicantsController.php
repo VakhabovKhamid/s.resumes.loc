@@ -9,6 +9,8 @@
 namespace App\Controller;
 
 
+use Cake\I18n\Date;
+
 class ApplicantsController extends AppController
 {
 
@@ -129,6 +131,7 @@ class ApplicantsController extends AppController
 
                 return $this->redirect(['action' => 'preview']);
             }
+            $applicant->birth_date = new Date($applicant->birth_date);
             $this->Flash->error(__('The applicant could not be saved. Please, try again.'));
         }
         $countries = $this->Applicants->DictionaryCountries->find('list', ['limit' => 200]);
