@@ -3,7 +3,7 @@
 use Phinx\Seed\AbstractSeed;
 use Config\Helpers\SeederHelper;
 
-class DictionaryDistrictsSeeder extends AbstractSeed
+class P3DictionaryDistrictsSeeder extends AbstractSeed
 {
     public function getDependencies()
     {

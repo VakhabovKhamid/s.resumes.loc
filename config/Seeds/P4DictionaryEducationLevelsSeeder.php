@@ -1,8 +1,9 @@
 <?php
 
 use Phinx\Seed\AbstractSeed;
+use Config\Helpers\SeederHelper;
 
-class DictionaryEducationLevelsSeeder extends AbstractSeed
+class P4DictionaryEducationLevelsSeeder extends AbstractSeed
 {
     /**
      * Run Method.
@@ -25,8 +26,8 @@ class DictionaryEducationLevelsSeeder extends AbstractSeed
 		"name_qr_c" : "Дошкольное образование",
 		"name_qr_l" : "Дошкольное образование",
 		"is_active" : "Y",
-		"created_by" : 2,
-		"modified_by" : 2
+		"created_by" : 1,
+		"modified_by" : 1
 	},
 	{
 		"id" : 2,
@@ -37,8 +38,8 @@ class DictionaryEducationLevelsSeeder extends AbstractSeed
 		"name_qr_c" : "Общее образование",
 		"name_qr_l" : "Общее образование",
 		"is_active" : "Y",
-		"created_by" : 2,
-		"modified_by" : 2
+		"created_by" : 1,
+		"modified_by" : 1
 	},
 	{
 		"id" : 3,
@@ -49,8 +50,8 @@ class DictionaryEducationLevelsSeeder extends AbstractSeed
 		"name_qr_c" : "Внешкольное образование",
 		"name_qr_l" : "Внешкольное образование",
 		"is_active" : "Y",
-		"created_by" : 2,
-		"modified_by" : 2
+		"created_by" : 1,
+		"modified_by" : 1
 	},
 	{
 		"id" : 4,
@@ -61,8 +62,8 @@ class DictionaryEducationLevelsSeeder extends AbstractSeed
 		"name_qr_c" : "Профессионально-техническое образование",
 		"name_qr_l" : "Профессионально-техническое образование",
 		"is_active" : "Y",
-		"created_by" : 2,
-		"modified_by" : 2
+		"created_by" : 1,
+		"modified_by" : 1
 	},
 	{
 		"id" : 5,
@@ -73,8 +74,8 @@ class DictionaryEducationLevelsSeeder extends AbstractSeed
 		"name_qr_c" : "Среднее специальное образование",
 		"name_qr_l" : "Среднее специальное образование",
 		"is_active" : "Y",
-		"created_by" : 2,
-		"modified_by" : 2
+		"created_by" : 1,
+		"modified_by" : 1
 	},
 	{
 		"id" : 6,
@@ -85,8 +86,8 @@ class DictionaryEducationLevelsSeeder extends AbstractSeed
 		"name_qr_c" : "Высшее образование",
 		"name_qr_l" : "Высшее образование",
 		"is_active" : "Y",
-		"created_by" : 2,
-		"modified_by" : 2
+		"created_by" : 1,
+		"modified_by" : 1
 	},
 	{
 		"id" : 7,
@@ -97,8 +98,8 @@ class DictionaryEducationLevelsSeeder extends AbstractSeed
 		"name_qr_c" : "Семейное образование",
 		"name_qr_l" : "Семейное образование",
 		"is_active" : "Y",
-		"created_by" : 2,
-		"modified_by" : 2
+		"created_by" : 1,
+		"modified_by" : 1
 	},
 	{
 		"id" : 8,
@@ -109,8 +110,8 @@ class DictionaryEducationLevelsSeeder extends AbstractSeed
 		"name_qr_c" : "Самообразование",
 		"name_qr_l" : "Самообразование",
 		"is_active" : "Y",
-		"created_by" : 2,
-		"modified_by" : 2
+		"created_by" : 1,
+		"modified_by" : 1
 	}
 ]';
         

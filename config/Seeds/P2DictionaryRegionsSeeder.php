@@ -4,7 +4,7 @@ use Phinx\Seed\AbstractSeed;
 use Config\Helpers\SeederHelper;
 
 
-class DictionaryRegionsSeeder extends AbstractSeed
+class P2DictionaryRegionsSeeder extends AbstractSeed
 {
     public function getDependencies()
     {
