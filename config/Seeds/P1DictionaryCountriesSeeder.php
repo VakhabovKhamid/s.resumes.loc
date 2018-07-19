@@ -3,7 +3,7 @@
 use Phinx\Seed\AbstractSeed;
 use Config\Helpers\SeederHelper;
 
-class DictionaryCountriesSeeder extends AbstractSeed
+class P1DictionaryCountriesSeeder extends AbstractSeed
 {
 
     /* Раскомментировать когда дадут группы и пользователей */
@@ -91,6 +91,12 @@ class DictionaryCountriesSeeder extends AbstractSeed
         $data = SeederHelper::defaultPrepare($raw);
         $tableName = 'dictionary_countries';
         $table = $this->table($tableName);
+        SeederHelper::clear($this,'applicant_desirable_countries');
+        SeederHelper::clear($this,'applicants');
+        SeederHelper::clear($this,'dictionary_education_levels');
+        SeederHelper::clear($this,'dictionary_districts');
+        SeederHelper::clear($this,'dictionary_industries');
+        SeederHelper::clear($this,'dictionary_regions');
         SeederHelper::clear($this,$tableName);
         $table->insert($data)->save();
     }
