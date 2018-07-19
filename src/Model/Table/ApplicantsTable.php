@@ -133,7 +133,7 @@ class ApplicantsTable extends Table
 
         $validator
             ->date('birth_date', 'dmy')
-            ->requirePresence('birth_date', 'create')
+            ->requirePresence('birth_date', 'true')
             ->notEmpty('birth_date');
 
         $validator
@@ -163,6 +163,13 @@ class ApplicantsTable extends Table
             ->notEmpty('document_seria_number');
 
         $validator->allowEmpty('professional_skills');
+
+        $validator->integer('address_region_id')
+            ->requirePresence('address_region_id');
+
+        $validator->integer('address_district_id')
+            ->requirePresence('address_district_id');
+
 
         return $validator;
     }
