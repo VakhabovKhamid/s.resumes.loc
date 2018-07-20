@@ -22,7 +22,12 @@ class ApplicantsController extends AppController
             $userId = $this->request->getSession()->read('Auth.User.id');
             $data = $this->request->getData();
             if ($this->Applicants->registerApplicant($applicant, $data, $userId)) {
-                $this->Flash->success(__('The applicant has been saved.'));
+                $this->Flash->success(
+                    __('Ваша анкета успешно сохранена и привязана к вашему номеру телефона. Информация о вас добавлена в Единую базу соискателей работы за рубежом. Теперь с вами могут связаться агентства для предложения работы за рубежом. Анкета привязана к вашему номеру телефона.'), 
+                    [
+                        'key' => 'applicantsaved'
+                    ]
+                );
 
                 return $this->redirect(['action' => 'preview']);
             }
@@ -98,8 +103,6 @@ class ApplicantsController extends AppController
 
     public function edit()
     {
-//        $applicant = $this->Applicants->find()->where(['created_by' => $this->Auth->user('id')])->firstOrFail();
-
         $applicant = $this->Applicants->find('all', [
             'contain' => [
                 'DesirableCountries',
@@ -108,26 +111,29 @@ class ApplicantsController extends AppController
                 'DictionaryDistricts',
                 'DictionaryEducationLevels',
                 'Industries'
-                //'ApplicantDocuments',
-                //'Users' => ['Tokens']
             ],
             'conditions' => [
                 'Applicants.created_by' => $this->Auth->user('id')
             ]
         ])->firstOrFail();
 
-
-            $districts = $this->Applicants->DictionaryDistricts->find('list', [
-                'conditions' => [
-                    'DictionaryDistricts.region_id' => $applicant->address_region_id
-                ]
-            ])->toArray();
+        $districts = $this->Applicants->DictionaryDistricts->find('list', [
+            'conditions' => [
+                'DictionaryDistricts.region_id' => $applicant->address_region_id
+            ]
+        ])->toArray();
 
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $applicant = $this->Applicants->patchEntity($applicant, $this->request->getData());
-            if ($this->Applicants->save($applicant)) {
-                $this->Flash->success(__('The applicant has been saved.'));
+            $userId = $this->request->getSession()->read('Auth.User.id');
+            if ($this->Applicants->updateApplicant($applicant, $userId)) {
+                $this->Flash->success(
+                    __('Ваша анкета успешно сохранена и привязана к вашему номеру телефона. Информация о вас добавлена в Единую базу соискателей работы за рубежом. Теперь с вами могут связаться агентства для предложения работы за рубежом. Анкета привязана к вашему номеру телефона.'), 
+                    [
+                        'key' => 'applicantsaved'
+                    ]
+                );
 
                 return $this->redirect(['action' => 'preview']);
             }
@@ -136,7 +142,6 @@ class ApplicantsController extends AppController
         }
         $countries = $this->Applicants->DictionaryCountries->find('list', ['limit' => 200]);
         $regions = $this->Applicants->DictionaryRegions->find('list', ['limit' => 200]);
-        //$districts = $this->Applicants->DictionaryDistricts->find('list', ['limit' => 200]);
         $educationLevels = $this->Applicants->DictionaryEducationLevels->find('list', ['limit' => 200]);
         $industries = $this->Applicants->Industries->find('list', ['limit' => 200]);
         $birthDateDays = $this->Applicants->getBirthDateDays();

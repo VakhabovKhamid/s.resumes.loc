@@ -53,7 +53,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="mainContainer">
           <div class="header">
             <div class="logo"><a href="/"><img src="/images/gerb.svg" alt=""/><span class="logoText">Единая национальная<br> система труда</span></a></div>
-            <?php if ($this->Permissions->isAuthorized() && $this->request->action != 'verifyCode'): ?>
+            <?php if ($this->Permissions->isAuthorized() && !$this->Permissions->isGuest() && $this->request->action != 'verifyCode'): ?>
             <div class="headerUserBlock">
               <div class="btnPersonalArea">
                 <a class="PersonalAreaLink">
@@ -75,9 +75,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
       <!-- start #content-->
       <div id="content">
         <div class="pagePadding">
-            <div class="mainContainer">
-            <?= $this->Flash->render() ?>
-            </div>
             <?= $this->fetch('content') ?>
         </div>
       </div>

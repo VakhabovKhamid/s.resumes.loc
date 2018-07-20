@@ -10,6 +10,7 @@ namespace App\Auth;
 
 
 use App\Model\Entity\Group;
+use App\Model\Entity\Token;
 use Cake\Auth\FormAuthenticate;
 use Cake\Controller\ComponentRegistry;
 use Cake\Network\Request;
@@ -43,10 +44,7 @@ class VerifyCodeAuthenticate extends FormAuthenticate
     public function __construct(ComponentRegistry $registry, array $config = [])
     {
         parent::__construct($registry, $config);
-        Request::addDetector($this->getConfig('token.detector'), function (Request $request) {
-            return (bool)$request->getQuery($this->getConfig('token.parameter'))
-                || (bool)$request->getParam($this->getConfig('token.parameter'));
-        });
+
         if (!$this->getConfig('token.factory')) {
             $this->setConfig('token.factory', [$this, '_tokenize']);
         }
@@ -54,41 +52,47 @@ class VerifyCodeAuthenticate extends FormAuthenticate
 
     public function authenticate(Request $request, Response $response)
     {
-        $config = $this->getConfig();
-        if (!in_array($config['token']['detector'], array_keys($request->getData()))) {
+        if (!in_array('token', array_keys($request->getData()))) {
             return false;
         }
-        $token = $request->getData($config['token']['parameter']);
 
-        if ($finder = $this->getConfig('token.finder')) {
-            return call_user_func($finder, $token);
-        }
-        $this->getConfig('fields.username', $this->getConfig('fields.token'));
-
-        return $this->_findUserByToken($token, $request->getSession()->read('Auth.User.phone'));
+        $token = $request->getData('token');
+        $phone = $request->getSession()->read('Auth.User.phone');
+        return $this->_findUserByToken($token, $phone);
     }
 
     protected function _findUserByToken($token, $phone)
     {
         $phone = preg_replace('/[^0-9]+/', '', $phone);
         $config = $this->_config;
-        $table = $this->getTableLocator()->get($config['tokenModel']);
-        $result = $table->find()->where(['token'=>$token, 'phone'=>$phone])->first();
+        $tokensTable = $this->getTableLocator()->get($config['tokenModel']);
+        $usersTable = $this->getTableLocator()->get($config['userModel']);
+        $token = $tokensTable->find()->where(['token'=>$token, 'phone'=>$phone])->first();
 
-        if (!$result) {
+        if (!$token) {
             return false;
         }
 
-        $userId = $result->user_id;
+        $userId = $token->user_id;
+        $this->regenerateToken($token, $tokensTable);
+        //$this->setUserRole($token->user_id, $usersTable);
 
-        $table = $this->getTableLocator()->get($config['userModel']);
+        $user = $usersTable->find()->where(['Users.id'=>$userId])->first();
+
+        return $user;
+    }
+
+    private function setUserRole($userId, $table)
+    {
         $user = $table->get($userId);
         $user->group_id = Group::GROUP_USERS;
         $user->modified = new \DateTime();
         $table->save($user);
+    }
 
-        $result = $table->find()->contain(['Tokens'])->where(['Users.id'=>$userId])->first();
-
-        return $result;
+    private function regenerateToken(Token $token, $table)
+    {
+        $token->token = rand(100000, 999999); //Regenerate token. Prevent user login with old vefiry code.
+        $table->save($token);
     }
 }

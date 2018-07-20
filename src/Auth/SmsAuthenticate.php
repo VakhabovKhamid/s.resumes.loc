@@ -46,10 +46,7 @@ class SmsAuthenticate extends FormAuthenticate
     public function __construct(ComponentRegistry $registry, array $config = [])
     {
         parent::__construct($registry, $config);
-        Request::addDetector($this->getConfig('token.detector'), function (Request $request) {
-            return (bool)$request->getQuery($this->getConfig('token.parameter'))
-                || (bool)$request->getParam($this->getConfig('token.parameter'));
-        });
+
         if (!$this->getConfig('token.factory')) {
             $this->setConfig('token.factory', [$this, '_tokenize']);
         }
@@ -57,58 +54,76 @@ class SmsAuthenticate extends FormAuthenticate
 
     public function authenticate(Request $request, Response $response)
     {
-        return $this->_findUser($request->getData()[$this->getConfig('fields.username')]);
+        $phone = $request->getData('phone');
+        return $this->_findUserByPhone($phone);
     }
 
-    protected function _findUser($username, $password = null)
+    protected function _findUserByPhone($phone)
     {
-        $username = preg_replace('/[^0-9]+/', '', $username);
+        $phone = preg_replace('/[^0-9]+/', '', $phone);
+        $username = 'user-'.$phone;
 
         $config = $this->_config;
-        $table = $this->getTableLocator()->get($config['tokenModel']);
-        $result = $table->findByPhone($username);
+        $usersTable = $this->getTableLocator()->get($config['userModel']);
+        $tokensTable = $this->getTableLocator()->get($config['tokenModel']);
+        $user = $usersTable->findByUsername($username)->contain('Tokens')->first();
 
-        if (!$result->first()) {
-            $user = $this->_createUser($username);
-            return $user;
+        if (!$user) {
+            $userWithToken = $this->_createUserWithToken($phone, $usersTable);
+            return $userWithToken;
         }
 
-        $userId = $result->first()->user_id;
-        $table = $this->getTableLocator()->get($config['userModel']);
-        $result = $table->find()->contain(['Tokens'])->where(['Users.id'=>$userId])->first();
-
-        return $result;
+        //$user->token = $this->_createToken($user, $phone, $tokensTable);
+        //$userWithToken = $usersTable->find()->contain(['Tokens'])->where(['Users.id'=>$user->id])->first();
+        //dd($user);
+        return $user;
     }
 
-    private function _createUser($username)
+    private function _createUserWithToken($phone, $usersTable)
     {
-        //debug($username);die;
-        $config = $this->_config;
-        $table = TableRegistry::get($config['userModel']);
         $data = [
-            'username' => 'user-'.$username,
-            'group_id' => Group::GROUP_GUESTS, //Guest group
+            'username' => 'user-'.$phone,
+            'group_id' => Group::GROUP_USERS,
             'password' => Security::randomString(10),
-            'email' => 'user-'.$username.'@test.com',
+            'email' => 'user-'.$phone.'@mail.loc',
             'created' => new \DateTime(),
             'modified' => new \DateTime(),
             'token' => [
-                'phone' => $username,
+                'phone' => $phone,
                 'created' => new \DateTime(),
-                'token' => Security::randomString(10),
+                'token' => rand(100000, 999999),
                 'expire' => new \DateTime(),
                 'created_by' => 1,
             ]
         ];
-        $user = $table->newEntity($data, ['associated' => ['Tokens']]);
+        $user = $usersTable->newEntity($data, ['associated' => ['Tokens']]);
         $user->created_by = 1;
         $user->modified_by = 1;
 
-        if($table->save($user)) {
+        if($usersTable->save($user)) {
             return $user;
         } else {
             dd($user->getErrors());die;
             return false;
+        }
+    }
+
+    private function _createToken($user, $phone, $table)
+    {
+        $token = $table->newEntity(
+            [
+                'user_id' => $user->id,
+                'phone' => $phone,
+                'created' => new \DateTime(),
+                'token' => rand(100000, 999999),
+                'expire' => new \DateTime(),
+                'created_by' => 1,
+            ]
+        );
+        if($table->save($token)) {
+            return $token;
+        } else {
+            dd($token->getErrors());
         }
     }
 
@@ -121,15 +136,17 @@ class SmsAuthenticate extends FormAuthenticate
     {
         $config = $this->_config;
         $fields = $config['fields'];
-        $table = $this->getTableLocator()->get($config['tokenModel']);
+        $tokensTable = $this->getTableLocator()->get($config['tokenModel']);
         $findBy = 'findBy'.ucfirst($fields['username']);
-        $token = $table->{$findBy}($token[$fields['username']])->first();
+        $phone = $token[$fields['username']];
 
-        $token->{$fields['token']} = rand(100000, 999999);
-        $token->{$fields['expires']} = new Date($config['token']['expires']);
-        $table->save($token);
+        $token = $tokensTable->{$findBy}($phone)->first();
 
-        return $token->{$fields['token']};
+        $token->token = rand(100000, 999999);
+        $token->expires = new Date($config['token']['expires']);
+        $tokensTable->save($token);
+
+        return $token->token;
     }
 
 }

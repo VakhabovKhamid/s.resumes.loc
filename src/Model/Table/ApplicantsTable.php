@@ -122,7 +122,8 @@ class ApplicantsTable extends Table
         $validator
             ->scalar('latin_patronym')
             ->maxLength('latin_patronym', 80)
-            ->allowEmpty('latin_patronym');
+            ->requirePresence('latin_patronym', 'create')
+            ->notEmpty('latin_patronym');
 
         $validator
             ->scalar('sex')
@@ -263,8 +264,6 @@ class ApplicantsTable extends Table
         $applicant->modified_by = $userId;
 
         array_map(function($country) use($userId) {
-            $country->created_by = $userId;
-            $country->modified_by = $userId;
 
             $country->_joinData = new Entity([
                 'created_by' => $userId,
@@ -274,8 +273,6 @@ class ApplicantsTable extends Table
         }, $applicant->desirable_countries);
 
         array_map(function($country) use($userId) {
-            $country->created_by = $userId;
-            $country->modified_by = $userId;
 
             $country->_joinData = new Entity([
                 'created_by' => $userId,
@@ -284,8 +281,41 @@ class ApplicantsTable extends Table
 
         }, $applicant->undesirable_countries);
         array_map(function($industry) use($userId) {
-            $industry->created_by = $userId;
-            $industry->modified_by = $userId;
+
+            $industry->_joinData = new Entity([
+                'created_by' => $userId,
+                'modified_by' => $userId
+            ], ['markNew' => true]);
+
+        }, $applicant->industries);
+
+        if($this->save($applicant)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function updateApplicant(Applicant $applicant, $userId)
+    {
+        array_map(function($country) use($userId) {
+
+            $country->_joinData = new Entity([
+                'created_by' => $userId,
+                'modified_by' => $userId
+            ], ['markNew' => true]);
+
+        }, $applicant->desirable_countries);
+
+        array_map(function($country) use($userId) {
+
+            $country->_joinData = new Entity([
+                'created_by' => $userId,
+                'modified_by' => $userId
+            ], ['markNew' => true]);
+
+        }, $applicant->undesirable_countries);
+        array_map(function($industry) use($userId) {
 
             $industry->_joinData = new Entity([
                 'created_by' => $userId,
