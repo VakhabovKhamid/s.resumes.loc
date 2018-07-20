@@ -64,7 +64,7 @@
       </tr>
       <tr>
         <th><?= __('Телефон') ?>:</th>
-        <td><?= $applicant->user->token->phone ?></td>
+        <td>+<?= $applicant->user->token->phone ?></td>
       </tr>
     </table>
   </div>
