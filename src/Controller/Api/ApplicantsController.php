@@ -37,20 +37,20 @@ class ApplicantsController extends ApiController
                 'DictionaryRegions',
                 'DictionaryDistricts',
                 'DictionaryEducationLevels',
-                'DesirableCountries',
-                'UndesirableCountries',
-                'Industries',
-                'ApplicantDocuments',
-                'Users' => ['Tokens']
+                //'DesirableCountries',
+                //'UndesirableCountries',
+                //'Industries',
+                //'ApplicantDocuments',
+                //'Users' => ['Tokens']
             ])
             ->where($searchConditions);
-        if(!empty($data['industry_id'])){
+        /*if(!empty($data['industry_id'])){
             $industries = array_map(function($val){ return (int)$val;}, $data['industry_id']);
             $query = $query->leftJoinWith('Industries')->where(['Industries.id IN' => $industries]);
-        }
+        }*/
         $applicants = $this->paginate($query);
 
-        //dd($applicants);
+        dd($applicants);
 
         $this->set(compact('applicants'));
         $this->set('_serialize', ['applicants']);

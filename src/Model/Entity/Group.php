@@ -18,8 +18,8 @@ class Group extends Entity
 {
 
     const GROUP_ADMINISTRATORS = 1;
-    const GROUP_USERS = 2;
-    const GROUP_GUESTS = 3;
+    const GROUP_USERS = 3;
+    const GROUP_GUESTS = 4;
 
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
