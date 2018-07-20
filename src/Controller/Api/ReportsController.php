@@ -39,7 +39,7 @@ class ReportsController extends ApiController
         $dynamicColumns = new DynamicColumns();
         $commonColumns = [
             'dr.id',
-            'dr.name_ru_c as region_name',
+            'dr.name_ru_c as "region_name"',
             "COUNT(a.id) as 'applicants'",
             "SUM(IF(a.sex = 'M',1,0)) as 'M'",
             "SUM(IF(a.sex = 'F',1,0)) as 'F'",
@@ -119,11 +119,23 @@ class ReportsController extends ApiController
             
         },$createTemplate($result));
         array_push($result,$total);
+
+        $replacebleKeys = [
+            'region_name'=>"Регион",
+            'applicants'=>"Всего",
+            'M'=>"Мужчины",
+            'F'=>"Женщины",
+        ];
+        
+        $result = replaceWithKeys($replacebleKeys,$result);
+        // dd($result);
+
         $response = [
             'data'=>[
                 'rows'=>$result
             ]
         ];
+
 
         $this->set(compact('response'));
         $this->set('_serialize', 'response');
@@ -142,6 +154,23 @@ function parse($value,$type){
     }else{
         return $value;
     }
+}
+
+function replaceWithKeys($keys,$result){
+    $newArray = [];
+    foreach ($result as $row) {
+        $item = [];
+        foreach ($row as $k => $v) {
+            if(isset($keys[$k])){
+                $item[$keys[$k]] = $v;
+            }else{
+                $item[$k] = $v;
+            }
+        }
+        $newArray[] = $item;
+    }
+    return $newArray;
+
 }
 
 class ColumnCounter
