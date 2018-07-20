@@ -6,7 +6,7 @@
 ?>
 <div class="mainContainer minContainer1000">
 <div class="contentBlockBold">
-  <?= $this->Flash->render() ?>
+  <?= $this->Flash->render('applicantsaved') ?>
   <hr>
   <div class="title-1 uppercase"><?= $applicant->latin_surname ?> <?= $applicant->latin_name ?> <?= $applicant->latin_patronym ?></div>
   <div class="dateBlock"><?= __('Дата создания') ?>: <strong><?= $applicant->created->format('d.m.Y') ?></strong></div>
@@ -69,10 +69,13 @@
     </table>
   </div>
   <hr/>
-  <div class="textRight">
+  <div class="textLeft">
     <?= $this->Form->postLink(__('Удалить'), ['action' => 'delete'], ['confirm' => __('Are you sure you want to delete?'), 'escape' => false, 'class' => 'btn0 btnRed']) ?>
     &nbsp;
     <?= $this->Html->link(__('Редактировать'), ['action' => 'edit'], ['class' => 'btn0 btn1']) ?>
+    <div class="right">
+      <?= $this->Html->link(__('Выйти').' <i class="fa fa-sign-out fa-fw"></i>', '/logout', ['class' => 'btn0 btnGreen', 'escape' => false]) ?>
+    </div>
   </div>
 </div>
 </div>
