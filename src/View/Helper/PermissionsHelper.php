@@ -32,13 +32,13 @@ class PermissionsHelper extends Helper
     public function isGuest()
     {
         $session = $this->request->getSession();
-        return $this->isAuthorized() && $session->read('Auth.User.group_id') === Group::GROUP_GUESTS; 
+        return $session->read('Auth.User.group_id') === Group::GROUP_GUESTS; 
     }
 
     public function isAuthorized()
     {
         $session = $this->request->getSession();
-        return $session->read('Auth.User.id') !== null;    
+        return $session->read('Auth.User');    
     }
 
 }

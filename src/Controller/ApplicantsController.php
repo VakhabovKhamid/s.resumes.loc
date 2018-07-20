@@ -22,7 +22,12 @@ class ApplicantsController extends AppController
             $userId = $this->request->getSession()->read('Auth.User.id');
             $data = $this->request->getData();
             if ($this->Applicants->registerApplicant($applicant, $data, $userId)) {
-                $this->Flash->success(__('The applicant has been saved.'));
+                $this->Flash->success(
+                    __('Ваша анкета успешно сохранена и привязана к вашему номеру телефона. Информация о вас добавлена в Единую базу соискателей работы за рубежом. Теперь с вами могут связаться агентства для предложения работы за рубежом. Анкета привязана к вашему номеру телефона.'), 
+                    [
+                        'key' => 'applicantsaved'
+                    ]
+                );
 
                 return $this->redirect(['action' => 'preview']);
             }
@@ -127,7 +132,12 @@ class ApplicantsController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $applicant = $this->Applicants->patchEntity($applicant, $this->request->getData());
             if ($this->Applicants->save($applicant)) {
-                $this->Flash->success(__('The applicant has been saved.'));
+                $this->Flash->success(
+                    __('Ваша анкета успешно сохранена и привязана к вашему номеру телефона. Информация о вас добавлена в Единую базу соискателей работы за рубежом. Теперь с вами могут связаться агентства для предложения работы за рубежом. Анкета привязана к вашему номеру телефона.'), 
+                    [
+                        'key' => 'applicantsaved'
+                    ]
+                );
 
                 return $this->redirect(['action' => 'preview']);
             }

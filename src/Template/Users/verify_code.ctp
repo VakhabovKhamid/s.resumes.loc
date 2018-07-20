@@ -1,6 +1,6 @@
 <div class="mainContainer minContainer500">
     <div class="contentBlockBold">
-        <div class="title-3">Введите полученный код</div>
+        <div class="title-3"><?= __('Введите полученный код') ?></div>
         <?= $this->Form->create() ?>
             <div class="formControl">
                 <div class="field">
@@ -10,8 +10,8 @@
             </div>
             <hr/>
             <div class="formSubmit">
-                <?= $this->Form->button('Войти', ['class'=>'btn0 btn1 btnBold btnBlock']); ?><br/>
-                <?= $this->Html->link('Назад', ['controller' => 'users', 'action' => 'login_sms'],['class'=>'btn0 btnDefault btnBold btnBlock']); ?><br/>
+                <?= $this->Form->button(__('Войти'), ['class'=>'btn0 btn1 btnBold btnBlock']); ?><br/>
+                <?= $this->Html->link(__('Назад'), ['controller' => 'users', 'action' => 'login_sms'],['class'=>'btn0 btnDefault btnBold btnBlock']); ?><br/>
             </div>
         <?= $this->Form->end() ?>
     </div>

@@ -247,8 +247,8 @@ class ApplicantsTable extends Table
     public function getSexList()
     {
         return [
-            'M' => __('Мужской'),
-            'F' => __('Женский'),
+            'M' => __('М'),
+            'F' => __('Ж'),
         ];
     }
 

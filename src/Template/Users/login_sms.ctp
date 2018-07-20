@@ -5,7 +5,7 @@
 ?>
 <div class="mainContainer minContainer500">
     <div class="contentBlockBold">
-        <div class="title-3">Введите номер телефона</div>
+        <div class="title-3"><?= __('Введите номер телефона') ?></div>
         <?= $this->Form->create() ?>
             <div class="formControl">
                 <div class="field">
@@ -14,8 +14,8 @@
             </div>
             <hr/>
             <div class="formSubmit">
-                <?= $this->Form->button('Получить код', ['class'=>'btn0 btn1 btnBold btnBlock']); ?><br/>
-                <?= $this->Html->link('Назад', ['controller' => 'pages', 'action' => 'home'],['class'=>'btn0 btnDefault btnBold btnBlock']); ?><br/>
+                <?= $this->Form->button(__('Получить код'), ['class'=>'btn0 btn1 btnBold btnBlock']); ?><br/>
+                <?= $this->Html->link(__('Назад'), ['controller' => 'pages', 'action' => 'home'],['class'=>'btn0 btnDefault btnBold btnBlock']); ?><br/>
             </div>
         <?= $this->Form->end() ?>
     </div>

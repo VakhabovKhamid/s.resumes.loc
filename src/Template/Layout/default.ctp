@@ -20,7 +20,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Резюме</title>
+    <title><?= __('Резюме') ?></title>
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('/css/resumes/defaultStyles.css') ?>
@@ -53,7 +53,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="mainContainer">
           <div class="header">
             <div class="logo"><a href="/"><img src="/images/gerb.svg" alt=""/><span class="logoText">Единая национальная<br> система труда</span></a></div>
-            <?php if ($this->request->getSession()->read('Auth.User') && $this->request->action != 'verifyCode'): ?>
+            <?php if ($this->Permissions->isAuthorized() && !$this->Permissions->isGuest() && $this->request->action != 'verifyCode'): ?>
             <div class="headerUserBlock">
               <div class="btnPersonalArea">
                 <a class="PersonalAreaLink">
@@ -62,7 +62,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 </a>
                 <div class="subMenuPersonalArea">
                   <ul>
-                    <li><a href="/logout">Logout <i class="fa fa-sign-out fa-fw"></i></a></li>
+                    <li><a href="/logout"><?= __('Выйти') ?> <i class="fa fa-sign-out fa-fw"></i></a></li>
                   </ul>
                 </div>
               </div>
@@ -75,9 +75,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
       <!-- start #content-->
       <div id="content">
         <div class="pagePadding">
-            <div class="mainContainer">
-            <?= $this->Flash->render() ?>
-            </div>
             <?= $this->fetch('content') ?>
         </div>
       </div>
@@ -88,7 +85,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div id="footer">
       <div class="mainContainer">
         <div class="footer">
-          <div class="footerText textCenter"><?= date('Y') ?> Министерство занятости и трудовых отношений Республики Узбекистан</div>
+          <div class="footerText textCenter"><?= date('Y') ?>  <?= __('Министерство занятости и трудовых отношений Республики Узбекистан') ?></div>
         </div>
       </div>
     </div>

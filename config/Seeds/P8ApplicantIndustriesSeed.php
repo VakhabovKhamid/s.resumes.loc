@@ -2,9 +2,9 @@
 use Migrations\AbstractSeed;
 
 /**
- * P5ApplicantDesirableCountries seed.
+ * P8ApplicantIndustriesSeed seed.
  */
-class P7ApplicantDesirableCountriesSeed extends AbstractSeed
+class P8ApplicantIndustriesSeed extends AbstractSeed
 {
     /**
      * Run Method.
@@ -19,7 +19,7 @@ class P7ApplicantDesirableCountriesSeed extends AbstractSeed
     public function run()
     {
         $data = [];
-        $countriesIds = $this->query("SELECT id FROM dictionary_countries WHERE id <> 182")->fetchAll(\PDO::FETCH_COLUMN);
+        $industriesIds = $this->query("SELECT id FROM dictionary_industries")->fetchAll(\PDO::FETCH_COLUMN);
         $applicantsIds = $this->query("SELECT id FROM applicants")->fetchAll(\PDO::FETCH_COLUMN);
 
         $makeRandomFunc = function ($array) {
@@ -36,11 +36,11 @@ class P7ApplicantDesirableCountriesSeed extends AbstractSeed
         };
 
         foreach($applicantsIds as $id){
-            $selector = $makeRandomFunc($countriesIds);
-            for($elements = rand(1,4); $elements > 0 ;$elements--){
+            $selector = $makeRandomFunc($industriesIds);
+            for($elements = rand(1,3); $elements > 0 ;$elements--){
                 $data[] = [
                     'applicant_id'=> $id,
-                    'dictionary_country_id'=>$selector(),
+                    'dictionary_industry_id'=>$selector(),
                     'created'=>'2017-07-18 20:04:01',
                     'modified'=>'2017-07-18 20:04:01',
                     'created_by'=>1,
@@ -49,7 +49,7 @@ class P7ApplicantDesirableCountriesSeed extends AbstractSeed
             }
         }
 
-        $table = $this->table('applicant_desirable_countries');
+        $table = $this->table('applicant_industries');
         $table->insert($data)->save();
     }
 }
