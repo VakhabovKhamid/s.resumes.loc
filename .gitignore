@@ -47,3 +47,5 @@ nbproject/*
 #######################
 composer.lock
 webroot/uploads/
+mysql
+mysql_ext

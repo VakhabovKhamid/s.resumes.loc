@@ -200,3 +200,4 @@ Type::map('json', 'Cake\Database\Type\JsonType');
 //Inflector::rules('transliteration', ['/å/' => 'aa']);
 Plugin::load('Acl', ['bootstrap' => true]);
 Plugin::load('SmartlabAdmin', ['bootstrap' => false, 'routes' => true]);
+// require APP . 'vendor/fzaninotto/faker/src/autoload.php';
