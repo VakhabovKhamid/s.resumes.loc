@@ -44,21 +44,21 @@ class P6ApplicantsSeed extends AbstractSeed
         $industriesIds = $this->query("SELECT id FROM dictionary_industries")->fetchAll(\PDO::FETCH_COLUMN);
         
 
-        $faker = Factory::create('ru_RU');
+        $faker = Factory::create('en_EN');
         $data = [];
         foreach(range(1,10000) as $i=>$v){
             $item = [
-                'latin_name'=>$translit($faker->firstname),
-                'latin_surname'=>$translit($faker->lastname),
-                'latin_patronym'=>$translit($faker->middleName),
+                'latin_name'=>$faker->firstname,
+                'latin_surname'=>$faker->lastname,
+                'latin_patronym'=>$faker->lastname,
                 'sex'=>$randBool('M','F'),
                 'birth_date'=> $faker->dateTimeThisCentury->format('Y-m-d'),
+		'document_seria_number' => 'AA' . $faker->numberBetween(1000000, 9999999),
                 'address_country_id'=>1,
                 'address_region_id'=>$random($regionsIds),
                 'address_extended'=>$faker->streetAddress,
                 'education_level_id'=>$random($educationLevelsIds),
                 'professional_skills'=>$randomSkills(),
-                'industry_id'=>$random($industriesIds),
                 'is_archive'=> $randBool('Y','N'),
                 'created'=> (new DateTime())->format('Y-m-d H:i:s'),
                 'modified'=> (new DateTime())->format('Y-m-d H:i:s'),
@@ -78,3 +78,4 @@ class P6ApplicantsSeed extends AbstractSeed
         $table->insert($data)->save();
     }
 }
+
