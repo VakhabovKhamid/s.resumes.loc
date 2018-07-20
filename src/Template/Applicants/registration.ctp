@@ -43,6 +43,14 @@
             <div class="row15">
                 <div class="colp15-6">
                     <div class="formControl">
+                        <label class="formLabel required"><?= __('Отчество')?></label>
+                        <div class="field">
+                            <?= $this->Form->control('latin_patronym', ['label' => false, 'class' => 'formField']); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="colp15-6">
+                    <div class="formControl">
                         <label class="formLabel required"><?= __('Дата рождения')?></label>
                         <div class="field">
                             <?= $this->Form->control('birth_date', ['type' => 'text','label' => false, 'class' => 'formField jq-date-field', 'placeholder' => 'dd-mm-yyyy', 'value' => $applicant->birth_date?$applicant->birth_date->format('d-m-Y'):'']); ?>
@@ -68,6 +76,8 @@
                         <?php */ ?>
                     </div>
                 </div>
+            </div>
+            <div class="row15">
                 <div class="colp15-6">
                     <div class="formControl">
                         <label class="formLabel required"><?= __('Пол')?></label>

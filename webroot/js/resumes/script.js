@@ -257,7 +257,15 @@ $(document).ready(function(){
     $(".phone").inputmask("+998 (00) 000 00 00");
     $('.pinfl').inputmask("0 000000 000 000 0");
     $('.cartNumber').inputmask("0000 0000 0000 0000");
-    $('.series_doc').inputmask("AA0000000");
+    $('.series_doc').inputmask({ 
+        mask: "AA0000000",
+        definitions: {
+          A: {
+            validator: "[A-Za-z]",
+            casing: "upper"
+          }
+        }
+    });
 
     $(function(){
         if($('#selectCountries').length){
