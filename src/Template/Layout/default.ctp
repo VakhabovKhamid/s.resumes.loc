@@ -75,9 +75,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
       <!-- start #content-->
       <div id="content">
         <div class="pagePadding">
-            <div class="mainContainer">
-            <?= $this->Flash->render() ?>
-            </div>
             <?= $this->fetch('content') ?>
         </div>
       </div>

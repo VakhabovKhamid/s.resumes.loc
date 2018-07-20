@@ -227,4 +227,9 @@ $(document).ready(function(){
         disabledInput.val(disabledInput.attr('alt-text'));
     }
 
+    $('.alert .close').click(function(e){
+        e.preventDefault();
+        $(this).parents('.alert').fadeOut();
+    });
+
 });

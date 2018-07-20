@@ -6,9 +6,7 @@
 ?>
 <div class="mainContainer minContainer1000">
 <div class="contentBlockBold">
-  <div class="textCenter">
-    <p><?= __('Ваша анкета успешно сохранена и привязана к вашему номеру телефона. Информация о вас добавлена в Единую базу соискателей работы за рубежом. Теперь с вами могут связаться агентства для предложения работы за рубежом. Анкета привязана к вашему номеру телефона.') ?></p>
-  </div>
+  <?= $this->Flash->render() ?>
   <hr>
   <div class="title-1 uppercase"><?= $applicant->latin_surname ?> <?= $applicant->latin_name ?> <?= $applicant->latin_patronym ?></div>
   <div class="dateBlock"><?= __('Дата создания') ?>: <strong><?= $applicant->created->format('d.m.Y') ?></strong></div>
