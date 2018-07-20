@@ -122,7 +122,8 @@ class ApplicantsTable extends Table
         $validator
             ->scalar('latin_patronym')
             ->maxLength('latin_patronym', 80)
-            ->allowEmpty('latin_patronym');
+            ->requirePresence('latin_patronym', 'create')
+            ->notEmpty('latin_patronym');
 
         $validator
             ->scalar('sex')
