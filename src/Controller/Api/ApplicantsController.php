@@ -48,4 +48,31 @@ class ApplicantsController extends ApiController
         $this->set(compact('applicants'));
         $this->set('_serialize', ['applicants']);
     }
+
+    public function fullList()
+    {
+        $this->response->withDisabledCache();
+
+        $data = $this->request->getData();
+        $searchConditions = $this->Applicants->getSearchConditions($data);
+
+        $query = $this->Applicants->find()
+            ->contain([
+                //'DictionaryCountries',
+                'DictionaryRegions',
+                'DictionaryDistricts',
+                'DictionaryEducationLevels',
+                'DesirableCountries',
+                'UndesirableCountries',
+                'Industries',
+                'ApplicantDocuments',
+                'Users' => ['Tokens']
+            ])
+            ->where($searchConditions);
+
+        $applicants = $query->all();
+
+        $this->set(compact('applicants'));
+        $this->set('_serialize', ['applicants']);
+    }
 }
