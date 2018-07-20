@@ -75,7 +75,6 @@ $(document).ready(function(){
         var i = $('.FiledMain').attr('data-leng');
         $('.btnAddField').click(function(e) {
             e.preventDefault();
-            console.log(checkValueClones());
             if (i != 3 && checkValueClones()) {
                 var clone = $(this).parents('.wrapCloneFields').find('.FiledMain').clone();
                 clone.removeClass('FiledMain');
@@ -85,6 +84,9 @@ $(document).ready(function(){
                 $(this).before(clone);
                 clone.find('input').focus();
                 i++;
+                if (i >= 3) {
+                    $(this).addClass('hide');
+                }
             }
         });
 
@@ -109,8 +111,8 @@ $(document).ready(function(){
             btn.click(function(e) {
                 e.preventDefault();
                 $(this).parents('.FiledClone').remove();
-                console.log(i);
                 i--;
+                $('.btnAddField').removeClass('hide');
             })
         }
 

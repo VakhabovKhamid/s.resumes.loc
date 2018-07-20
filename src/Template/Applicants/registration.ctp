@@ -146,7 +146,15 @@
                                     <?php endif ?>
                                 <?php endforeach ?>
                             <?php endif ?>
-                            <a href="#" class="btnAddField dec-n">+ <?= __('Добавить еще')?></a>
+                            <?php 
+                                $hide = false;
+                                if(isset($applicant->id)){
+                                    if (count($applicant->professional_skills) >= 3) {
+                                        $hide = true;
+                                    }
+                                }
+                            ?>
+                            <a href="#" class="btnAddField dec-n <?= $hide?'hide':'' ?>">+ <?= __('Добавить еще')?></a>
                         </div>
                     </div>
                 </div>
