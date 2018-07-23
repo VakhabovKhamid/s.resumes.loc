@@ -318,7 +318,7 @@ $(document).ready(function(){
         selectAllDelimiter: ['[', ']'],
         placeholder: 'Выберите',
         width: '100%',
-        selectAllText: 'Выбрать все',
+        selectAllText: 'Не вожно',
         allSelected: 'Все выбрано',
         countSelected: 'Выбрано # из %',
         noMatchesFound: 'Не найдено',

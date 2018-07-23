@@ -108,7 +108,7 @@
             <div class="row15">
                 <div class="colp15-6">
                     <div class="formControl">
-                        <label class="formLabel"><?= __('Уровень образование')?></label>
+                        <label class="formLabel"><?= __('Уровень образования')?></label>
                         <?= $this->Form->control('education_level_id', ['options' => $educationLevels, 'label' => false, 'class' => 'formField', 'empty' => __('Выберите')]); ?>
                     </div>
                 </div>
