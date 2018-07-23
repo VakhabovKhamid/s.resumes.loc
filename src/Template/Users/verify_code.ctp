@@ -7,8 +7,8 @@
                     <?= $this->Form->control('token', ['class'=>'formField', 'label'=>false,'autofocus' => true]) ?>
                 </div>
                 <div class="fieldText textRight">
-                    <span class="timer"><span class="minute">01</span><span>:</span><span class="secound">00</span></span>
-                    <a href="#" class="sendSms hide">Отправить еще раз</a>
+                    <span class="timer"><span class="minute">02</span><span>:</span><span class="secound">00</span></span>
+                    <?= $this->Html->link(__('Отправить еще раз'), ['controller' => 'users', 'action' => 'sendCode'],['class'=>'hide']); ?>
                 </div>
             </div>
             <hr/>
