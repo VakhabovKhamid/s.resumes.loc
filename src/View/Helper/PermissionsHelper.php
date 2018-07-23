@@ -41,4 +41,16 @@ class PermissionsHelper extends Helper
         return $session->read('Auth.User');    
     }
 
+    public function keyById($permissionId, $allAcos)
+    {
+        $searchKey = "";
+        foreach ($allAcos as $key => $allAco) {
+          if ($allAco['id'] == $permissionId) {
+            $searchKey = $key;
+          }
+        }
+
+        return $searchKey;
+    }
+
 }
