@@ -85,7 +85,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div id="footer">
       <div class="mainContainer">
         <div class="footer">
-          <div class="footerText textCenter"><?= date('Y') ?>  <?= __('Министерство занятости и трудовых отношений Республики Узбекистан') ?></div>
+          <div class="footerText left"><?= date('Y') ?>  <?= __('Министерство занятости и трудовых отношений Республики Узбекистан') ?></div>
+          <div class="footerText right">
+            <img src="/images/icons/tel-icon.svg" alt="" width="20" height="20">
+            &nbsp;
+            <?= __('Номер тех. поддержки') ?> <b>+998 (71) 000 00 00</b>
+          </div>
+          <div class="clear"></div>
         </div>
       </div>
     </div>
