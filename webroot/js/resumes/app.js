@@ -235,7 +235,8 @@ $(document).ready(function(){
     $(function(){
         var footerHeight = $('#footer').outerHeight();
         $('#mainWrap').css({
-            marginBottom: -footerHeight+'px'
+            marginBottom: -footerHeight+'px',
+            paddingBottom: footerHeight+'px'
         });
     })
 
