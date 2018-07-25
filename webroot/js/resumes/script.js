@@ -323,16 +323,21 @@ $(document).ready(function(){
       };
 
 
-    $('.jq-multiple-select').multipleSelect({
-        // selectAll: false,
-        selectAllDelimiter: ['[', ']'],
-        placeholder: 'Выберите',
-        width: '100%',
-        selectAllText: 'Не вожно',
-        allSelected: 'Все выбрано',
-        countSelected: 'Выбрано # из %',
-        noMatchesFound: 'Не найдено',
-        // styler: changeInputs
+    $('.jq-multiple-select').each(function(){
+        var selectAllText = $(this).attr('selectAllText');
+        if (!selectAllText) {
+            selectAllText = 'Выбрать все';
+        }
+        $(this).multipleSelect({
+            // selectAll: false,
+            selectAllDelimiter: ['[', ']'],
+            placeholder: 'Выберите',
+            width: '100%',
+            selectAllText: selectAllText,
+            allSelected: 'Все выбрано',
+            countSelected: 'Выбрано # из %',
+            noMatchesFound: 'Не найдено',
+        });
     });
 
 

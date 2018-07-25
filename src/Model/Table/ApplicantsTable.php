@@ -119,11 +119,11 @@ class ApplicantsTable extends Table
             ->requirePresence('latin_surname', 'create')
             ->notEmpty('latin_surname');
 
-        $validator
-            ->scalar('latin_patronym')
-            ->maxLength('latin_patronym', 80)
-            ->requirePresence('latin_patronym', 'create')
-            ->notEmpty('latin_patronym');
+        // $validator
+        //     ->scalar('latin_patronym')
+        //     ->maxLength('latin_patronym', 80)
+        //     ->requirePresence('latin_patronym', 'create')
+        //     ->notEmpty('latin_patronym');
 
         $validator
             ->scalar('sex')
@@ -156,12 +156,12 @@ class ApplicantsTable extends Table
             ->requirePresence('modified_by', 'create')
             ->notEmpty('modified_by');
 
-        $validator
-            ->scalar('document_seria_number')
-            ->regex('document_seria_number', '/^[A-Za-z]{2}\d{7}$/')
-            ->maxLength('document_seria_number', 20)
-            ->requirePresence('document_seria_number', 'create')
-            ->notEmpty('document_seria_number');
+        // $validator
+        //     ->scalar('document_seria_number')
+        //     ->regex('document_seria_number', '/^[A-Za-z]{2}\d{7}$/')
+        //     ->maxLength('document_seria_number', 20)
+        //     ->requirePresence('document_seria_number', 'create')
+        //     ->notEmpty('document_seria_number');
 
         $validator->allowEmpty('professional_skills');
 
@@ -201,8 +201,8 @@ class ApplicantsTable extends Table
 
     public function beforeSave(Event $event, EntityInterface $entity, \ArrayObject $options)
     {
-        $date = \DateTime::createFromFormat('d-m-Y', $entity->birth_date);
-        $entity->birth_date = $date->format('Y-m-d');
+        // $date = \DateTime::createFromFormat('d-m-Y', $entity->birth_date);
+        // $entity->birth_date = $date->format('Y-m-d');
     }
 
     public function getBirthDateDays()
