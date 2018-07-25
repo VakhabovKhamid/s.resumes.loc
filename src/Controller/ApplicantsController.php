@@ -17,10 +17,18 @@ class ApplicantsController extends AppController
     public function registration()
     {
         $applicant = $this->Applicants->newEntity();
+        $districts = [];
         if ($this->request->is('post')) {
 
             $userId = $this->request->getSession()->read('Auth.User.id');
             $data = $this->request->getData();
+            //dd($data);
+            $districts = $this->Applicants->DictionaryDistricts->find('list', [
+                'condition' => [
+                    'id' => $data['address_district_id']
+                ],
+                'limit' => 200
+            ]);
             if ($this->Applicants->registerApplicant($applicant, $data, $userId)) {
                 $this->Flash->success(
                     __('Ваша анкета успешно сохранена и привязана к вашему номеру телефона. Информация о вас добавлена в Единую базу соискателей работы за рубежом. Теперь с вами могут связаться агентства для предложения работы за рубежом. Анкета привязана к вашему номеру телефона.'), 
@@ -31,7 +39,7 @@ class ApplicantsController extends AppController
 
                 return $this->redirect(['action' => 'preview']);
             }
-            dd($applicant->getErrors());
+            //dd($applicant->getErrors());
             $this->Flash->error(__('The applicant could not be saved. Please, try again.'));
         }
         $countries = $this->Applicants->DictionaryCountries->find('list', ['limit' => 200]);
@@ -47,7 +55,7 @@ class ApplicantsController extends AppController
                 'applicant',
                 'countries',
                 'regions',
-                //'districts',
+                'districts',
                 'educationLevels',
                 'industries',
                 'birthDateDays',
@@ -104,30 +112,23 @@ class ApplicantsController extends AppController
     public function edit()
     {
         $applicant = $this->Applicants->find('all', [
-            'contain' => [
-                'DesirableCountries',
-                'UndesirableCountries',
-                'DictionaryRegions',
-                'DictionaryDistricts',
-                'DictionaryEducationLevels',
-                'Industries'
-            ],
-            'conditions' => [
-                'Applicants.created_by' => $this->Auth->user('id')
-            ]
-        ])->firstOrFail();
-
-        $districts = $this->Applicants->DictionaryDistricts->find('list', [
-            'conditions' => [
-                'DictionaryDistricts.region_id' => $applicant->address_region_id
-            ]
-        ])->toArray();
-
+                'contain' => [
+                    'DesirableCountries',
+                    'UndesirableCountries',
+                    'DictionaryRegions',
+                    'DictionaryDistricts',
+                    'DictionaryEducationLevels',
+                    'Industries'
+                ],
+                'conditions' => [
+                    'Applicants.created_by' => $this->Auth->user('id')
+                ]
+            ])->firstOrFail();
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $applicant = $this->Applicants->patchEntity($applicant, $this->request->getData());
+            $data = $this->request->getData();
             $userId = $this->request->getSession()->read('Auth.User.id');
-            if ($this->Applicants->updateApplicant($applicant, $userId)) {
+            if ($this->Applicants->updateApplicant($applicant, $data, $userId)) {
                 $this->Flash->success(
                     __('Ваша анкета успешно сохранена и привязана к вашему номеру телефона. Информация о вас добавлена в Единую базу соискателей работы за рубежом. Теперь с вами могут связаться агентства для предложения работы за рубежом. Анкета привязана к вашему номеру телефона.'), 
                     [
@@ -142,6 +143,11 @@ class ApplicantsController extends AppController
         }
         $countries = $this->Applicants->DictionaryCountries->find('list', ['limit' => 200]);
         $regions = $this->Applicants->DictionaryRegions->find('list', ['limit' => 200]);
+        $districts = $this->Applicants->DictionaryDistricts->find('list', [
+            'conditions' => [
+                'DictionaryDistricts.region_id' => $applicant->address_region_id
+            ]
+        ])->toArray();
         $educationLevels = $this->Applicants->DictionaryEducationLevels->find('list', ['limit' => 200]);
         $industries = $this->Applicants->Industries->find('list', ['limit' => 200]);
         $birthDateDays = $this->Applicants->getBirthDateDays();
