@@ -109,3 +109,7 @@
 .hide{
     display: none;
 }
+#footer{
+  position: relative;
+  z-index: 9;
+}

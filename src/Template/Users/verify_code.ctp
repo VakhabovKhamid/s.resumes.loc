@@ -6,7 +6,10 @@
                 <div class="field">
                     <?= $this->Form->control('token', ['class'=>'formField', 'label'=>false,'autofocus' => true]) ?>
                 </div>
-                <!-- <div class="fieldText textRight"><span class="timer"><span class="minute">05</span><span>:</span><span class="secound">00</span></span></div> -->
+                <div class="fieldText textRight">
+                    <span class="timer"><span class="minute">02</span><span>:</span><span class="secound">00</span></span>
+                    <?= $this->Html->link(__('Отправить еще раз'), ['controller' => 'users', 'action' => 'sendCode'],['class'=>'hide sendCode']); ?>
+                </div>
             </div>
             <hr/>
             <div class="formSubmit">

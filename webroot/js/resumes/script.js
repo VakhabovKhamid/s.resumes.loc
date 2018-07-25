@@ -280,29 +280,39 @@ $(document).ready(function(){
         $('.subMenuPersonalArea').slideToggle(200);
     })
 
-    $(function(){
-        $('.timer').each(function(){
-            var _ = $(this);
-            var min = Number(_.find('.minute').text());
-            var sec = Number(_.find('.secound').text());
-            var interval;
-            interval = setInterval(function(){
-                if (sec == 0) {
-                    sec = 60;
-                    if (min == 0) {
-                        clearInterval(interval);
-                        return false;
-                    }
-                    min--; 
+    function timer(timerWrap){
+        var _ = timerWrap;
+        var min = Number(_.find('.minute').text());
+        var sec = Number(_.find('.secound').text());
+        var interval;
+        interval = setInterval(function(){
+            if (sec == 0) {
+                sec = 60;
+                if (min == 0) {
+                    clearInterval(interval);
+                    _.hide();
+                    $('.sendCode').show();
+                    return false;
                 }
-                sec--;
-                secText = (sec<10)?"0"+sec:sec;
-                minText = (min<10)?"0"+min:min;
-                _.find('.minute').text(minText);
-                _.find('.secound').text(secText);
-            },1000);
-        });
+                min--; 
+            }
+            sec--;
+            secText = (sec<10)?"0"+sec:sec;
+            minText = (min<10)?"0"+min:min;
+            _.find('.minute').text(minText);
+            _.find('.secound').text(secText);
+        },1000);
+    }
+    timer($('.timer'));       
+
+    $('.sendSms').click(function(){
+        $('.timer').find('.minute').text('02');
+        $('.timer').find('.secound').text('00');
+        $(this).hide();
+        $('.timer').show();
+        timer($('.timer'));       
     });
+
     if ($('.fancybox').length > 0) {
           $('.fancybox').fancybox({
             loop: true,
@@ -313,16 +323,21 @@ $(document).ready(function(){
       };
 
 
-    $('.jq-multiple-select').multipleSelect({
-        // selectAll: false,
-        selectAllDelimiter: ['[', ']'],
-        placeholder: 'Выберите',
-        width: '100%',
-        selectAllText: 'Выбрать все',
-        allSelected: 'Все выбрано',
-        countSelected: 'Выбрано # из %',
-        noMatchesFound: 'Не найдено',
-        // styler: changeInputs
+    $('.jq-multiple-select').each(function(){
+        var selectAllText = $(this).attr('selectAllText');
+        if (!selectAllText) {
+            selectAllText = 'Выбрать все';
+        }
+        $(this).multipleSelect({
+            // selectAll: false,
+            selectAllDelimiter: ['[', ']'],
+            placeholder: 'Выберите',
+            width: '100%',
+            selectAllText: selectAllText,
+            allSelected: 'Все выбрано',
+            countSelected: 'Выбрано # из %',
+            noMatchesFound: 'Не найдено',
+        });
     });
 
 

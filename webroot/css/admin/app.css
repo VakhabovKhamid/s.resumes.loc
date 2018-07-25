@@ -34,3 +34,12 @@ th a.asc:after{
 th a.desc:after{
     content: "▼";
 }
+.cloneTable{
+}
+.cloneTable thead{
+    background: #fff;
+    z-index: 9999;
+}
+.cloneTable tbody{
+    display: none;
+}

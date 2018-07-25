@@ -12,12 +12,17 @@ namespace App\Auth;
 use App\Model\Entity\Group;
 use App\Model\Entity\Token;
 use Cake\Auth\FormAuthenticate;
+use Cake\Cache\Cache;
 use Cake\Controller\ComponentRegistry;
+use Cake\I18n\Time;
 use Cake\Network\Request;
 use Cake\Network\Response;
 
 class VerifyCodeAuthenticate extends FormAuthenticate
 {
+    const VERIFY_CODE_ATTEMPTS_KEY = 'verify_code_attempts';
+    const VERIFY_CODE_ATTEMPTS_COUNT = 16;
+
     protected $_defaultConfig = [
         'token' => [
             'parameter' => 'token',
@@ -56,9 +61,34 @@ class VerifyCodeAuthenticate extends FormAuthenticate
             return false;
         }
 
+        if($this->expiresVerifyCodeAttempts()) {
+            return false;
+        } else {
+            $this->attemptVerifyCode();
+        }
+
         $token = $request->getData('token');
         $phone = $request->getSession()->read('Auth.User.phone');
         return $this->_findUserByToken($token, $phone);
+    }
+
+    private function expiresVerifyCodeAttempts()
+    {
+        $attempts = Cache::read(self::VERIFY_CODE_ATTEMPTS_KEY);
+        //debug($attempts);
+        return $attempts && $attempts > self::VERIFY_CODE_ATTEMPTS_COUNT;
+    }
+
+    private function attemptVerifyCode()
+    {
+        if(Cache::read(self::VERIFY_CODE_ATTEMPTS_KEY) === false) {
+            Cache::write(self::VERIFY_CODE_ATTEMPTS_KEY, 0);
+            return;
+        }
+        $attempts = Cache::read(self::VERIFY_CODE_ATTEMPTS_KEY);
+        $attempts += 1;
+
+        Cache::write(self::VERIFY_CODE_ATTEMPTS_KEY, $attempts);
     }
 
     protected function _findUserByToken($token, $phone)
@@ -75,24 +105,22 @@ class VerifyCodeAuthenticate extends FormAuthenticate
 
         $userId = $token->user_id;
         $this->regenerateToken($token, $tokensTable);
-        //$this->setUserRole($token->user_id, $usersTable);
 
         $user = $usersTable->find()->where(['Users.id'=>$userId])->first();
 
-        return $user;
-    }
+        $this->resetVerifyCodeAttempts();
 
-    private function setUserRole($userId, $table)
-    {
-        $user = $table->get($userId);
-        $user->group_id = Group::GROUP_USERS;
-        $user->modified = new \DateTime();
-        $table->save($user);
+        return $user;
     }
 
     private function regenerateToken(Token $token, $table)
     {
         $token->token = rand(100000, 999999); //Regenerate token. Prevent user login with old vefiry code.
         $table->save($token);
+    }
+
+    private function resetVerifyCodeAttempts()
+    {
+        Cache::delete(self::VERIFY_CODE_ATTEMPTS_KEY);
     }
 }

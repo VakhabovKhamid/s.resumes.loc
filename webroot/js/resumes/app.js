@@ -232,4 +232,12 @@ $(document).ready(function(){
         $(this).parents('.alert').fadeOut();
     });
 
+    $(function(){
+        var footerHeight = $('#footer').outerHeight();
+        $('#mainWrap').css({
+            marginBottom: -footerHeight+'px',
+            paddingBottom: footerHeight+'px'
+        });
+    })
+
 });
