@@ -333,6 +333,7 @@ class ApplicantsTable extends Table
 
     public function getSearchConditions(array $data)
     {
+
         $conditions = [];
         if(empty($data['age_from'])) {
             $dateFrom = new Date('-16 years');
@@ -353,26 +354,30 @@ class ApplicantsTable extends Table
             'birth_date <=' => $dateFrom
         ];
 
-        if(!empty($data['region_id'])) {
+        if (!empty($data['region_id'])) {
             $conditions['address_region_id IN'] = $data['region_id'];
         }
 
-        if(!empty($data['district_id'])) {
+        if (!empty($data['district_id'])) {
             $conditions['address_district_id IN'] = $data['district_id'];
         }
 
-        /*if(!empty($data['industry_id'])) {
+        if (!empty($data['industry_id'])) {
             $conditions['Industries.id IN'] = $data['industry_id'];
-        }*/
+        }
 
-        if(!empty($data['education_level_id'])) {
+        if (!empty($data['education_level_id'])) {
             $conditions['education_level_id IN'] = array_map(function($level){return (int)$level; }, $data['education_level_id']);
         }
 
-        if(!empty($data['sex'])) {
+        if (!empty($data['sex'])) {
             $conditions['sex'] = $data['sex'];
         }
 
+        if (!empty($data['desirable_country_id'])) {
+           $conditions['DesirableCountries.id IN'] = $data['desirable_country_id'];
+        }
+//var_dump($conditions);die;
         return $conditions;
     }
 }

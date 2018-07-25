@@ -35,12 +35,15 @@ class ApplicantsController extends ApiController
                 'DictionaryRegions',
                 'DictionaryDistricts',
                 'DictionaryEducationLevels',
-                'DesirableCountries',
-                'UndesirableCountries',
-                'Industries',
                 'ApplicantDocuments',
+                'DesirableCountries',
+                'Industries',
+                'UndesirableCountries',
                 'Users' => ['Tokens']
             ])
+            ->leftJoinWith('Industries')
+            ->leftJoinWith('DesirableCountries')
+            ->leftJoinWith('UndesirableCountries')
             ->where($searchConditions);
 
         $applicants = $this->paginate($query);
