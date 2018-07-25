@@ -219,7 +219,7 @@ SQL;
             return $total;
             
         },$createTemplate($result));
-        array_push($result,$total);
+        array_unshift($result,$total);
 
         $replacebleKeys = [
             'region_name'=>"Регион",
