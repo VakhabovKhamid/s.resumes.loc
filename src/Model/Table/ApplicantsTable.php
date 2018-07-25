@@ -171,6 +171,10 @@ class ApplicantsTable extends Table
         $validator->integer('address_district_id')
             ->requirePresence('address_district_id');
 
+        $validator->integer('education_level_id')
+            ->requirePresence('education_level_id');
+
+        $validator->isArray('industries._ids');
 
         return $validator;
     }
@@ -218,18 +222,18 @@ class ApplicantsTable extends Table
     public function getBirthDateMonths()
     {
         return [
-            '1' => __('January'),
-            '2' => __('February'),
-            '3' => __('March'),
-            '4' => __('April'),
-            '5' => __('May'),
-            '6' => __('June'),
-            '7' => __('Jule'),
-            '8' => __('August'),
-            '9' => __('September'),
-            '10' => __('October'),
-            '11' => __('November'),
-            '12' => __('December')
+            '1' => __('Январь'),
+            '2' => __('Февраль'),
+            '3' => __('Март'),
+            '4' => __('Апрель'),
+            '5' => __('Май'),
+            '6' => __('Июнь'),
+            '7' => __('Июль'),
+            '8' => __('Август'),
+            '9' => __('Сентябрь'),
+            '10' => __('Октябрь'),
+            '11' => __('Ноябрь'),
+            '12' => __('Декабрь')
         ];
     }
 
@@ -255,7 +259,8 @@ class ApplicantsTable extends Table
 
     public function registerApplicant(Applicant $applicant, array $data, $userId)
     {
-//dd($data);
+        $data = $this->appendIndustriesIfEmpty($data);
+        $data = $this->appendDesirableCountriesIfEmpty($data);
 
         $applicant = $this->patchEntity($applicant, $data, [
             'associated' => ['DesirableCountries._joinData', 'UndesirableCountries._joinData', 'Industries._joinData']
@@ -296,8 +301,13 @@ class ApplicantsTable extends Table
         }
     }
 
-    public function updateApplicant(Applicant $applicant, $userId)
+    public function updateApplicant(Applicant $applicant, $data, $userId)
     {
+        $data = $this->appendIndustriesIfEmpty($data);
+        $data = $this->appendDesirableCountriesIfEmpty($data);
+        //dd($data);
+        $applicant = $this->patchEntity($applicant, $data);
+        //dd($applicant);
         array_map(function($country) use($userId) {
 
             $country->_joinData = new Entity([
@@ -329,6 +339,31 @@ class ApplicantsTable extends Table
         } else {
             return false;
         }
+    }
+
+    private function appendIndustriesIfEmpty($data)
+    {
+        if(empty($data['industries']['_ids'])) {
+            $industries = $this->Industries->find('list', ['limit' => 200])->toArray();
+            $data['industries']['_ids'] = array_keys($industries);
+        }
+
+        return $data;
+    }
+
+    private function appendDesirableCountriesIfEmpty($data)
+    {
+        if(empty($data['desirable_countries']['_ids'])) {
+            $countries = $this->DictionaryCountries->find('list', ['limit' => 200])->toArray();
+            $countriesIds = array_keys($countries);
+
+            if(!empty($data['undesirable_countries']['_ids'])) {
+                $data['desirable_countries']['_ids'] = array_diff($countriesIds, $data['undesirable_countries']['_ids']);
+            } else {
+                $data['desirable_countries']['_ids'] = $countriesIds;
+            }
+        }
+        return $data;
     }
 
     public function getSearchConditions(array $data)
