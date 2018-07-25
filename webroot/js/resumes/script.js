@@ -291,7 +291,7 @@ $(document).ready(function(){
                 if (min == 0) {
                     clearInterval(interval);
                     _.hide();
-                    $('.sendSms').show();
+                    $('.sendCode').show();
                     return false;
                 }
                 min--; 

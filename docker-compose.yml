@@ -13,8 +13,6 @@ services:
       - .:/srv/app
     links:
       - mysql
-    extra_hosts:
-      - "resume.local:127.0.0.1"
   mysql:
     build:
       context: './.docker/mysql/'

@@ -8,7 +8,7 @@
                 </div>
                 <div class="fieldText textRight">
                     <span class="timer"><span class="minute">02</span><span>:</span><span class="secound">00</span></span>
-                    <?= $this->Html->link(__('Отправить еще раз'), ['controller' => 'users', 'action' => 'sendCode'],['class'=>'hide']); ?>
+                    <?= $this->Html->link(__('Отправить еще раз'), ['controller' => 'users', 'action' => 'sendCode'],['class'=>'hide sendCode']); ?>
                 </div>
             </div>
             <hr/>
