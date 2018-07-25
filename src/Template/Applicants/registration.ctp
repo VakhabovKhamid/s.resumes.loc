@@ -4,6 +4,7 @@
             <div class="alert alert-danger hide" id="serverErrorSoliq"><?= __('Данный момент нет связи с сервисом soliq.uz. Заполните поля в ручную или попробуйте еще раз.') ?></div>
             <?= $this->Form->create($applicant, ['type'=>'file', 'id' => isset($applicant->id)?'registration-form-edit':'registration-form']) ?>
             <div class="title-3"><?= __('Персональная информация')?></div>
+            <?php /* ?>
             <div class="row15">
                 <div class="colp15-6">
                     <div class="formControl">
@@ -22,6 +23,7 @@
                     </div>
                 </div>
             </div>
+            <?php */ ?>
             <div class="row15">
                 <div class="colp15-6">
                     <div class="formControl">
@@ -41,6 +43,7 @@
                 </div>
             </div>
             <div class="row15">
+                <?php /* ?>
                 <div class="colp15-6">
                     <div class="formControl">
                         <label class="formLabel required"><?= __('Отчество')?></label>
@@ -49,35 +52,34 @@
                         </div>
                     </div>
                 </div>
+                <?php */ ?>
                 <div class="colp15-6">
                     <div class="formControl">
                         <label class="formLabel required"><?= __('Дата рождения')?></label>
+                        <?php /* ?>
                         <div class="field">
                             <?= $this->Form->control('birth_date', ['type' => 'text','label' => false, 'class' => 'formField jq-date-field', 'placeholder' => 'dd-mm-yyyy', 'value' => $applicant->birth_date?$applicant->birth_date->format('d-m-Y'):'']); ?>
                         </div>
-                        <?php /* ?>
+                        <?php */ ?>
                         <div class="row5">
                             <div class="colp5-3">
-                                <div class="field disabled">
-                                    <?= $this->Form->control('birth_date.day', ['value' => $applicant->birth_date?$applicant->birth_date->format('j'):'', 'options' => $birthDateDays, 'label' => false, 'class' => 'formField', 'empty' => 'День']); ?>
+                                <div class="field">
+                                    <?= $this->Form->control('birth_date.day', ['value' => $applicant->birth_date?$applicant->birth_date->format('j'):'', 'options' => $birthDateDays, 'label' => false, 'class' => 'formField', 'empty' => __('День')]); ?>
                                 </div>
                             </div>
                             <div class="colp5-5">
-                                <div class="field disabled">
-                                    <?= $this->Form->control('birth_date.month', ['value' => $applicant->birth_date?$applicant->birth_date->format('n'):'', 'options' => $birthDateMonths, 'label' => false, 'class' => 'formField', 'empty' => 'Месяц']); ?>
+                                <div class="field">
+                                    <?= $this->Form->control('birth_date.month', ['value' => $applicant->birth_date?$applicant->birth_date->format('n'):'', 'options' => $birthDateMonths, 'label' => false, 'class' => 'formField', 'empty' => __('Месяц')]); ?>
                                 </div>
                             </div>
                             <div class="colp5-4">
-                                <div class="field disabled">
-                                    <?= $this->Form->control('birth_date.year', ['value' => $applicant->birth_date?$applicant->birth_date->format('Y'):'', 'options' => $birthDateYears, 'label' => false, 'class' => 'formField', 'empty' => 'Год']); ?>
+                                <div class="field">
+                                    <?= $this->Form->control('birth_date.year', ['value' => $applicant->birth_date?$applicant->birth_date->format('Y'):'', 'options' => $birthDateYears, 'label' => false, 'class' => 'formField', 'empty' => __('Год')]); ?>
                                 </div>
                             </div>
                         </div>
-                        <?php */ ?>
                     </div>
                 </div>
-            </div>
-            <div class="row15">
                 <div class="colp15-6">
                     <div class="formControl">
                         <label class="formLabel required"><?= __('Пол')?></label>
@@ -120,7 +122,7 @@
                     <div class="formControl">
                         <label class="formLabel"><?= __('Отрасль')?></label>
                         <div class="field">
-                            <?= $this->Form->control('industries._ids', ['options' => $industries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true]); ?>
+                            <?= $this->Form->control('industries._ids', ['options' => $industries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true, 'selectAllText' => __('Любая отрасль')]); ?>
                         </div>
                     </div>
                 </div>
@@ -164,7 +166,7 @@
                     <div class="formControl">
                         <label class="formLabel"><?= __('В какой стране вы хотели бы работать')?></label>
                         <div class="field">
-                            <?= $this->Form->control('desirable_countries._ids', ['options' => $countries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true]); ?>
+                            <?= $this->Form->control('desirable_countries._ids', ['options' => $countries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true, 'selectAllText' => __('Не имеет значения')]); ?>
                         </div>
                     </div>
                 </div>
@@ -172,7 +174,7 @@
                     <div class="formControl">
                         <label class="formLabel"><?= __('В какой стране вы не хотели бы работать')?></label>
                         <div class="field">
-                            <?= $this->Form->control('undesirable_countries._ids', ['options' => $countries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true]); ?>
+                            <?= $this->Form->control('undesirable_countries._ids', ['options' => $countries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true, 'selectAllText' => __('Не имеет значения')]); ?>
                         </div>
                     </div>
                 </div>
@@ -183,7 +185,7 @@
                 <div class="checkboxCf textRight">
                     <label>
                       <input id="checkPublicOffer" type="checkbox"/>
-                      <span><?= __('Вы соглашаетесь с условиями')?> <a href="/static-page.html" target="_blank"><?= __('Публичной оферты')?></a></span>
+                      <span><?= __('Я согласен с условими')?> <a href="/static-page.html" target="_blank"><?= __('Публичной оферты')?></a></span>
                     </label>
                     <p class="error-text"><?= __('Пожалуйста отметьте что вы согласно с условиями Публичной оферты')?></p>
                 </div>

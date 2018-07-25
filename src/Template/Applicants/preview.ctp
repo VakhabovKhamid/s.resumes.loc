@@ -8,15 +8,23 @@
 <div class="contentBlockBold">
   <?= $this->Flash->render('applicantsaved') ?>
   <hr>
-  <div class="title-1 uppercase"><?= $applicant->latin_surname ?> <?= $applicant->latin_name ?> <?= $applicant->latin_patronym ?></div>
+  <div class="title-1 uppercase">
+    <?= $applicant->latin_surname ?> 
+    <?= $applicant->latin_name ?> 
+    <?php /* ?>
+    <?= $applicant->latin_patronym ?>
+    <?php */ ?>
+  </div>
   <div class="dateBlock"><?= __('Дата создания') ?>: <strong><?= $applicant->created->format('d.m.Y') ?></strong></div>
   <hr/>
   <div class="resumeTable">
     <table>
+      <?php /* ?>
       <tr>
         <th><?= __('Серийный номер паспорта') ?>:</th>
         <td><?= $applicant->document_seria_number ?></td>
       </tr>
+      <?php */ ?>
       <tr>
         <th><?= __('Дата рождения') ?>:</th>
         <td><?= $applicant->birth_date->format('d.m.Y') ?></td>
