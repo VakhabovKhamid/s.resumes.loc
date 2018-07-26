@@ -42,8 +42,6 @@ class UsersController extends AppController
         $phone = preg_replace('/[^0-9]+/', '', $this->request->getSession()->read('Auth.User.phone'));
         $token = preg_replace('/[^0-9]+/', '', $this->request->getSession()->read('Auth.User.token'));
 
-
-
         $sms = new ShortMessage();
         $sms->phone = $phone;
         $sms->text = $token;

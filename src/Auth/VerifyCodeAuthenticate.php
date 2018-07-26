@@ -61,17 +61,17 @@ class VerifyCodeAuthenticate extends FormAuthenticate
             return false;
         }
 
-        if($this->expiresVerifyCodeAttempts()) {
+        /*if($this->expiresVerifyCodeAttempts()) {
             return false;
         } else {
             $this->attemptVerifyCode();
-        }
+        }*/
 
         $token = $request->getData('token');
         $phone = $request->getSession()->read('Auth.User.phone');
         return $this->_findUserByToken($token, $phone);
     }
-
+    /*
     private function expiresVerifyCodeAttempts()
     {
         $attempts = Cache::read(self::VERIFY_CODE_ATTEMPTS_KEY);
@@ -90,7 +90,7 @@ class VerifyCodeAuthenticate extends FormAuthenticate
 
         Cache::write(self::VERIFY_CODE_ATTEMPTS_KEY, $attempts);
     }
-
+    */
     protected function _findUserByToken($token, $phone)
     {
         $phone = preg_replace('/[^0-9]+/', '', $phone);
@@ -108,7 +108,7 @@ class VerifyCodeAuthenticate extends FormAuthenticate
 
         $user = $usersTable->find()->where(['Users.id'=>$userId])->first();
 
-        $this->resetVerifyCodeAttempts();
+        //$this->resetVerifyCodeAttempts();
 
         return $user;
     }
@@ -119,8 +119,8 @@ class VerifyCodeAuthenticate extends FormAuthenticate
         $table->save($token);
     }
 
-    private function resetVerifyCodeAttempts()
+    /*private function resetVerifyCodeAttempts()
     {
         Cache::delete(self::VERIFY_CODE_ATTEMPTS_KEY);
-    }
+    }*/
 }
