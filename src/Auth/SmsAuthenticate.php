@@ -69,16 +69,16 @@ class SmsAuthenticate extends FormAuthenticate
             return false;
         }
 
-        if(!$this->canSendSms()) {
+        /*if(!$this->canSendSms()) {
             return false;
-        }
+        }*/
 
         $request->getSession()->write('Auth.User.phone', $phone);
         //dd($request->getSession()->read('Auth.User'));
         return $this->_findUserByPhone($phone);
     }
 
-    private function canSendSms()
+    /*private function canSendSms()
     {
         $lastSendTime = Cache::read(self::LAST_SEND_SMS_TIME_KEY);
 
@@ -93,7 +93,7 @@ class SmsAuthenticate extends FormAuthenticate
         }
 
         return true;
-    }
+    }*/
 
     protected function _findUserByPhone($phone)
     {

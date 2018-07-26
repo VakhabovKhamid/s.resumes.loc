@@ -77,21 +77,46 @@ class ApplicantsTable extends Table
             'cascadeCallbacks' => true,
         ]);
 
-        $this->belongsToMany('DesirableCountries', [
+        /*$this->belongsToMany('DesirableCountries', [
             'through' => 'ApplicantDesirableCountries',
             'className' => 'DictionaryCountries',
             'targetForeignKey' => 'dictionary_country_id',
+            //'strategy' => 'subquery'
         ]);
 
         $this->belongsToMany('UndesirableCountries', [
             'through' => 'ApplicantUndesirableCountries',
             'className' => 'DictionaryCountries',
             'targetForeignKey' => 'dictionary_country_id',
+            //'strategy' => 'subquery'
         ]);
 
         $this->belongsToMany('Industries', [
             'through' => 'ApplicantIndustries',
             'className' => 'DictionaryIndustries',
+            'targetForeignKey' => 'dictionary_industry_id',
+            //'strategy' => 'subquery'
+        ]);*/
+
+
+        $this->belongsToMany('DesirableCountries', [
+            'joinTable'=>'ApplicantDesirableCountries',
+            'className' => 'DictionaryCountries',
+            'foreignKey' => 'applicant_id',
+            'targetForeignKey' => 'dictionary_country_id'
+        ]);
+
+        $this->belongsToMany('UndesirableCountries', [
+            'joinTable' => 'ApplicantUndesirableCountries',
+            'className' => 'DictionaryCountries',
+            'foreignKey' => 'applicant_id',
+            'targetForeignKey' => 'dictionary_country_id'
+        ]);
+
+        $this->belongsToMany('Industries', [
+            'joinTable' => 'ApplicantIndustries',
+            'className' => 'DictionaryIndustries',
+            'foreignKey' => 'applicant_id',
             'targetForeignKey' => 'dictionary_industry_id',
         ]);
     }

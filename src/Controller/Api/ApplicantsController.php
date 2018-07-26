@@ -31,21 +31,27 @@ class ApplicantsController extends ApiController
 
         $query = $this->Applicants->find()
             ->contain([
-                //'DictionaryCountries',
-                'DictionaryRegions',
-                'DictionaryDistricts',
-                'DictionaryEducationLevels',
-                'ApplicantDocuments',
+//                'DictionaryCountries',
+//                'DictionaryRegions',
+//                'DictionaryDistricts',
+//                'DictionaryEducationLevels',
+//                'ApplicantDocuments',
                 'DesirableCountries',
-                'Industries',
-                'UndesirableCountries',
-                'Users' => ['Tokens']
-            ])
-            ->leftJoinWith('Industries')
-            ->leftJoinWith('DesirableCountries')
-            ->leftJoinWith('UndesirableCountries')
-            ->where($searchConditions);
+//                'Industries',
+//                'UndesirableCountries',
+//                'Users' => ['Tokens']
+            ], true);
+            /*->matching(
+                'DesirableCountries', function ($q){
+                return $q->where(['DesirableCountries.id' => 1]);
+            }
+            )*/
+            //->leftJoinWith('Industries')
+            //->innerJoinWith('DesirableCountries')
+            //->leftJoinWith('UndesirableCountries')
+            //->where(['DesirableCountries.id' => 1]);
 
+        var_dump($query);die;
         $applicants = $this->paginate($query);
 
         $this->set(compact('applicants'));
