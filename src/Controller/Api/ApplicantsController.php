@@ -4,6 +4,9 @@ namespace App\Controller\Api;
 use App\Controller\AppController;
 use Cake\I18n\Date;
 use Cake\ORM\Locator\TableLocator;
+use App\Lib\QueryFilter\RulesSet;
+use App\Lib\QueryFilter\Rules\AttributeRule;
+use App\Lib\QueryFilter\Rules\ValueRule;
 
 /**
  * Applicants Controller
@@ -27,33 +30,53 @@ class ApplicantsController extends ApiController
         $this->response->withDisabledCache();
 
         $data = $this->request->getData();
+        
         $searchConditions = $this->Applicants->getSearchConditions($data);
-
+        
+        $industriesRules = new RulesSet($data);
+        $industriesRules->add(new AttributeRule(
+            'ApplicantIndustries.dictionary_industry_id',
+            'IN',
+            'industry_id'
+        ));
+        $industriesRules = $industriesRules->get();
+        
+        $desirableCountriesRules = new RulesSet($data);
+        $desirableCountriesRules->add(new AttributeRule(
+            'ApplicantDesirableCountries.dictionary_country_id',
+            'IN',
+            'desirable_country_id'
+        ));
+        $desirableCountriesRules = $desirableCountriesRules->get();
+        
         $query = $this->Applicants->find()
             ->contain([
-//                'DictionaryCountries',
-//                'DictionaryRegions',
-//                'DictionaryDistricts',
-//                'DictionaryEducationLevels',
-//                'ApplicantDocuments',
+                'DictionaryCountries',
+                'DictionaryRegions',
+                'DictionaryDistricts',
+                'DictionaryEducationLevels',
                 'DesirableCountries',
-//                'Industries',
-//                'UndesirableCountries',
-//                'Users' => ['Tokens']
-            ], true);
-            /*->matching(
-                'DesirableCountries', function ($q){
-                return $q->where(['DesirableCountries.id' => 1]);
-            }
-            )*/
-            //->leftJoinWith('Industries')
-            //->innerJoinWith('DesirableCountries')
-            //->leftJoinWith('UndesirableCountries')
-            //->where(['DesirableCountries.id' => 1]);
+                'Industries',
+                // 'ApplicantDocuments',
+                // 'UndesirableCountries',
+                'Users' => ['Tokens']
+            ], true)
+            ->innerJoinWith('ApplicantIndustries',function($q) use (&$industriesRules){
+                if(count($industriesRules) > 0){
+                    $q->where($industriesRules);
+                }
+                return $q;
+            })
+            ->innerJoinWith('ApplicantDesirableCountries',function($q) use(&$desirableCountriesRules){
+                if(count($desirableCountriesRules) > 0){
+                    $q->where($desirableCountriesRules);
+                }
+                return $q;
+            })
+            ->distinct()
+            ->where($searchConditions);
 
-        var_dump($query);die;
         $applicants = $this->paginate($query);
-
         $this->set(compact('applicants'));
         $this->set('_serialize', ['applicants']);
     }
