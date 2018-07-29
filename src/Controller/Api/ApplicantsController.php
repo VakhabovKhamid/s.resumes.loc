@@ -32,7 +32,7 @@ class ApplicantsController extends ApiController
         $data = $this->request->getData();
         
         $searchConditions = $this->Applicants->getSearchConditions($data);
-        
+
         $industriesRules = new RulesSet($data);
         $industriesRules->add(new AttributeRule(
             'ApplicantIndustries.dictionary_industry_id',
@@ -48,7 +48,7 @@ class ApplicantsController extends ApiController
             'desirable_country_id'
         ));
         $desirableCountriesRules = $desirableCountriesRules->get();
-        
+
         $query = $this->Applicants->find()
             ->contain([
                 'DictionaryCountries',
@@ -86,24 +86,58 @@ class ApplicantsController extends ApiController
         $this->response->withDisabledCache();
 
         $data = $this->request->getData();
+        
         $searchConditions = $this->Applicants->getSearchConditions($data);
-
+        
+        $industriesRules = new RulesSet($data);
+        $industriesRules->add(new AttributeRule(
+            'ApplicantIndustries.dictionary_industry_id',
+            'IN',
+            'industry_id'
+        ));
+        $industriesRules = $industriesRules->get();
+        
+        $desirableCountriesRules = new RulesSet($data);
+        $desirableCountriesRules->add(new AttributeRule(
+            'ApplicantDesirableCountries.dictionary_country_id',
+            'IN',
+            'desirable_country_id'
+        ));
+        $desirableCountriesRules = $desirableCountriesRules->get();
+        
+        // dd($desirableCountriesRules);
         $query = $this->Applicants->find()
             ->contain([
-                //'DictionaryCountries',
+                'DictionaryCountries',
                 'DictionaryRegions',
                 'DictionaryDistricts',
                 'DictionaryEducationLevels',
-                'DesirableCountries',
-                'UndesirableCountries',
-                'Industries',
-                'ApplicantDocuments',
+                'DesirableCountries' => [
+                    'strategy' => 'subquery'
+                ],
+                'Industries' => [
+                    'strategy' => 'subquery'
+                ],
+                // 'ApplicantDocuments',
+                // 'UndesirableCountries',
                 'Users' => ['Tokens']
-            ])
+            ], true)
+            ->innerJoinWith('ApplicantIndustries',function($q) use (&$industriesRules){
+                if(count($industriesRules) > 0){
+                    $q->where($industriesRules);
+                }
+                return $q;
+            })
+            ->innerJoinWith('ApplicantDesirableCountries',function($q) use(&$desirableCountriesRules){
+                if(count($desirableCountriesRules) > 0){
+                    $q->where($desirableCountriesRules);
+                }
+                return $q;
+            })
+            ->distinct()
             ->where($searchConditions);
 
         $applicants = $query->all();
-
         $this->set(compact('applicants'));
         $this->set('_serialize', ['applicants']);
     }
