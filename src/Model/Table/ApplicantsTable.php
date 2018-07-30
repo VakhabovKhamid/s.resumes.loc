@@ -12,9 +12,6 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-use App\Lib\QueryFilter\RulesSet;
-use App\Lib\QueryFilter\Rules\AttributeRule;
-use App\Lib\QueryFilter\Rules\ValueRule;
 
 /**
  * Applicants Model
@@ -402,7 +399,6 @@ class ApplicantsTable extends Table
     {
 
         $conditions = [];
-        $filters = new RulesSet($data);
 
         if(empty($data['age_from'])) {
             $dateFrom = new Date('-16 years');
@@ -418,21 +414,35 @@ class ApplicantsTable extends Table
             $dateTo = new Date('-'.$age.' years');
         }
 
-        $filters->mergeOperator('AND',[
-            new ValueRule('birth_date','>=',$dateTo),
-            new ValueRule('birth_date','<=',$dateFrom),
-        ]);
-        
-        $filters
-            ->add(new AttributeRule('address_region_id','IN','region_id'))
-            ->add(new AttributeRule('address_district_id','IN','district_id'))
-            ->add(new AttributeRule('education_level_id','IN','education_level_id'))
-            ->add(new AttributeRule('sex','=','sex'));
-            // ->add(new AttributeRule('Industries.id','IN','industry_id'))
-            // ->add(new AttributeRule('DesirableCountries.id','IN','desirable_country_id'));
+        $conditions['AND'] = [
+            'birth_date >=' => $dateTo,
+            'birth_date <=' => $dateFrom
+        ];
 
-        // dd($filters->get());
-        
-        return $filters->get();
+        if (!empty($data['region_id'])) {
+            $conditions['address_region_id IN'] = $data['region_id'];
+        }
+
+        if (!empty($data['district_id'])) {
+            $conditions['address_district_id IN'] = $data['district_id'];
+        }
+
+        //if (!empty($data['industry_id'])) {
+        //    $conditions['Industries.id IN'] = $data['industry_id'];
+        //}
+
+        if (!empty($data['education_level_id'])) {
+            $conditions['education_level_id IN'] = array_map(function($level){return (int)$level; }, $data['education_level_id']);
+        }
+
+        if (!empty($data['sex'])) {
+            $conditions['sex'] = $data['sex'];
+        }
+
+        //if (!empty($data['desirable_country_id'])) {
+        //   $conditions['DesirableCountries.id IN'] = $data['desirable_country_id'];
+        //}
+
+        return $conditions;
     }
 }
