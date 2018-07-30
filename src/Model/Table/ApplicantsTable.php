@@ -12,6 +12,7 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
+
 /**
  * Applicants Model
  *
@@ -119,6 +120,9 @@ class ApplicantsTable extends Table
             'foreignKey' => 'applicant_id',
             'targetForeignKey' => 'dictionary_industry_id',
         ]);
+
+        $this->hasMany('ApplicantIndustries');
+        $this->hasMany('ApplicantDesirableCountries');
     }
 
     /**
@@ -395,6 +399,7 @@ class ApplicantsTable extends Table
     {
 
         $conditions = [];
+
         if(empty($data['age_from'])) {
             $dateFrom = new Date('-16 years');
         } else {
@@ -422,9 +427,9 @@ class ApplicantsTable extends Table
             $conditions['address_district_id IN'] = $data['district_id'];
         }
 
-        if (!empty($data['industry_id'])) {
-            $conditions['Industries.id IN'] = $data['industry_id'];
-        }
+        //if (!empty($data['industry_id'])) {
+        //    $conditions['Industries.id IN'] = $data['industry_id'];
+        //}
 
         if (!empty($data['education_level_id'])) {
             $conditions['education_level_id IN'] = array_map(function($level){return (int)$level; }, $data['education_level_id']);
@@ -434,10 +439,10 @@ class ApplicantsTable extends Table
             $conditions['sex'] = $data['sex'];
         }
 
-        if (!empty($data['desirable_country_id'])) {
-           $conditions['DesirableCountries.id IN'] = $data['desirable_country_id'];
-        }
-//var_dump($conditions);die;
+        //if (!empty($data['desirable_country_id'])) {
+        //   $conditions['DesirableCountries.id IN'] = $data['desirable_country_id'];
+        //}
+
         return $conditions;
     }
 }

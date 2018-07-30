@@ -5,6 +5,7 @@ use App\Controller\AppController;
 use Cake\I18n\Date;
 use Cake\ORM\Locator\TableLocator;
 
+
 /**
  * Applicants Controller
  *
@@ -27,27 +28,38 @@ class ApplicantsController extends ApiController
         $this->response->withDisabledCache();
 
         $data = $this->request->getData();
+        
         $searchConditions = $this->Applicants->getSearchConditions($data);
-
+        
         $query = $this->Applicants->find()
             ->contain([
-                'DictionaryCountries',
+                //'DictionaryCountries',
                 'DictionaryRegions',
                 'DictionaryDistricts',
                 'DictionaryEducationLevels',
-                'ApplicantDocuments',
+                // 'ApplicantDocuments',
                 'DesirableCountries',
                 'Industries',
-                'UndesirableCountries',
+                //'UndesirableCountries',
                 'Users' => ['Tokens']
-            ])
-            ->leftJoinWith('Industries')
-            ->innerJoinWith('DesirableCountries')
-            ->leftJoinWith('UndesirableCountries')
+            ], true)
+            ->innerJoinWith('ApplicantIndustries',function($q) use ($data){
+                if(!empty($data['industry_id'])){
+					$q->where(['dictionary_industry_id IN' => $data['industry_id']]);
+                }
+                return $q;
+            })
+            ->innerJoinWith('ApplicantDesirableCountries',function($q) use($data){
+                if(!empty($data['desirable_country_id'])){
+                    $q->where(['dictionary_country_id IN' => $data['desirable_country_id']]);
+                }
+                return $q;
+            })
+            ->distinct()
             ->where($searchConditions);
-
+			
         $applicants = $this->paginate($query);
-
+		
         $this->set(compact('applicants'));
         $this->set('_serialize', ['applicants']);
     }
@@ -57,24 +69,38 @@ class ApplicantsController extends ApiController
         $this->response->withDisabledCache();
 
         $data = $this->request->getData();
+        
         $searchConditions = $this->Applicants->getSearchConditions($data);
-
+        
         $query = $this->Applicants->find()
             ->contain([
-                //'DictionaryCountries',
+                'DictionaryCountries',
                 'DictionaryRegions',
                 'DictionaryDistricts',
                 'DictionaryEducationLevels',
                 'DesirableCountries',
                 'UndesirableCountries',
                 'Industries',
-                'ApplicantDocuments',
+                // 'ApplicantDocuments',
                 'Users' => ['Tokens']
-            ])
+            ], true)
+            ->innerJoinWith('ApplicantIndustries',function($q) use ($data){
+                if(!empty($data['industry_id'])){
+					$q->where(['dictionary_industry_id IN' => $data['industry_id']]);
+                }
+                return $q;
+            })
+            ->innerJoinWith('ApplicantDesirableCountries',function($q) use($data){
+                if(!empty($data['desirable_country_id'])){
+                    $q->where(['dictionary_country_id IN' => $data['desirable_country_id']]);
+                }
+                return $q;
+            })
+            ->distinct()
             ->where($searchConditions);
-
+			
         $applicants = $query->all();
-
+		
         $this->set(compact('applicants'));
         $this->set('_serialize', ['applicants']);
     }
