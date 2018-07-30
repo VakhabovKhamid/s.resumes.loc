@@ -17,6 +17,7 @@ namespace App;
 use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
+use Cake\Event\EventManager;
 use Cake\Http\BaseApplication;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
@@ -57,6 +58,8 @@ class Application extends BaseApplication
         if (Configure::read('debug')) {
             $this->addPlugin(\DebugKit\Plugin::class);
         }
+
+        EventManager::instance()->on(new \App\Event\UserAuthenticateEvent());
     }
 
     /**

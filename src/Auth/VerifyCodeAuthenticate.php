@@ -61,34 +61,9 @@ class VerifyCodeAuthenticate extends FormAuthenticate
             return false;
         }
 
-        if($this->expiresVerifyCodeAttempts()) {
-            return false;
-        } else {
-            $this->attemptVerifyCode();
-        }
-
         $token = $request->getData('token');
         $phone = $request->getSession()->read('Auth.User.phone');
         return $this->_findUserByToken($token, $phone);
-    }
-
-    private function expiresVerifyCodeAttempts()
-    {
-        $attempts = Cache::read(self::VERIFY_CODE_ATTEMPTS_KEY);
-        //debug($attempts);
-        return $attempts && $attempts > self::VERIFY_CODE_ATTEMPTS_COUNT;
-    }
-
-    private function attemptVerifyCode()
-    {
-        if(Cache::read(self::VERIFY_CODE_ATTEMPTS_KEY) === false) {
-            Cache::write(self::VERIFY_CODE_ATTEMPTS_KEY, 0);
-            return;
-        }
-        $attempts = Cache::read(self::VERIFY_CODE_ATTEMPTS_KEY);
-        $attempts += 1;
-
-        Cache::write(self::VERIFY_CODE_ATTEMPTS_KEY, $attempts);
     }
 
     protected function _findUserByToken($token, $phone)
@@ -108,8 +83,6 @@ class VerifyCodeAuthenticate extends FormAuthenticate
 
         $user = $usersTable->find()->where(['Users.id'=>$userId])->first();
 
-        $this->resetVerifyCodeAttempts();
-
         return $user;
     }
 
@@ -117,10 +90,5 @@ class VerifyCodeAuthenticate extends FormAuthenticate
     {
         $token->token = rand(100000, 999999); //Regenerate token. Prevent user login with old vefiry code.
         $table->save($token);
-    }
-
-    private function resetVerifyCodeAttempts()
-    {
-        Cache::delete(self::VERIFY_CODE_ATTEMPTS_KEY);
     }
 }

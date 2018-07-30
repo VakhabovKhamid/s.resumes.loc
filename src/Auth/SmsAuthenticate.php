@@ -69,30 +69,9 @@ class SmsAuthenticate extends FormAuthenticate
             return false;
         }
 
-        if(!$this->canSendSms()) {
-            return false;
-        }
-
         $request->getSession()->write('Auth.User.phone', $phone);
-        //dd($request->getSession()->read('Auth.User'));
+
         return $this->_findUserByPhone($phone);
-    }
-
-    private function canSendSms()
-    {
-        $lastSendTime = Cache::read(self::LAST_SEND_SMS_TIME_KEY);
-
-        if(!$lastSendTime) {
-            Cache::write(self::LAST_SEND_SMS_TIME_KEY, new Time(self::SEND_SMS_TIME_EXPIRES));
-            return true;
-        }
-
-        $now = Time::now();
-        if($now->diffInMinutes($lastSendTime, false) === 0) {
-            return false;
-        }
-
-        return true;
     }
 
     protected function _findUserByPhone($phone)
@@ -136,7 +115,6 @@ class SmsAuthenticate extends FormAuthenticate
         if($usersTable->save($user)) {
             return $user;
         } else {
-            dd($user->getErrors());die;
             return false;
         }
     }
