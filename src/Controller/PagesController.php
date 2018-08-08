@@ -31,6 +31,11 @@ class PagesController extends AppController
 
     public function home()
     {
+        if (!$this->getRequest()->getSession()->check("System.language")) {
+            return $this->redirect(['controller' => 'users', 'action' => 'changeLanguage']);
+        }
 
+        $redirectUrl = $this->Users->getRedirectUrlByUserGroup($this->Auth->user());
+        return $this->redirect($redirectUrl);
     }
 }

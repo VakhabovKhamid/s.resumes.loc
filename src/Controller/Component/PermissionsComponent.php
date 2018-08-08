@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller\Component;
 
+use App\Model\Entity\Group;
 use Cake\Controller\Component;
 use Cake\Controller\ComponentRegistry;
 use Cake\I18n\I18n;
@@ -152,6 +153,11 @@ class PermissionsComponent extends Component {
         foreach ($result as $key => $value) {
             $this->Session->write('Auth.Permissions.'.$key, $value);
         }
+    }
+
+    public function isGuest(\Cake\Controller\Component\AuthComponent $auth)
+    {
+        return $auth->user() && $auth->user('group_id') === Group::GROUP_GUESTS;
     }
 
 }

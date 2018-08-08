@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Auth\SmsAuthenticate;
+use App\Model\Entity\LocaliseTrait;
 use Cake\Event\Event;
 
 /**
@@ -13,6 +14,8 @@ use Cake\Event\Event;
  */
 class UsersController extends AppController
 {
+    use LocaliseTrait;
+
     public function initialize()
     {
         parent::initialize();
@@ -52,6 +55,10 @@ class UsersController extends AppController
 
     public function loginSms()
     {
+        if (!$this->Permissions->isGuest($this->Auth)) {
+            return $this->redirect(['prefix' => false, 'controller' => 'Pages', 'action' => 'home']);
+        }
+
         $this->Auth->setConfig('authenticate', ['Sms']);
 
         if ($this->request->is('post')) {
@@ -72,7 +79,11 @@ class UsersController extends AppController
 
     public function verifyCode()
     {
-        if(!$this->request->getSession()->read('Auth.User.phone')) {
+        if (!$this->Permissions->isGuest($this->Auth)) {
+            return $this->redirect(['prefix' => false, 'controller' => 'Pages', 'action' => 'home']);
+        }
+
+        if(!$this->request->getSession()->check('Auth.User.phone')) {
             return $this->redirect(['action'=>'loginSms']);
         }
 
@@ -120,5 +131,15 @@ class UsersController extends AppController
 
         $this->request->getSession()->write('Auth.User.token', $token);
         return $result;
+    }
+
+    public function changeLanguage($lang=null)
+    {
+        if ($lang) {
+            $this->setDefaultLocale($lang);
+            $user = $this->Auth->user();
+            $redirectUrl = $this->Users->getRedirectUrlByUserGroup($user);
+            return $this->redirect($redirectUrl);
+        }
     }
 }

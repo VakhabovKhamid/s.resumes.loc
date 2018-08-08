@@ -69,8 +69,8 @@ class AppController extends Controller
             'loginRedirect' => [
                 'prefix' => false,
                 'plugin' => false,
-                'controller' => 'Applicant',
-                'action' => 'preview'
+                'controller' => 'Pages',
+                'action' => 'home'
             ],
             'logoutRedirect' => [
                 'prefix' => false,
@@ -80,8 +80,8 @@ class AppController extends Controller
             ],
             'unauthorizedRedirect' => [
                 'prefix' => false,
-                'controller' => 'Users',
-                'action' => 'login-sms'
+                'controller' => 'Pages',
+                'action' => 'home'
             ],
             'authError' => 'You are not authorized to access that location.',
             'flash' => [
