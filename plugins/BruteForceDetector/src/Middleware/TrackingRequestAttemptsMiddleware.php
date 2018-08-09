@@ -10,6 +10,7 @@ namespace BruteForceDetector\Middleware;
 
 
 use BruteForceDetector\Detector\BruteForceByActionDetector;
+use BruteForceDetector\Storage\DatabaseStorage;
 use Cake\Http\ServerRequest;
 
 class TrackingRequestAttemptsMiddleware
@@ -17,7 +18,7 @@ class TrackingRequestAttemptsMiddleware
 
     public function __invoke(ServerRequest $request, $response, $next)
     {
-        $bruteForceDetector = new BruteForceByActionDetector($request);
+        $bruteForceDetector = new BruteForceByActionDetector($request, new DatabaseStorage($request));
         $request = $request->withParam('bruteForce', $bruteForceDetector->isBruteForce());
 
         return $next($request, $response);

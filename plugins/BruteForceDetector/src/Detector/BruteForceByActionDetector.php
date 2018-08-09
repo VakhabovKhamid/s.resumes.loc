@@ -10,6 +10,7 @@ namespace BruteForceDetector\Detector;
 
 
 use BruteForceDetector\Storage\SessionStorage;
+use BruteForceDetector\Storage\StorageInterface;
 use Cake\I18n\Time;
 use Cake\Network\Request;
 
@@ -17,7 +18,7 @@ class BruteForceByActionDetector extends Detector
 {
     private $requestActionTimeLimit = '+1 mins';
     private $longTimeLimit = '+10 mins';
-    private $requestActionAttemptsLimit = 5;
+    private $requestActionAttemptsLimit = 500;
 
     private $controller;
     private $action;
@@ -28,9 +29,8 @@ class BruteForceByActionDetector extends Detector
     private $lastRequestTimeKey;
     private $requestActionAttemptsKey;
 
-    public function __construct(Request $request)
+    public function __construct(Request $request, StorageInterface $storage)
     {
-        $storage = new SessionStorage($request->getSession());
         $storage->setPrefix('BruteForceDetector');
         parent::__construct($storage);
 
@@ -64,6 +64,9 @@ class BruteForceByActionDetector extends Detector
         if (!$this->lastRequestTime) {
             $this->lastRequestTime = Time::now();
             $this->storage->write($this->lastRequestTimeKey, $this->lastRequestTime);
+        }
+        if (is_string($this->lastRequestTime)) {
+            $this->lastRequestTime = new Time($this->lastRequestTime);
         }
     }
 
