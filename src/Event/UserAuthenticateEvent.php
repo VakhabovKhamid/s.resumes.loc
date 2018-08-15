@@ -62,7 +62,7 @@ class UserAuthenticateEvent implements EventListenerInterface
     {
         $sms = new ShortMessage();
         $sms->phone = $phone;
-        $sms->text = $text;
+        $sms->text = 'Kod: '. $text;
 
         $this->ShortMessages->save($sms);
     }
