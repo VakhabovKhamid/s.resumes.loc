@@ -46,7 +46,7 @@ class DatabaseStorage implements StorageInterface
             ->first();
 
         if ($data) {
-            return $data->value;
+            return unserialize($data->value);
         }
 
         return false;
@@ -63,14 +63,14 @@ class DatabaseStorage implements StorageInterface
             ->first();
 
         if ($request) {
-            $request->value = $value;
+            $request->value = serialize($value);
         } else {
             $request = $this->Requests->newEntity([
                 'hash' => $this->userHash,
                 'ip' => $this->ip,
                 'user_agent' => $this->userAgent,
                 'key' => $key,
-                'value' => $value,
+                'value' => serialize($value),
                 'created' => new \DateTimeImmutable(),
                 'modified' => new \DateTimeImmutable()
             ]);

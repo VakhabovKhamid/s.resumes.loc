@@ -65,9 +65,6 @@ class BruteForceByActionDetector extends Detector
             $this->lastRequestTime = Time::now();
             $this->storage->write($this->lastRequestTimeKey, $this->lastRequestTime);
         }
-        if (is_string($this->lastRequestTime)) {
-            $this->lastRequestTime = new Time($this->lastRequestTime);
-        }
     }
 
     private function setRequestActionAttempts()
