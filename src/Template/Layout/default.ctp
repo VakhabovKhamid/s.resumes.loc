@@ -55,6 +55,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <div class="logo"><a href="/"><img src="/images/gerb.svg" alt=""/><span class="logoText">Единая национальная<br> система труда</span></a></div>
             <?php if ($this->Permissions->isAuthorized() && !$this->Permissions->isGuest() && $this->request->action != 'verifyCode'): ?>
             <div class="headerUserBlock">
+              <div class="hUserName"><?= __('Вы вошли как') ?>:<span><?= $this->request->getSession()->read('Auth.User.username') ?></span></div>
               <div class="btnPersonalArea">
                 <a class="PersonalAreaLink">
                   <div style="background-image: url(/images/userDefault.svg);" class="userAvatar"></div>
