@@ -1,10 +1,13 @@
 <div class="mainContainer minContainer500">
     <div class="contentBlockBold">
         <div class="title-3"><?= __('Введите полученный код') ?></div>
+
+        <?= $this->Flash->render('verifyPage') ?>
+
         <?= $this->Form->create() ?>
             <div class="formControl">
                 <div class="field">
-                    <?= $this->Form->control('token', ['class'=>'formField', 'label'=>false,'autofocus' => true]) ?>
+                    <?= $this->Form->control('token', ['class'=>'formField', 'label'=>false,'autofocus' => true, 'maxLength' => 6]) ?>
                 </div>
                 <div class="fieldText textRight">
                     <span class="timer"><span class="minute">02</span><span>:</span><span class="secound">00</span></span>

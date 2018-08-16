@@ -66,14 +66,15 @@ class UsersController extends AppController
                 $user = $this->Auth->identify();
 
                 if ($user) {
-                    $this->Flash->success(__('A one-time code has been send to you by sms.'));
+                    $this->Flash->success(__('Одноразовый код был отправлен вам по sms.'), ['key' => 'verifyPage']);
+
                     return $this->redirect(['action' => 'verify-code']);
                 }
 
-                $this->Flash->error(__('Неверный номер телефона.'));
+                $this->Flash->error(__('Неверный номер телефона.'), ['key' => 'loginSmsPage']);
+            }else{
+                $this->Flash->error(__('Превышен лимит запросов.'), ['key' => 'loginSmsPage']);
             }
-
-            $this->Flash->error(__('Превышен лимит запросов.'));
         }
     }
 
@@ -102,9 +103,10 @@ class UsersController extends AppController
                     return $this->redirect($redirectUrl);
                 }
 
-                $this->Flash->error(__('Неверный код.'));
+                $this->Flash->error(__('Неверный код.'), ['key' => 'verifyPage']);
+            }else{
+                $this->Flash->error(__('Превышен лимит запросов.'), ['key' => 'verifyPage']);
             }
-            $this->Flash->error(__('Превышен лимит запросов.'));
         }
     }
 

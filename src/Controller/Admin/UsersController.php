@@ -135,7 +135,7 @@ class UsersController extends AppController
             // Remove ACL from session
             $session->delete('Auth');
             // Logout
-            $this->Flash->success(__('Good-Bye'));
+            // $this->Flash->success(__('Good-Bye'));
             $this->redirect($this->Auth->logout());
         } else {
             $this->Flash->set(__('You are not logged in!'));

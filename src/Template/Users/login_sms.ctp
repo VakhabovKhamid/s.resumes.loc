@@ -6,6 +6,9 @@
 <div class="mainContainer minContainer500">
     <div class="contentBlockBold">
         <div class="title-3"><?= __('Введите номер телефона') ?></div>
+
+        <?= $this->Flash->render('loginSmsPage') ?>
+        
         <?= $this->Form->create() ?>
             <div class="formControl">
                 <div class="field">
