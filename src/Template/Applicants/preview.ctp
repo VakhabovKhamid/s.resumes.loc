@@ -9,8 +9,8 @@
   <?= $this->Flash->render('applicantsaved') ?>
   <hr>
   <div class="title-1 uppercase">
-    <?= $applicant->latin_surname ?> 
-    <?= $applicant->latin_name ?> 
+    <?= h($applicant->latin_surname) ?> 
+    <?= h($applicant->latin_name) ?> 
     <?php /* ?>
     <?= $applicant->latin_patronym ?>
     <?php */ ?>
