@@ -63,9 +63,11 @@ class UsersController extends AppController
 
         if ($this->request->is('post')) {
             if (!$this->request->getParam('bruteForce')) {
+                $data = $this->request->getData();
+                $phone = preg_replace('/[^0-9]/', '', $data['phone']);
                 $user = $this->Auth->identify();
 
-                if ($user) {
+                if ($user && strlen($phone) === 12) {
                     $this->Flash->success(__('Одноразовый код был отправлен вам по sms.'), ['key' => 'verifyPage']);
 
                     return $this->redirect(['action' => 'verify-code']);
