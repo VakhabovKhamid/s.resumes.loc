@@ -1418,3 +1418,35 @@ textarea.formField {
 
 .error .error-text {
   display: block; }
+
+.headerRight {
+  float: right;
+  text-align: right; }
+  .headerRight .headerUserBlock {
+    float: none; }
+
+.langs {
+  margin: -10px 90px 10px 0; }
+  .langs ul {
+    padding: 0;
+    margin: 0; }
+    .langs ul li {
+      list-style: none; }
+    .langs ul li {
+      display: inline-block;
+      vertical-align: middle;
+      *vertical-align: auto;
+      *zoom: 1;
+      *display: inline;
+      margin: 0 0 0 15px;
+      font-size: 13px; }
+      .langs ul li a {
+        display: block;
+        color: #2F2F2F;
+        text-decoration: none; }
+      .langs ul li.active a {
+        color: #000;
+        text-decoration: underline;
+      }
+        .langs ul li a:hover {
+          text-decoration: underline; }

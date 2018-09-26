@@ -2,10 +2,11 @@
     <div class="mainContainer minContainer500">
         <div class="contentBlockBold">
             <div class="textCenter hButtons">
-            <?= $this->Html->link('Узбекча', ['prefix'=>false, 'controller'=>'users', 'action'=>'change-language', 'uz-latn'],['class' => 'btn0 btn1 btnBold btnBlock']) ?>
-            <?= $this->Html->link('O`zbekcha', ['prefix'=>false, 'controller'=>'users', 'action'=>'change-language', 'uz-cyrl'],['class' => 'btn0 btn1 btnBold btnBlock']) ?>
-            <?= $this->Html->link('Русский', ['prefix'=>false, 'controller'=>'users', 'action'=>'change-language', 'ru'],['class' => 'btn0 btn1 btnBold btnBlock']) ?>
-            <?= $this->Html->link('Қарақалпақша', ['prefix'=>false, 'controller'=>'users', 'action'=>'change-language', 'kaa'],['class' => 'btn0 btn1 btnBold btnBlock']) ?>
+                <?php if (count($languages) > 0): ?>
+                    <?php foreach ($languages as $locale => $language): ?>
+                        <?= $this->Html->link($language, ['controller'=>'users', 'action'=>'change-language', $locale],['class' => 'btn0 btn1 btnBold btnBlock']) ?>
+                    <?php endforeach ?>
+                <?php endif ?>
             </div>
         </div>
     </div>

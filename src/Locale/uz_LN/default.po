@@ -1,0 +1,1125 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2018-09-26 03:53+0000\n"
+"PO-Revision-Date: 2018-09-26 09:25+0500\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.1.1\n"
+"Last-Translator: \n"
+"Language: uz_UZ@latin\n"
+
+#: Controller/ApplicantsController.php:34;133
+msgid ""
+"Ваша анкета успешно сохранена и привязана к вашему номеру телефона. "
+"Информация о вас добавлена в Единую базу соискателей работы за рубежом. "
+"Теперь с вами могут связаться агентства для предложения работы за рубежом. "
+"Анкета привязана к вашему номеру телефона."
+msgstr ""
+"Profilingiz muvaffaqiyatli saqlandi va telefon raqamingizga bog'landi. Siz "
+"haqingizdagi ma'lumotlar Chet elda Ish izlovchi yagona ma'lumotlar bazasiga "
+"qo'shildi. Endi sizga agentlik chet elda ishlash taklifibilan aloqaga "
+"chiqishi mumkin. Sizning anketangiz telefon raqamingizga bog'liq."
+
+#: Controller/ApplicantsController.php:43;142
+#: Controller/Admin/ApplicantsController.php:65;94
+msgid "The applicant could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/ApplicantsController.php:103
+#: Controller/Admin/ApplicantsController.php:116
+msgid "The applicant has been deleted."
+msgstr ""
+
+#: Controller/ApplicantsController.php:106
+#: Controller/Admin/ApplicantsController.php:118
+msgid "The applicant could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/UsersController.php:50;78;110
+msgid "Превышен лимит запросов."
+msgstr "So'rov chegarasi oshib ketdi."
+
+#: Controller/UsersController.php:71
+msgid "Одноразовый код был отправлен вам по sms."
+msgstr "Sizga bir martalik kod sms orqali yuborildi."
+
+#: Controller/UsersController.php:76
+msgid "Неверный номер телефона."
+msgstr "Telefon raqami noto'g'ri."
+
+#: Controller/UsersController.php:108
+msgid "Неверный код."
+msgstr "Kod noto'g'ri."
+
+#: Controller/Admin/AclController.php:76
+msgid "Success"
+msgstr ""
+
+#: Controller/Admin/ApplicantDocumentsController.php:61;89
+msgid "The applicant document has been saved."
+msgstr ""
+
+#: Controller/Admin/ApplicantDocumentsController.php:65;93
+msgid "The applicant document could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/Admin/ApplicantDocumentsController.php:111
+msgid "The applicant document has been deleted."
+msgstr ""
+
+#: Controller/Admin/ApplicantDocumentsController.php:113
+msgid "The applicant document could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/Admin/ApplicantsController.php:61;90
+msgid "The applicant has been saved."
+msgstr ""
+
+#: Controller/Admin/DictionaryCountriesController.php:58;85
+msgid "The dictionary country has been saved."
+msgstr ""
+
+#: Controller/Admin/DictionaryCountriesController.php:62;89
+msgid "The dictionary country could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/Admin/DictionaryCountriesController.php:106
+msgid "The dictionary country has been deleted."
+msgstr ""
+
+#: Controller/Admin/DictionaryCountriesController.php:108
+msgid "The dictionary country could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/Admin/DictionaryDistrictsController.php:61;89
+msgid "The dictionary district has been saved."
+msgstr ""
+
+#: Controller/Admin/DictionaryDistrictsController.php:65;93
+msgid "The dictionary district could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/Admin/DictionaryDistrictsController.php:111
+msgid "The dictionary district has been deleted."
+msgstr ""
+
+#: Controller/Admin/DictionaryDistrictsController.php:113
+msgid "The dictionary district could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/Admin/DictionaryEducationLevelsController.php:58;85
+msgid "The dictionary education level has been saved."
+msgstr ""
+
+#: Controller/Admin/DictionaryEducationLevelsController.php:62;89
+msgid "The dictionary education level could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/Admin/DictionaryEducationLevelsController.php:106
+msgid "The dictionary education level has been deleted."
+msgstr ""
+
+#: Controller/Admin/DictionaryEducationLevelsController.php:108
+msgid "The dictionary education level could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/Admin/DictionaryIndustriesController.php:58;85
+msgid "The dictionary industry has been saved."
+msgstr ""
+
+#: Controller/Admin/DictionaryIndustriesController.php:62;89
+msgid "The dictionary industry could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/Admin/DictionaryIndustriesController.php:106
+msgid "The dictionary industry has been deleted."
+msgstr ""
+
+#: Controller/Admin/DictionaryIndustriesController.php:108
+msgid "The dictionary industry could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/Admin/DictionaryRegionsController.php:58;85
+msgid "The dictionary region has been saved."
+msgstr ""
+
+#: Controller/Admin/DictionaryRegionsController.php:62;89
+msgid "The dictionary region could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/Admin/DictionaryRegionsController.php:106
+msgid "The dictionary region has been deleted."
+msgstr ""
+
+#: Controller/Admin/DictionaryRegionsController.php:108
+msgid "The dictionary region could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/Admin/GroupsController.php:60;84
+msgid "The group has been saved."
+msgstr ""
+
+#: Controller/Admin/GroupsController.php:64;88
+msgid "The group could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/Admin/GroupsController.php:105
+msgid "The group has been deleted."
+msgstr ""
+
+#: Controller/Admin/GroupsController.php:107
+msgid "The group could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/Admin/TokensController.php:61;89
+msgid "The token has been saved."
+msgstr ""
+
+#: Controller/Admin/TokensController.php:65;93
+msgid "The token could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/Admin/TokensController.php:111
+msgid "The token has been deleted."
+msgstr ""
+
+#: Controller/Admin/TokensController.php:113
+msgid "The token could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/Admin/UsersController.php:65;88
+msgid "The user has been saved."
+msgstr ""
+
+#: Controller/Admin/UsersController.php:69;92
+msgid "The user could not be saved. Please, try again."
+msgstr ""
+
+#: Controller/Admin/UsersController.php:110
+msgid "The user has been deleted."
+msgstr ""
+
+#: Controller/Admin/UsersController.php:112
+msgid "The user could not be deleted. Please, try again."
+msgstr ""
+
+#: Controller/Admin/UsersController.php:128
+msgid "Your username or password was incorrect."
+msgstr ""
+
+#: Controller/Admin/UsersController.php:141
+msgid "You are not logged in!"
+msgstr ""
+
+#: Controller/Component/DetailsFlashComponent.php:21
+msgid "The application could not be saved. Please, try again."
+msgstr ""
+
+#: Model/Table/ApplicantsTable.php:254
+msgid "Январь"
+msgstr "Yanvar"
+
+#: Model/Table/ApplicantsTable.php:255
+msgid "Февраль"
+msgstr "Fevral"
+
+#: Model/Table/ApplicantsTable.php:256
+msgid "Март"
+msgstr "Mart"
+
+#: Model/Table/ApplicantsTable.php:257
+msgid "Апрель"
+msgstr "Aprel"
+
+#: Model/Table/ApplicantsTable.php:258
+msgid "Май"
+msgstr "May"
+
+#: Model/Table/ApplicantsTable.php:259
+msgid "Июнь"
+msgstr "Iyun"
+
+#: Model/Table/ApplicantsTable.php:260
+msgid "Июль"
+msgstr "Iyul"
+
+#: Model/Table/ApplicantsTable.php:261
+msgid "Август"
+msgstr "Avgust"
+
+#: Model/Table/ApplicantsTable.php:262
+msgid "Сентябрь"
+msgstr "Sentyabr"
+
+#: Model/Table/ApplicantsTable.php:263
+msgid "Октябрь"
+msgstr "Oktyabr"
+
+#: Model/Table/ApplicantsTable.php:264
+msgid "Ноябрь"
+msgstr "Noyabr"
+
+#: Model/Table/ApplicantsTable.php:265
+msgid "Декабрь"
+msgstr "Dekabr"
+
+#: Model/Table/ApplicantsTable.php:284
+msgid "М"
+msgstr "E"
+
+#: Model/Table/ApplicantsTable.php:285
+msgid "Ж"
+msgstr "A"
+
+#: Template/Admin/Acl/index.ctp:19
+msgid "Access rights management"
+msgstr ""
+
+#: Template/Admin/Acl/index.ctp:32
+msgid "Action"
+msgstr ""
+
+#: Template/Admin/Acl/index.ctp:124
+msgid "Accept"
+msgstr ""
+
+#: Template/Admin/Acl/statistic.ctp:38
+msgid "id"
+msgstr ""
+
+#: Template/Admin/Acl/statistic.ctp:41
+msgid "aco_alias"
+msgstr ""
+
+#: Template/Admin/Acl/statistic.ctp:44
+msgid "url"
+msgstr ""
+
+#: Template/Admin/Acl/statistic.ctp:48
+msgid "request_parameters"
+msgstr ""
+
+#: Template/Admin/Acl/statistic.ctp:52
+msgid "ip"
+msgstr ""
+
+#: Template/Admin/Acl/statistic.ctp:55
+msgid "created"
+msgstr ""
+
+#: Template/Admin/Acl/statistic.ctp:58
+msgid "UserCreated"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/add.ctp:7
+msgid "Add Applicant Document"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/add.ctp:12
+#: Template/Admin/ApplicantDocuments/edit.ctp:12
+#: Template/Admin/ApplicantDocuments/view.ctp:13
+msgid "List Applicant Documents"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/add.ctp:34
+#: Template/Admin/ApplicantDocuments/edit.ctp:34
+#: Template/Admin/Applicants/add.ctp:67 Template/Admin/Applicants/edit.ctp:67
+#: Template/Admin/DictionaryCountries/add.ctp:43
+#: Template/Admin/DictionaryCountries/edit.ctp:43
+#: Template/Admin/DictionaryDistricts/add.ctp:46
+#: Template/Admin/DictionaryDistricts/edit.ctp:46
+#: Template/Admin/DictionaryEducationLevels/add.ctp:43
+#: Template/Admin/DictionaryEducationLevels/edit.ctp:43
+#: Template/Admin/DictionaryIndustries/add.ctp:43
+#: Template/Admin/DictionaryIndustries/edit.ctp:43
+#: Template/Admin/DictionaryRegions/add.ctp:43
+#: Template/Admin/DictionaryRegions/edit.ctp:43
+#: Template/Admin/Groups/add.ctp:25 Template/Admin/Groups/edit.ctp:25
+#: Template/Admin/Tokens/add.ctp:28 Template/Admin/Tokens/edit.ctp:28
+#: Template/Admin/Users/add.ctp:34 Template/Admin/Users/edit.ctp:34
+msgid "Submit"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/edit.ctp:7
+#: Template/Admin/ApplicantDocuments/view.ctp:14
+msgid "Edit Applicant Document"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/index.ctp:7
+msgid "Applicant Documents"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/index.ctp:11
+#: Template/Admin/Applicants/index.ctp:11
+#: Template/Admin/DictionaryCountries/index.ctp:11
+#: Template/Admin/DictionaryDistricts/index.ctp:11
+#: Template/Admin/DictionaryEducationLevels/index.ctp:11
+#: Template/Admin/DictionaryIndustries/index.ctp:11
+#: Template/Admin/DictionaryRegions/index.ctp:11
+#: Template/Admin/Groups/index.ctp:11 Template/Admin/Tokens/index.ctp:11
+#: Template/Admin/Users/index.ctp:11
+msgid "Page: {{page}} / {{pages}}, total records {{count}}"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/index.ctp:38
+#: Template/Admin/Applicants/index.ctp:47
+#: Template/Admin/DictionaryCountries/index.ctp:41
+#: Template/Admin/DictionaryDistricts/index.ctp:42
+#: Template/Admin/DictionaryEducationLevels/index.ctp:41
+#: Template/Admin/DictionaryIndustries/index.ctp:41
+#: Template/Admin/DictionaryRegions/index.ctp:41
+#: Template/Admin/Groups/index.ctp:35 Template/Admin/Tokens/index.ctp:33
+#: Template/Admin/Users/index.ctp:38
+msgid "Actions"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/index.ctp:95
+#: Template/Admin/ApplicantDocuments/view.ctp:60
+#: Template/Admin/Applicants/index.ctp:140
+#: Template/Admin/Applicants/view.ctp:96
+#: Template/Admin/DictionaryCountries/index.ctp:110
+#: Template/Admin/DictionaryCountries/view.ctp:72
+#: Template/Admin/DictionaryDistricts/index.ctp:115
+#: Template/Admin/DictionaryDistricts/view.ctp:76
+#: Template/Admin/DictionaryEducationLevels/index.ctp:110
+#: Template/Admin/DictionaryEducationLevels/view.ctp:72
+#: Template/Admin/DictionaryIndustries/index.ctp:110
+#: Template/Admin/DictionaryIndustries/view.ctp:72
+#: Template/Admin/DictionaryRegions/index.ctp:110
+#: Template/Admin/DictionaryRegions/view.ctp:72
+#: Template/Admin/Groups/index.ctp:80 Template/Admin/Groups/view.ctp:48
+#: Template/Admin/Tokens/index.ctp:70 Template/Admin/Tokens/view.ctp:40
+#: Template/Admin/Users/index.ctp:95 Template/Admin/Users/view.ctp:64
+msgid "Are you sure you want to delete # {0}?"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/index.ctp:103
+#: Template/Admin/Applicants/index.ctp:148
+#: Template/Admin/DictionaryCountries/index.ctp:118
+#: Template/Admin/DictionaryDistricts/index.ctp:123
+#: Template/Admin/DictionaryEducationLevels/index.ctp:118
+#: Template/Admin/DictionaryIndustries/index.ctp:118
+#: Template/Admin/DictionaryRegions/index.ctp:118
+#: Template/Admin/Groups/index.ctp:88 Template/Admin/Tokens/index.ctp:78
+#: Template/Admin/Users/index.ctp:103
+msgid "first"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/index.ctp:104
+#: Template/Admin/Applicants/index.ctp:149
+#: Template/Admin/DictionaryCountries/index.ctp:119
+#: Template/Admin/DictionaryDistricts/index.ctp:124
+#: Template/Admin/DictionaryEducationLevels/index.ctp:119
+#: Template/Admin/DictionaryIndustries/index.ctp:119
+#: Template/Admin/DictionaryRegions/index.ctp:119
+#: Template/Admin/Groups/index.ctp:89 Template/Admin/Tokens/index.ctp:79
+#: Template/Admin/Users/index.ctp:104
+msgid "previous"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/index.ctp:106
+#: Template/Admin/Applicants/index.ctp:151
+#: Template/Admin/DictionaryCountries/index.ctp:121
+#: Template/Admin/DictionaryDistricts/index.ctp:126
+#: Template/Admin/DictionaryEducationLevels/index.ctp:121
+#: Template/Admin/DictionaryIndustries/index.ctp:121
+#: Template/Admin/DictionaryRegions/index.ctp:121
+#: Template/Admin/Groups/index.ctp:91 Template/Admin/Tokens/index.ctp:81
+#: Template/Admin/Users/index.ctp:106
+msgid "next"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/index.ctp:107
+#: Template/Admin/Applicants/index.ctp:152
+#: Template/Admin/DictionaryCountries/index.ctp:122
+#: Template/Admin/DictionaryDistricts/index.ctp:127
+#: Template/Admin/DictionaryEducationLevels/index.ctp:122
+#: Template/Admin/DictionaryIndustries/index.ctp:122
+#: Template/Admin/DictionaryRegions/index.ctp:122
+#: Template/Admin/Groups/index.ctp:92 Template/Admin/Tokens/index.ctp:82
+#: Template/Admin/Users/index.ctp:107
+msgid "last"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/view.ctp:8
+msgid "Applicant Document"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/view.ctp:15
+msgid "New Applicant Document"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/view.ctp:22
+#: Template/Admin/Applicants/view.ctp:8
+msgid "Applicant"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/view.ctp:26
+msgid "Anchor"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/view.ctp:30
+#: Template/Admin/Groups/view.ctp:22
+msgid "Name"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/view.ctp:34
+msgid "Path"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/view.ctp:38
+#: Template/Admin/Applicants/view.ctp:70
+#: Template/Admin/DictionaryCountries/view.ctp:50
+#: Template/Admin/DictionaryDistricts/view.ctp:54
+#: Template/Admin/DictionaryEducationLevels/view.ctp:50
+#: Template/Admin/DictionaryIndustries/view.ctp:50
+#: Template/Admin/DictionaryRegions/view.ctp:50
+#: Template/Admin/Groups/view.ctp:26 Template/Admin/Tokens/view.ctp:22
+#: Template/Admin/Users/view.ctp:42
+msgid "Id"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/view.ctp:42
+#: Template/Admin/Applicants/view.ctp:74
+#: Template/Admin/DictionaryCountries/view.ctp:54
+#: Template/Admin/DictionaryDistricts/view.ctp:58
+#: Template/Admin/DictionaryEducationLevels/view.ctp:54
+#: Template/Admin/DictionaryIndustries/view.ctp:54
+#: Template/Admin/DictionaryRegions/view.ctp:54
+#: Template/Admin/Groups/view.ctp:30 Template/Admin/Tokens/view.ctp:26
+#: Template/Admin/Users/view.ctp:46
+msgid "Created By"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/view.ctp:46
+#: Template/Admin/Applicants/view.ctp:78
+#: Template/Admin/DictionaryCountries/view.ctp:58
+#: Template/Admin/DictionaryDistricts/view.ctp:62
+#: Template/Admin/DictionaryEducationLevels/view.ctp:58
+#: Template/Admin/DictionaryIndustries/view.ctp:58
+#: Template/Admin/DictionaryRegions/view.ctp:58
+#: Template/Admin/Groups/view.ctp:34 Template/Admin/Users/view.ctp:50
+msgid "Modified By"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/view.ctp:50
+#: Template/Admin/Applicants/view.ctp:86
+#: Template/Admin/DictionaryCountries/view.ctp:62
+#: Template/Admin/DictionaryDistricts/view.ctp:66
+#: Template/Admin/DictionaryEducationLevels/view.ctp:62
+#: Template/Admin/DictionaryIndustries/view.ctp:62
+#: Template/Admin/DictionaryRegions/view.ctp:62
+#: Template/Admin/Groups/view.ctp:38 Template/Admin/Tokens/view.ctp:34
+#: Template/Admin/Users/view.ctp:54
+msgid "Created"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/view.ctp:54
+#: Template/Admin/Applicants/view.ctp:90
+#: Template/Admin/DictionaryCountries/view.ctp:66
+#: Template/Admin/DictionaryDistricts/view.ctp:70
+#: Template/Admin/DictionaryEducationLevels/view.ctp:66
+#: Template/Admin/DictionaryIndustries/view.ctp:66
+#: Template/Admin/DictionaryRegions/view.ctp:66
+#: Template/Admin/Groups/view.ctp:42 Template/Admin/Users/view.ctp:58
+msgid "Modified"
+msgstr ""
+
+#: Template/Admin/ApplicantDocuments/view.ctp:60
+msgid "Delete Applicant Document"
+msgstr ""
+
+#: Template/Admin/Applicants/add.ctp:7
+msgid "Add Applicant"
+msgstr ""
+
+#: Template/Admin/Applicants/add.ctp:12 Template/Admin/Applicants/edit.ctp:12
+#: Template/Admin/Applicants/view.ctp:13
+msgid "List Applicants"
+msgstr ""
+
+#: Template/Admin/Applicants/edit.ctp:7 Template/Admin/Applicants/view.ctp:14
+msgid "Edit Applicant"
+msgstr ""
+
+#: Template/Admin/Applicants/index.ctp:7
+msgid "Applicants"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:15
+msgid "New Applicant"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:22
+msgid "Latin Name"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:26
+msgid "Latin Surname"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:30
+msgid "Latin Patronym"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:34
+msgid "Sex"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:38
+#: Template/Admin/DictionaryCountries/view.ctp:8
+msgid "Dictionary Country"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:42
+#: Template/Admin/DictionaryDistricts/view.ctp:22
+#: Template/Admin/DictionaryRegions/view.ctp:8
+msgid "Dictionary Region"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:46
+#: Template/Admin/DictionaryDistricts/view.ctp:8
+msgid "Dictionary District"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:50
+msgid "Address Extended"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:54
+#: Template/Admin/DictionaryEducationLevels/view.ctp:8
+msgid "Dictionary Education Level"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:58
+#: Template/Admin/DictionaryIndustries/view.ctp:8
+msgid "Dictionary Industry"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:62
+msgid "Professional Skills"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:66
+msgid "Is Archive"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:82
+msgid "Birth Date"
+msgstr ""
+
+#: Template/Admin/Applicants/view.ctp:96
+msgid "Delete Applicant"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/add.ctp:7
+msgid "Add Dictionary Country"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/add.ctp:12
+#: Template/Admin/DictionaryCountries/edit.ctp:12
+#: Template/Admin/DictionaryCountries/view.ctp:13
+msgid "List Dictionary Countries"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/edit.ctp:7
+#: Template/Admin/DictionaryCountries/view.ctp:14
+msgid "Edit Dictionary Country"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/index.ctp:7
+msgid "Dictionary Countries"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/view.ctp:15
+msgid "New Dictionary Country"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/view.ctp:22
+#: Template/Admin/DictionaryDistricts/view.ctp:26
+#: Template/Admin/DictionaryEducationLevels/view.ctp:22
+#: Template/Admin/DictionaryIndustries/view.ctp:22
+#: Template/Admin/DictionaryRegions/view.ctp:22
+msgid "Name Uz C"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/view.ctp:26
+#: Template/Admin/DictionaryDistricts/view.ctp:30
+#: Template/Admin/DictionaryEducationLevels/view.ctp:26
+#: Template/Admin/DictionaryIndustries/view.ctp:26
+#: Template/Admin/DictionaryRegions/view.ctp:26
+msgid "Name Uz L"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/view.ctp:30
+#: Template/Admin/DictionaryDistricts/view.ctp:34
+#: Template/Admin/DictionaryEducationLevels/view.ctp:30
+#: Template/Admin/DictionaryIndustries/view.ctp:30
+#: Template/Admin/DictionaryRegions/view.ctp:30
+msgid "Name Ru C"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/view.ctp:34
+#: Template/Admin/DictionaryDistricts/view.ctp:38
+#: Template/Admin/DictionaryEducationLevels/view.ctp:34
+#: Template/Admin/DictionaryIndustries/view.ctp:34
+#: Template/Admin/DictionaryRegions/view.ctp:34
+msgid "Name En L"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/view.ctp:38
+#: Template/Admin/DictionaryDistricts/view.ctp:42
+#: Template/Admin/DictionaryEducationLevels/view.ctp:38
+#: Template/Admin/DictionaryIndustries/view.ctp:38
+#: Template/Admin/DictionaryRegions/view.ctp:38
+msgid "Name Qr C"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/view.ctp:42
+#: Template/Admin/DictionaryDistricts/view.ctp:46
+#: Template/Admin/DictionaryEducationLevels/view.ctp:42
+#: Template/Admin/DictionaryIndustries/view.ctp:42
+#: Template/Admin/DictionaryRegions/view.ctp:42
+msgid "Name Qr L"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/view.ctp:46
+#: Template/Admin/DictionaryDistricts/view.ctp:50
+#: Template/Admin/DictionaryEducationLevels/view.ctp:46
+#: Template/Admin/DictionaryIndustries/view.ctp:46
+#: Template/Admin/DictionaryRegions/view.ctp:46
+msgid "Is Active"
+msgstr ""
+
+#: Template/Admin/DictionaryCountries/view.ctp:72
+msgid "Delete Dictionary Country"
+msgstr ""
+
+#: Template/Admin/DictionaryDistricts/add.ctp:7
+msgid "Add Dictionary District"
+msgstr ""
+
+#: Template/Admin/DictionaryDistricts/add.ctp:12
+#: Template/Admin/DictionaryDistricts/edit.ctp:12
+#: Template/Admin/DictionaryDistricts/view.ctp:13
+msgid "List Dictionary Districts"
+msgstr ""
+
+#: Template/Admin/DictionaryDistricts/edit.ctp:7
+#: Template/Admin/DictionaryDistricts/view.ctp:14
+msgid "Edit Dictionary District"
+msgstr ""
+
+#: Template/Admin/DictionaryDistricts/index.ctp:7
+msgid "Dictionary Districts"
+msgstr ""
+
+#: Template/Admin/DictionaryDistricts/view.ctp:15
+msgid "New Dictionary District"
+msgstr ""
+
+#: Template/Admin/DictionaryDistricts/view.ctp:76
+msgid "Delete Dictionary District"
+msgstr ""
+
+#: Template/Admin/DictionaryEducationLevels/add.ctp:7
+msgid "Add Dictionary Education Level"
+msgstr ""
+
+#: Template/Admin/DictionaryEducationLevels/add.ctp:12
+#: Template/Admin/DictionaryEducationLevels/edit.ctp:12
+#: Template/Admin/DictionaryEducationLevels/view.ctp:13
+msgid "List Dictionary Education Levels"
+msgstr ""
+
+#: Template/Admin/DictionaryEducationLevels/edit.ctp:7
+#: Template/Admin/DictionaryEducationLevels/view.ctp:14
+msgid "Edit Dictionary Education Level"
+msgstr ""
+
+#: Template/Admin/DictionaryEducationLevels/index.ctp:7
+msgid "Dictionary Education Levels"
+msgstr ""
+
+#: Template/Admin/DictionaryEducationLevels/view.ctp:15
+msgid "New Dictionary Education Level"
+msgstr ""
+
+#: Template/Admin/DictionaryEducationLevels/view.ctp:72
+msgid "Delete Dictionary Education Level"
+msgstr ""
+
+#: Template/Admin/DictionaryIndustries/add.ctp:7
+msgid "Add Dictionary Industry"
+msgstr ""
+
+#: Template/Admin/DictionaryIndustries/add.ctp:12
+#: Template/Admin/DictionaryIndustries/edit.ctp:12
+#: Template/Admin/DictionaryIndustries/view.ctp:13
+msgid "List Dictionary Industries"
+msgstr ""
+
+#: Template/Admin/DictionaryIndustries/edit.ctp:7
+#: Template/Admin/DictionaryIndustries/view.ctp:14
+msgid "Edit Dictionary Industry"
+msgstr ""
+
+#: Template/Admin/DictionaryIndustries/index.ctp:7
+msgid "Dictionary Industries"
+msgstr ""
+
+#: Template/Admin/DictionaryIndustries/view.ctp:15
+msgid "New Dictionary Industry"
+msgstr ""
+
+#: Template/Admin/DictionaryIndustries/view.ctp:72
+msgid "Delete Dictionary Industry"
+msgstr ""
+
+#: Template/Admin/DictionaryRegions/add.ctp:7
+msgid "Add Dictionary Region"
+msgstr ""
+
+#: Template/Admin/DictionaryRegions/add.ctp:12
+#: Template/Admin/DictionaryRegions/edit.ctp:12
+#: Template/Admin/DictionaryRegions/view.ctp:13
+msgid "List Dictionary Regions"
+msgstr ""
+
+#: Template/Admin/DictionaryRegions/edit.ctp:7
+#: Template/Admin/DictionaryRegions/view.ctp:14
+msgid "Edit Dictionary Region"
+msgstr ""
+
+#: Template/Admin/DictionaryRegions/index.ctp:7
+msgid "Dictionary Regions"
+msgstr ""
+
+#: Template/Admin/DictionaryRegions/view.ctp:15
+msgid "New Dictionary Region"
+msgstr ""
+
+#: Template/Admin/DictionaryRegions/view.ctp:72
+msgid "Delete Dictionary Region"
+msgstr ""
+
+#: Template/Admin/Element/navmenu.ctp:4
+msgid "Админ панель"
+msgstr "Admin panel"
+
+#: Template/Admin/Groups/add.ctp:7
+msgid "Add Group"
+msgstr ""
+
+#: Template/Admin/Groups/add.ctp:12 Template/Admin/Groups/edit.ctp:12
+#: Template/Admin/Groups/view.ctp:13
+msgid "List Groups"
+msgstr ""
+
+#: Template/Admin/Groups/edit.ctp:7 Template/Admin/Groups/view.ctp:14
+msgid "Edit Group"
+msgstr ""
+
+#: Template/Admin/Groups/index.ctp:7
+msgid "Groups"
+msgstr ""
+
+#: Template/Admin/Groups/view.ctp:8 Template/Admin/Users/view.ctp:22
+msgid "Group"
+msgstr ""
+
+#: Template/Admin/Groups/view.ctp:15
+msgid "New Group"
+msgstr ""
+
+#: Template/Admin/Groups/view.ctp:48
+msgid "Delete Group"
+msgstr ""
+
+#: Template/Admin/Layout/error.ctp:35 Template/Layout/error.ctp:35
+msgid "Error"
+msgstr ""
+
+#: Template/Admin/Layout/error.ctp:43 Template/Layout/error.ctp:43
+msgid "Back"
+msgstr ""
+
+#: Template/Admin/Tokens/add.ctp:7
+msgid "Add Token"
+msgstr ""
+
+#: Template/Admin/Tokens/add.ctp:12 Template/Admin/Tokens/edit.ctp:12
+#: Template/Admin/Tokens/view.ctp:13
+msgid "List Tokens"
+msgstr ""
+
+#: Template/Admin/Tokens/edit.ctp:7 Template/Admin/Tokens/view.ctp:14
+msgid "Edit Token"
+msgstr ""
+
+#: Template/Admin/Tokens/index.ctp:7
+msgid "Tokens"
+msgstr ""
+
+#: Template/Admin/Tokens/view.ctp:8 Template/Admin/Users/view.ctp:38
+msgid "Token"
+msgstr ""
+
+#: Template/Admin/Tokens/view.ctp:15
+msgid "New Token"
+msgstr ""
+
+#: Template/Admin/Tokens/view.ctp:30
+msgid "Expire"
+msgstr ""
+
+#: Template/Admin/Tokens/view.ctp:40
+msgid "Delete Token"
+msgstr ""
+
+#: Template/Admin/Users/add.ctp:7
+msgid "Add User"
+msgstr ""
+
+#: Template/Admin/Users/add.ctp:12 Template/Admin/Users/edit.ctp:12
+#: Template/Admin/Users/view.ctp:13
+msgid "List Users"
+msgstr ""
+
+#: Template/Admin/Users/edit.ctp:7 Template/Admin/Users/view.ctp:14
+msgid "Edit User"
+msgstr ""
+
+#: Template/Admin/Users/index.ctp:7
+msgid "Users"
+msgstr ""
+
+#: Template/Admin/Users/login.ctp:10
+msgid "Please enter your username and password"
+msgstr ""
+
+#: Template/Admin/Users/login.ctp:23
+msgid "Login"
+msgstr ""
+
+#: Template/Admin/Users/view.ctp:8
+msgid "User"
+msgstr ""
+
+#: Template/Admin/Users/view.ctp:15
+msgid "New User"
+msgstr ""
+
+#: Template/Admin/Users/view.ctp:26
+msgid "Username"
+msgstr ""
+
+#: Template/Admin/Users/view.ctp:30
+msgid "Password"
+msgstr ""
+
+#: Template/Admin/Users/view.ctp:34
+msgid "Email"
+msgstr ""
+
+#: Template/Admin/Users/view.ctp:64
+msgid "Delete User"
+msgstr ""
+
+#: Template/Applicants/preview.ctp:18
+msgid "Дата создания"
+msgstr "Yaratilgan sana"
+
+#: Template/Applicants/preview.ctp:29 Template/Applicants/registration.ctp:58
+msgid "Дата рождения"
+msgstr "Tug'ilgan kun"
+
+#: Template/Applicants/preview.ctp:33 Template/Applicants/registration.ctp:85
+msgid "Пол"
+msgstr "Jinsi"
+
+#: Template/Applicants/preview.ctp:37 Template/Applicants/registration.ctp:97
+msgid "Область"
+msgstr "Viloyat"
+
+#: Template/Applicants/preview.ctp:41 Template/Applicants/registration.ctp:103
+msgid "Район"
+msgstr "Tuman"
+
+#: Template/Applicants/preview.ctp:45
+msgid "Уровень образование"
+msgstr "Ta'lim darajasi"
+
+#: Template/Applicants/preview.ctp:49 Template/Applicants/registration.ctp:123
+msgid "Отрасль"
+msgstr "Sanoat"
+
+#: Template/Applicants/preview.ctp:56
+msgid "Профессия"
+msgstr "Kasbingiz"
+
+#: Template/Applicants/preview.ctp:60 Template/Applicants/registration.ctp:167
+msgid "В какой стране вы хотели бы работать"
+msgstr "Qaysi mamlakatda ishlashni xohlaysiz?"
+
+#: Template/Applicants/preview.ctp:67 Template/Applicants/registration.ctp:175
+msgid "В какой стране вы не хотели бы работать"
+msgstr "Qaysi mamlakatda ishlashni xohlamaysiz?"
+
+#: Template/Applicants/preview.ctp:74
+msgid "Телефон"
+msgstr "Telefon"
+
+#: Template/Applicants/preview.ctp:81
+#: Template/Applicants/registration.ctp:136;145
+msgid "Удалить"
+msgstr "O'chirish"
+
+#: Template/Applicants/preview.ctp:81
+msgid "Are you sure you want to delete?"
+msgstr ""
+
+#: Template/Applicants/preview.ctp:83
+msgid "Редактировать"
+msgstr "Tahrirlash"
+
+#: Template/Applicants/preview.ctp:85 Template/Layout/default.ctp:68
+msgid "Выйти"
+msgstr "Chiqish"
+
+#: Template/Applicants/registration.ctp:3
+msgid "Добавить резюме для работы за рубежом"
+msgstr "Xorijda ishlash uchun rezyume qo'shish"
+
+#: Template/Applicants/registration.ctp:4
+msgid ""
+"Данный момент нет связи с сервисом soliq.uz. Заполните поля в ручную или "
+"попробуйте еще раз."
+msgstr ""
+"Bu safar soliq.uz xizmati bilan aloqasi yo'q. Maydonlarni qo'lda to'ldiring "
+"yoki qaytadan urinib ko'ring."
+
+#: Template/Applicants/registration.ctp:6
+msgid "Персональная информация"
+msgstr "Shaxsiy ma'lumotlar"
+
+#: Template/Applicants/registration.ctp:30
+msgid "Фамилия"
+msgstr "Familiy"
+
+#: Template/Applicants/registration.ctp:38
+msgid "Имя"
+msgstr "Ism"
+
+#: Template/Applicants/registration.ctp:67
+msgid "День"
+msgstr "Kun"
+
+#: Template/Applicants/registration.ctp:72
+msgid "Месяц"
+msgstr "Oy"
+
+#: Template/Applicants/registration.ctp:77
+msgid "Год"
+msgstr "Yil"
+
+#: Template/Applicants/registration.ctp:87;98;104;114
+msgid "Выберите"
+msgstr "Tanlang"
+
+#: Template/Applicants/registration.ctp:93
+msgid "Адрес"
+msgstr "Manzil"
+
+#: Template/Applicants/registration.ctp:109
+msgid "Образование"
+msgstr "Ta'lim"
+
+#: Template/Applicants/registration.ctp:113
+msgid "Уровень образования"
+msgstr "Ta'lim darajasi"
+
+#: Template/Applicants/registration.ctp:119
+msgid "Требования к работе"
+msgstr "Ishga qo'yiladigan talablar"
+
+#: Template/Applicants/registration.ctp:125
+msgid "Любая отрасль"
+msgstr "Har qanday sanoat"
+
+#: Template/Applicants/registration.ctp:131
+msgid "Кем вы хотели бы работать"
+msgstr "Kim bo'lib ishlashni xohlaysiz"
+
+#: Template/Applicants/registration.ctp:159
+msgid "Добавить еще"
+msgstr "Yana qo'shish"
+
+#: Template/Applicants/registration.ctp:169;177
+msgid "Не имеет значения"
+msgstr "Ahamiyati yo'q"
+
+#: Template/Applicants/registration.ctp:188
+msgid "Я согласен с условими"
+msgstr "Men shartlarga roziman"
+
+#: Template/Applicants/registration.ctp:188
+msgid "Публичной оферты"
+msgstr "Ochiq taklif"
+
+#: Template/Applicants/registration.ctp:190
+msgid "Пожалуйста отметьте что вы согласно с условиями Публичной оферты"
+msgstr "Iltimos Ochiq taklif shartlariga roziligingizni bildiring"
+
+#: Template/Applicants/registration.ctp:196 Template/Users/login_sms.ctp:21
+#: Template/Users/verify_code.ctp:20
+msgid "Назад"
+msgstr "Ortga qaytish"
+
+#: Template/Applicants/registration.ctp:202
+msgid "Сохранить"
+msgstr "Saqlash"
+
+#: Template/Layout/default.ctp:23
+msgid "Резюме"
+msgstr "Tarjimai hol"
+
+#: Template/Layout/default.ctp:60
+msgid "Вы вошли как"
+msgstr "Siz tizimga kirgansiz"
+
+#: Template/Layout/default.ctp:92
+msgid "Министерство занятости и трудовых отношений Республики Узбекистан"
+msgstr ""
+"O'zbekiston Respublikasi Mehnat va aholini ijtimoiy muhofaza qilish vazirligi"
+
+#: Template/Layout/default.ctp:96
+msgid "Номер тех. поддержки"
+msgstr "Texnik qo'llab-quvvatlash raqami"
+
+#: Template/Users/login_sms.ctp:8
+msgid "Введите номер телефона"
+msgstr "Telefon raqamini kiriting"
+
+#: Template/Users/login_sms.ctp:20
+msgid "Получить код"
+msgstr "Kodni olish"
+
+#: Template/Users/verify_code.ctp:3
+msgid "Введите полученный код"
+msgstr "Qabul qilingan kodni kiriting"
+
+#: Template/Users/verify_code.ctp:14
+msgid "Отправить еще раз"
+msgstr "Yana yuborish"
+
+#: Template/Users/verify_code.ctp:19
+msgid "Войти"
+msgstr "Kirish"

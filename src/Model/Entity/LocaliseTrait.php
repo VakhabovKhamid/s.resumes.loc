@@ -15,29 +15,30 @@ use Cake\I18n\I18n;
 trait LocaliseTrait
 {
     private $locales = [
-        'ru' => 'ru_c',
-        'en' => 'en_l',
-        'uz' => 'uz_l',
+        // 'en_US' => 'en_l',
+        'uz_CL' => 'uz_c',
+        'uz_LN' => 'uz_l',
         'ru_RU' => 'ru_c',
-        'en_US' => 'en_l',
-        'en_GB' => 'en_L',
-        'uz_Cyrl' => 'uz_c',
-        'uz_Latn' => 'uz_l',
-        'uz_Cyrl_UZ' => 'uz_c',
-        'uz_Latn_UZ' => 'uz_l',
-        'kaa' => 'kaa' // ISO 639-2/3
+        'qr_QR' => 'qr_c' // ISO 639-2/3
     ];
 
     private $languagesLocales = [
-        'ru' => 'ru_RU',
-        'en' => 'en_US',
-        'uz-cyrl' => 'uz_Cyrl',
-        'uz-latn' => 'uz_Latn',
-        'kaa' => 'kaa'
+        // 'en' => 'en_US',
+        'uz-cl' => 'uz_CL',
+        'uz-ln' => 'uz_LN',
+        'ru'    => 'ru_RU',
+        'qr'    => 'qr_QR'
+    ];
+
+    private $languages = [
+        // 'en' => 'English',
+        'uz-cl' => 'Узбекча',
+        'uz-ln' => 'O’zbekcha',
+        'ru'    => 'Русский',
+        'qr'    => 'Қарақалпақша'
     ];
 
     /**
-     * @param string $locale
      * @return string
      */
     private function getLanguageByLocale()

@@ -139,11 +139,14 @@ class UsersController extends AppController
 
     public function changeLanguage($lang=null)
     {
+        $languages = $this->languages;
+
         if ($lang) {
             $this->setDefaultLocale($lang);
             $user = $this->Auth->user();
             $redirectUrl = $this->Users->getRedirectUrlByUserGroup($user);
             return $this->redirect($redirectUrl);
         }
+        $this->set(compact('languages'));
     }
 }
