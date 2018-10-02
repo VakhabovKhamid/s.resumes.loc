@@ -271,12 +271,12 @@ msgid "Декабрь"
 msgstr "Dekabr"
 
 #: Model/Table/ApplicantsTable.php:284
-msgid "М"
-msgstr "E"
+msgid "Мужской"
+msgstr "Erkak"
 
 #: Model/Table/ApplicantsTable.php:285
-msgid "Ж"
-msgstr "A"
+msgid "Женский"
+msgstr "Ayol"
 
 #: Template/Admin/Acl/index.ctp:19
 msgid "Access rights management"
