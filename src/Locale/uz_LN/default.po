@@ -4,16 +4,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2018-09-26 03:53+0000\n"
-"PO-Revision-Date: 2018-09-26 09:25+0500\n"
+"POT-Creation-Date: 2018-10-03 05:48+0000\n"
+"PO-Revision-Date: 2018-10-03 10:52+0500\n"
+"Last-Translator: \n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"Language: uz_UZ@latin\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.1.1\n"
-"Last-Translator: \n"
-"Language: uz_UZ@latin\n"
 
 #: Controller/ApplicantsController.php:34;133
 msgid ""
@@ -300,10 +300,6 @@ msgstr ""
 
 #: Template/Admin/Acl/statistic.ctp:44
 msgid "url"
-msgstr ""
-
-#: Template/Admin/Acl/statistic.ctp:48
-msgid "request_parameters"
 msgstr ""
 
 #: Template/Admin/Acl/statistic.ctp:52
@@ -945,11 +941,11 @@ msgstr "Tug'ilgan kun"
 msgid "Пол"
 msgstr "Jinsi"
 
-#: Template/Applicants/preview.ctp:37 Template/Applicants/registration.ctp:97
+#: Template/Applicants/preview.ctp:37
 msgid "Область"
 msgstr "Viloyat"
 
-#: Template/Applicants/preview.ctp:41 Template/Applicants/registration.ctp:103
+#: Template/Applicants/preview.ctp:41
 msgid "Район"
 msgstr "Tuman"
 
@@ -957,7 +953,7 @@ msgstr "Tuman"
 msgid "Уровень образование"
 msgstr "Ta'lim darajasi"
 
-#: Template/Applicants/preview.ctp:49 Template/Applicants/registration.ctp:123
+#: Template/Applicants/preview.ctp:49
 msgid "Отрасль"
 msgstr "Sanoat"
 
@@ -967,11 +963,11 @@ msgstr "Kasbingiz"
 
 #: Template/Applicants/preview.ctp:60 Template/Applicants/registration.ctp:167
 msgid "В какой стране вы хотели бы работать"
-msgstr "Qaysi mamlakatda ishlashni xohlaysiz?"
+msgstr "Qaysi mamlakatda ishlashni xohlaysiz"
 
-#: Template/Applicants/preview.ctp:67 Template/Applicants/registration.ctp:175
+#: Template/Applicants/preview.ctp:67
 msgid "В какой стране вы не хотели бы работать"
-msgstr "Qaysi mamlakatda ishlashni xohlamaysiz?"
+msgstr "Qaysi mamlakatda ishlashni xohlamaysiz"
 
 #: Template/Applicants/preview.ctp:74
 msgid "Телефон"
@@ -1035,20 +1031,32 @@ msgid "Выберите"
 msgstr "Tanlang"
 
 #: Template/Applicants/registration.ctp:93
-msgid "Адрес"
-msgstr "Manzil"
+msgid "Место проживания"
+msgstr "Yashash joyingiz"
+
+#: Template/Applicants/registration.ctp:97
+msgid "Выберите регион"
+msgstr "Viloyatni tanlang"
+
+#: Template/Applicants/registration.ctp:103
+msgid "Выберите район"
+msgstr "Tumanni tanlang"
 
 #: Template/Applicants/registration.ctp:109
 msgid "Образование"
 msgstr "Ta'lim"
 
 #: Template/Applicants/registration.ctp:113
-msgid "Уровень образования"
-msgstr "Ta'lim darajasi"
+msgid "Укажите уровень образования"
+msgstr "Ta'lim darajasini ko'rsating"
 
 #: Template/Applicants/registration.ctp:119
-msgid "Требования к работе"
-msgstr "Ishga qo'yiladigan talablar"
+msgid "Предпочтения к работе за рубежом"
+msgstr "Chet elda ishlashga talablaringiz"
+
+#: Template/Applicants/registration.ctp:123
+msgid "В какой отрасли вы хотели бы работать"
+msgstr "Qaysi sanoatda ishlashni istaysiz"
 
 #: Template/Applicants/registration.ctp:125
 msgid "Любая отрасль"
@@ -1066,26 +1074,30 @@ msgstr "Yana qo'shish"
 msgid "Не имеет значения"
 msgstr "Ahamiyati yo'q"
 
-#: Template/Applicants/registration.ctp:188
-msgid "Я согласен с условими"
-msgstr "Men shartlarga roziman"
+#: Template/Applicants/registration.ctp:175
+msgid "В какой стране вы НЕ ХОТЕЛИ бы работать"
+msgstr "Qaysi mamlakatda ishlashni XOHLAMAYSIZ"
 
-#: Template/Applicants/registration.ctp:188
-msgid "Публичной оферты"
-msgstr "Ochiq taklif"
+#: Template/Applicants/registration.ctp:195
+msgid ""
+"Нажимая \"Отправить\" вы соглашаетесь с <a href=\"/static-page.html\" target="
+"\"_blank\">правилами публичной оферты</a>"
+msgstr ""
+"\"Yuborish\" tugmasini bosish orqali siz <a href=\"/static-page.html\" "
+"target=\"_blank\">ommaviy taklif shartlariga</a> rozilik bildirasiz"
 
-#: Template/Applicants/registration.ctp:190
-msgid "Пожалуйста отметьте что вы согласно с условиями Публичной оферты"
-msgstr "Iltimos Ochiq taklif shartlariga roziligingizni bildiring"
-
-#: Template/Applicants/registration.ctp:196 Template/Users/login_sms.ctp:21
+#: Template/Applicants/registration.ctp:201 Template/Users/login_sms.ctp:30
 #: Template/Users/verify_code.ctp:20
 msgid "Назад"
 msgstr "Ortga qaytish"
 
-#: Template/Applicants/registration.ctp:202
+#: Template/Applicants/registration.ctp:204
 msgid "Сохранить"
 msgstr "Saqlash"
+
+#: Template/Applicants/registration.ctp:209
+msgid "Отправить"
+msgstr "Yuborish"
 
 #: Template/Layout/default.ctp:23
 msgid "Резюме"
@@ -1105,10 +1117,30 @@ msgid "Номер тех. поддержки"
 msgstr "Texnik qo'llab-quvvatlash raqami"
 
 #: Template/Users/login_sms.ctp:8
+msgid ""
+"Добро пожаловать в единую базу данных граждан, желающих работать за рубежом."
+msgstr ""
+"Chet elda ishlashni istagan fuqarolarning yagona ma'lumotlar bazasiga xush "
+"kelibsiz."
+
+#: Template/Users/login_sms.ctp:10
+msgid ""
+"Пожалуйства, заполните все данные анкеты. Ваша анкета сохранится в нашей "
+"базе. Информация о вас станет доступна для компанией, занимающихся отправкой "
+"за рубеж. После заполнения анкеты с вами может связаться компания для "
+"предложения работы за рубежом."
+msgstr ""
+"Iltimos, so'rovnomaning barcha ma'lumotlarini to'ldiring. Profilingiz "
+"ma'lumotlar bazasida saqlanadi. Chet elga jo'natish bilan shug'ullanadigan "
+"kompaniyaga siz haqingizda ma'lumot beriladi. So'rovnomani to'ldirgandan "
+"so'ng, kompaniya chet elda ishlash taklifi bilan siz bilan bog'lanishi "
+"mumkin."
+
+#: Template/Users/login_sms.ctp:17
 msgid "Введите номер телефона"
 msgstr "Telefon raqamini kiriting"
 
-#: Template/Users/login_sms.ctp:20
+#: Template/Users/login_sms.ctp:29
 msgid "Получить код"
 msgstr "Kodni olish"
 
@@ -1123,3 +1155,20 @@ msgstr "Yana yuborish"
 #: Template/Users/verify_code.ctp:19
 msgid "Войти"
 msgstr "Kirish"
+
+#, fuzzy
+#~| msgid "Публичной оферты"
+#~ msgid "правилами публичной оферты"
+#~ msgstr "Ochiq taklif"
+
+#~ msgid "Адрес"
+#~ msgstr "Manzil"
+
+#~ msgid "Требования к работе"
+#~ msgstr "Ishga qo'yiladigan talablar"
+
+#~ msgid "Я согласен с условими"
+#~ msgstr "Men shartlarga roziman"
+
+#~ msgid "Пожалуйста отметьте что вы согласно с условиями Публичной оферты"
+#~ msgstr "Iltimos Ochiq taklif shartlariga roziligingizni bildiring"

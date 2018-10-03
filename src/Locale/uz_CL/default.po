@@ -4,16 +4,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2018-09-26 03:53+0000\n"
-"PO-Revision-Date: 2018-09-26 09:40+0500\n"
+"POT-Creation-Date: 2018-10-03 05:48+0000\n"
+"PO-Revision-Date: 2018-10-03 10:56+0500\n"
+"Last-Translator: \n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"Language: uz_UZ@cyrillic\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.1.1\n"
-"Last-Translator: \n"
-"Language: uz_UZ@cyrillic\n"
 
 #: Controller/ApplicantsController.php:34;133
 msgid ""
@@ -25,7 +25,7 @@ msgstr ""
 "Профилингиз муваффақиятли сақланди ва телефон рақамингизга боғланди.  Сиз "
 "ҳақингиздаги маълумотлар Чет элда Иш изловчи ягона маълумотлар базасига "
 "қўшилди.  Энди сизга агентлик чет элда ишлаш таклифибилан алоқага чиқиши "
-"мумкин.  Сизнинг анкетангиз телефон рақамингизга боғлиқ. "
+"мумкин.  Сизнинг анкетангиз телефон рақамингизга боғлиқ."
 
 #: Controller/ApplicantsController.php:43;142
 #: Controller/Admin/ApplicantsController.php:65;94
@@ -44,7 +44,7 @@ msgstr ""
 
 #: Controller/UsersController.php:50;78;110
 msgid "Превышен лимит запросов."
-msgstr "Сўров чегараси ошиб кетди. "
+msgstr "Сўров чегараси ошиб кетди."
 
 #: Controller/UsersController.php:71
 msgid "Одноразовый код был отправлен вам по sms."
@@ -300,10 +300,6 @@ msgstr ""
 
 #: Template/Admin/Acl/statistic.ctp:44
 msgid "url"
-msgstr ""
-
-#: Template/Admin/Acl/statistic.ctp:48
-msgid "request_parameters"
 msgstr ""
 
 #: Template/Admin/Acl/statistic.ctp:52
@@ -945,11 +941,11 @@ msgstr "Туғилган кун"
 msgid "Пол"
 msgstr "Жинси"
 
-#: Template/Applicants/preview.ctp:37 Template/Applicants/registration.ctp:97
+#: Template/Applicants/preview.ctp:37
 msgid "Область"
 msgstr "Вилоят"
 
-#: Template/Applicants/preview.ctp:41 Template/Applicants/registration.ctp:103
+#: Template/Applicants/preview.ctp:41
 msgid "Район"
 msgstr "Туман"
 
@@ -957,7 +953,7 @@ msgstr "Туман"
 msgid "Уровень образование"
 msgstr "Таълим даражаси"
 
-#: Template/Applicants/preview.ctp:49 Template/Applicants/registration.ctp:123
+#: Template/Applicants/preview.ctp:49
 msgid "Отрасль"
 msgstr "Саноат"
 
@@ -969,7 +965,7 @@ msgstr "Касбингиз"
 msgid "В какой стране вы хотели бы работать"
 msgstr "Қайси мамлакатда ишлашни хоҳлайсиз"
 
-#: Template/Applicants/preview.ctp:67 Template/Applicants/registration.ctp:175
+#: Template/Applicants/preview.ctp:67
 msgid "В какой стране вы не хотели бы работать"
 msgstr "Қайси мамлакатда ишлашни хоҳламайсиз"
 
@@ -1035,20 +1031,32 @@ msgid "Выберите"
 msgstr "Танланг"
 
 #: Template/Applicants/registration.ctp:93
-msgid "Адрес"
-msgstr "Манзил"
+msgid "Место проживания"
+msgstr "Яшаш жойингиз"
+
+#: Template/Applicants/registration.ctp:97
+msgid "Выберите регион"
+msgstr "Вилоятни танланг"
+
+#: Template/Applicants/registration.ctp:103
+msgid "Выберите район"
+msgstr "Туманни танланг"
 
 #: Template/Applicants/registration.ctp:109
 msgid "Образование"
 msgstr "Таълим"
 
 #: Template/Applicants/registration.ctp:113
-msgid "Уровень образования"
-msgstr "Таълим даражаси"
+msgid "Укажите уровень образования"
+msgstr "Таълим даражасини кўрсатинг"
 
 #: Template/Applicants/registration.ctp:119
-msgid "Требования к работе"
-msgstr "Ишга қўйиладиган талаблар"
+msgid "Предпочтения к работе за рубежом"
+msgstr "Чет элда ишлашга талабларингиз"
+
+#: Template/Applicants/registration.ctp:123
+msgid "В какой отрасли вы хотели бы работать"
+msgstr "Қайси саноатда ишлашни истайсиз"
 
 #: Template/Applicants/registration.ctp:125
 msgid "Любая отрасль"
@@ -1066,26 +1074,30 @@ msgstr "Яна қўшиш"
 msgid "Не имеет значения"
 msgstr "Аҳамияти йўқ"
 
-#: Template/Applicants/registration.ctp:188
-msgid "Я согласен с условими"
-msgstr "Мен шартларга розиман"
+#: Template/Applicants/registration.ctp:175
+msgid "В какой стране вы НЕ ХОТЕЛИ бы работать"
+msgstr "Қайси мамлакатда ишлашни ХОҲЛАМАЙСИЗ"
 
-#: Template/Applicants/registration.ctp:188
-msgid "Публичной оферты"
-msgstr "Очиқ таклиф"
+#: Template/Applicants/registration.ctp:195
+msgid ""
+"Нажимая \"Отправить\" вы соглашаетесь с <a href=\"/static-page.html\" target="
+"\"_blank\">правилами публичной оферты</a>"
+msgstr ""
+"\"Юбориш\" тугмасини босиш орқали сиз <a href=\"/static-page.html\" target="
+"\"_blank\">оммавий таклиф шартларига</a> розилик билдирасиз"
 
-#: Template/Applicants/registration.ctp:190
-msgid "Пожалуйста отметьте что вы согласно с условиями Публичной оферты"
-msgstr "Илтимос Очиқ таклиф шартларига розилигингизни билдиринг"
-
-#: Template/Applicants/registration.ctp:196 Template/Users/login_sms.ctp:21
+#: Template/Applicants/registration.ctp:201 Template/Users/login_sms.ctp:30
 #: Template/Users/verify_code.ctp:20
 msgid "Назад"
 msgstr "Ортга қайтиш"
 
-#: Template/Applicants/registration.ctp:202
+#: Template/Applicants/registration.ctp:204
 msgid "Сохранить"
 msgstr "Сақлаш"
+
+#: Template/Applicants/registration.ctp:209
+msgid "Отправить"
+msgstr "Юбориш"
 
 #: Template/Layout/default.ctp:23
 msgid "Резюме"
@@ -1105,10 +1117,29 @@ msgid "Номер тех. поддержки"
 msgstr "Техник қўллаб-қувватлаш рақами"
 
 #: Template/Users/login_sms.ctp:8
+msgid ""
+"Добро пожаловать в единую базу данных граждан, желающих работать за рубежом."
+msgstr ""
+"Чет элда ишлашни истаган фуқароларнинг ягона маълумотлар базасига хуш "
+"келибсиз."
+
+#: Template/Users/login_sms.ctp:10
+msgid ""
+"Пожалуйства, заполните все данные анкеты. Ваша анкета сохранится в нашей "
+"базе. Информация о вас станет доступна для компанией, занимающихся отправкой "
+"за рубеж. После заполнения анкеты с вами может связаться компания для "
+"предложения работы за рубежом."
+msgstr ""
+"Илтимос,  сўровноманинг барча маълумотларини тўлдиринг.  Профилингиз "
+"маълумотлар базасида сақланади.  Чет элга жўнатиш билан шуғулланадиган "
+"компанияга сиз ҳақингизда маълумот берилади.  Сўровномани тўлдиргандан "
+"сўнг,  компания чет элда ишлаш таклифи билан сиз билан боғланиши мумкин."
+
+#: Template/Users/login_sms.ctp:17
 msgid "Введите номер телефона"
 msgstr "Телефон рақамини киритинг"
 
-#: Template/Users/login_sms.ctp:20
+#: Template/Users/login_sms.ctp:29
 msgid "Получить код"
 msgstr "Кодни олиш"
 
@@ -1123,3 +1154,18 @@ msgstr "Яна юбориш"
 #: Template/Users/verify_code.ctp:19
 msgid "Войти"
 msgstr "Кириш"
+
+#~ msgid "Адрес"
+#~ msgstr "Манзил"
+
+#~ msgid "Требования к работе"
+#~ msgstr "Ишга қўйиладиган талаблар"
+
+#~ msgid "Я согласен с условими"
+#~ msgstr "Мен шартларга розиман"
+
+#~ msgid "Публичной оферты"
+#~ msgstr "Очиқ таклиф"
+
+#~ msgid "Пожалуйста отметьте что вы согласно с условиями Публичной оферты"
+#~ msgstr "Илтимос Очиқ таклиф шартларига розилигингизни билдиринг"

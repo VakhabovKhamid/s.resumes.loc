@@ -90,17 +90,17 @@
                 </div>
             </div>
             <hr/>
-            <div class="title-3"><?= __('Адрес')?></div>
+            <div class="title-3"><?= __('Место проживания')?></div>
             <div class="row15">
                 <div class="colp15-6">
                     <div class="formControl">
-                        <label class="formLabel required"><?= __('Область')?></label>
+                        <label class="formLabel required"><?= __('Выберите регион')?></label>
                         <?= $this->Form->control('address_region_id', ['options' => $regions, 'label' => false, 'class' => 'formField', 'empty' => __('Выберите')]); ?>
                     </div>
                 </div>
                 <div class="colp15-6">
                     <div class="formControl">
-                        <label class="formLabel required"><?= __('Район')?></label>
+                        <label class="formLabel required"><?= __('Выберите район')?></label>
                         <?= $this->Form->control('address_district_id', ['options' => isset($districts)?$districts:[], 'label' => false, 'class' => 'formField', 'empty' => __('Выберите')]); ?>
                     </div>
                 </div>
@@ -110,17 +110,17 @@
             <div class="row15">
                 <div class="colp15-6">
                     <div class="formControl">
-                        <label class="formLabel"><?= __('Уровень образования')?></label>
+                        <label class="formLabel"><?= __('Укажите уровень образования')?></label>
                         <?= $this->Form->control('education_level_id', ['options' => $educationLevels, 'label' => false, 'class' => 'formField', 'empty' => __('Выберите')]); ?>
                     </div>
                 </div>
             </div>
             <hr/>
-            <div class="title-3"><?= __('Требования к работе')?></div>
+            <div class="title-3"><?= __('Предпочтения к работе за рубежом')?></div>
             <div class="row15">
                 <div class="colp15-6">
                     <div class="formControl">
-                        <label class="formLabel"><?= __('Отрасль')?></label>
+                        <label class="formLabel"><?= __('В какой отрасли вы хотели бы работать')?></label>
                         <div class="field">
                             <?= $this->Form->control('industries._ids', ['options' => $industries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true, 'selectAllText' => __('Любая отрасль')]); ?>
                         </div>
@@ -172,7 +172,7 @@
                 </div>
                 <div class="colp15-6">
                     <div class="formControl">
-                        <label class="formLabel"><?= __('В какой стране вы не хотели бы работать')?></label>
+                        <label class="formLabel"><?= __('В какой стране вы НЕ ХОТЕЛИ бы работать')?></label>
                         <div class="field">
                             <?= $this->Form->control('undesirable_countries._ids', ['options' => $countries, 'label' => false, 'class' => 'formField jq-multiple-select', 'multiple' => true, 'selectAllText' => __('Не имеет значения')]); ?>
                         </div>
@@ -182,25 +182,33 @@
             <hr/>
             <div class="formSubmit">
                 <?php if (!isset($applicant->id)): ?>
-                <div class="checkboxCf textRight">
-                    <label>
-                      <input id="checkPublicOffer" type="checkbox"/>
-                      <span><?= __('Я согласен с условими')?> <a href="/static-page.html" target="_blank"><?= __('Публичной оферты')?></a></span>
-                    </label>
-                    <p class="error-text"><?= __('Пожалуйста отметьте что вы согласно с условиями Публичной оферты')?></p>
-                </div>
+                    <?php /* ?>
+                    <div class="checkboxCf textRight">
+                        <label>
+                          <input id="checkPublicOffer" type="checkbox"/>
+                          <span><?= __('Я согласен с условими')?> <a href="/static-page.html" target="_blank"><?= __('Публичной оферты')?></a></span>
+                        </label>
+                        <p class="error-text"><?= __('Пожалуйста отметьте что вы согласно с условиями Публичной оферты')?></p>
+                    </div>
+                    <?php */ ?>
+                    <div class="textRight">
+                        <p><?= __('Нажимая "Отправить" вы соглашаетесь с <a href="/static-page.html" target="_blank">правилами публичной оферты</a>') ?></p>
+                    </div>
                 <?php endif ?>
                 <div class="row15">
-                    <div class="colp15-6">
-                        <?php if (isset($applicant->id)): ?>
+                    <?php if (isset($applicant->id)): ?>
+                        <div class="colp15-6">
                             <?= $this->Html->link(__('Назад'), ['action' => 'preview'],['class' => 'btn0 btnDefault btnBold btnBlock']) ?>
-                        <?php else: ?>
-                            &nbsp;
-                        <?php endif ?>
-                    </div>
-                    <div class="colp15-6">
-                        <?= $this->Form->button(__('Сохранить'), ['class' => 'btn0 btnBlock btn1 btnBold']) ?>
-                    </div>
+                        </div>
+                        <div class="colp15-6">
+                            <?= $this->Form->button(__('Сохранить'), ['class' => 'btn0 btnBlock btn1 btnBold']) ?>
+                        </div>
+                    <?php else: ?>
+                        <div class="colp15-6">&nbsp;</div>
+                        <div class="colp15-6">
+                            <?= $this->Form->button(__('Отправить'), ['class' => 'btn0 btnBlock btn1 btnBold']) ?>
+                        </div>
+                    <?php endif ?>
                 </div>
             </div>
         <?= $this->Form->end() ?>

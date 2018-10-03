@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2018-09-26 03:53+0000\n"
+"POT-Creation-Date: 2018-10-03 05:48+0000\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -262,11 +262,11 @@ msgid "Декабрь"
 msgstr ""
 
 #: Model/Table/ApplicantsTable.php:284
-msgid "М"
+msgid "Мужской"
 msgstr ""
 
 #: Model/Table/ApplicantsTable.php:285
-msgid "Ж"
+msgid "Женский"
 msgstr ""
 
 #: Template/Admin/Acl/index.ctp:19
@@ -291,10 +291,6 @@ msgstr ""
 
 #: Template/Admin/Acl/statistic.ctp:44
 msgid "url"
-msgstr ""
-
-#: Template/Admin/Acl/statistic.ctp:48
-msgid "request_parameters"
 msgstr ""
 
 #: Template/Admin/Acl/statistic.ctp:52
@@ -969,12 +965,10 @@ msgid "Пол"
 msgstr ""
 
 #: Template/Applicants/preview.ctp:37
-#: Template/Applicants/registration.ctp:97
 msgid "Область"
 msgstr ""
 
 #: Template/Applicants/preview.ctp:41
-#: Template/Applicants/registration.ctp:103
 msgid "Район"
 msgstr ""
 
@@ -983,7 +977,6 @@ msgid "Уровень образование"
 msgstr ""
 
 #: Template/Applicants/preview.ctp:49
-#: Template/Applicants/registration.ctp:123
 msgid "Отрасль"
 msgstr ""
 
@@ -997,7 +990,6 @@ msgid "В какой стране вы хотели бы работать"
 msgstr ""
 
 #: Template/Applicants/preview.ctp:67
-#: Template/Applicants/registration.ctp:175
 msgid "В какой стране вы не хотели бы работать"
 msgstr ""
 
@@ -1060,7 +1052,15 @@ msgid "Выберите"
 msgstr ""
 
 #: Template/Applicants/registration.ctp:93
-msgid "Адрес"
+msgid "Место проживания"
+msgstr ""
+
+#: Template/Applicants/registration.ctp:97
+msgid "Выберите регион"
+msgstr ""
+
+#: Template/Applicants/registration.ctp:103
+msgid "Выберите район"
 msgstr ""
 
 #: Template/Applicants/registration.ctp:109
@@ -1068,11 +1068,15 @@ msgid "Образование"
 msgstr ""
 
 #: Template/Applicants/registration.ctp:113
-msgid "Уровень образования"
+msgid "Укажите уровень образования"
 msgstr ""
 
 #: Template/Applicants/registration.ctp:119
-msgid "Требования к работе"
+msgid "Предпочтения к работе за рубежом"
+msgstr ""
+
+#: Template/Applicants/registration.ctp:123
+msgid "В какой отрасли вы хотели бы работать"
 msgstr ""
 
 #: Template/Applicants/registration.ctp:125
@@ -1091,26 +1095,26 @@ msgstr ""
 msgid "Не имеет значения"
 msgstr ""
 
-#: Template/Applicants/registration.ctp:188
-msgid "Я согласен с условими"
+#: Template/Applicants/registration.ctp:175
+msgid "В какой стране вы НЕ ХОТЕЛИ бы работать"
 msgstr ""
 
-#: Template/Applicants/registration.ctp:188
-msgid "Публичной оферты"
+#: Template/Applicants/registration.ctp:195
+msgid "Нажимая \"Отправить\" вы соглашаетесь с <a href=\"/static-page.html\" target=\"_blank\">правилами публичной оферты</a>"
 msgstr ""
 
-#: Template/Applicants/registration.ctp:190
-msgid "Пожалуйста отметьте что вы согласно с условиями Публичной оферты"
-msgstr ""
-
-#: Template/Applicants/registration.ctp:196
-#: Template/Users/login_sms.ctp:21
+#: Template/Applicants/registration.ctp:201
+#: Template/Users/login_sms.ctp:30
 #: Template/Users/verify_code.ctp:20
 msgid "Назад"
 msgstr ""
 
-#: Template/Applicants/registration.ctp:202
+#: Template/Applicants/registration.ctp:204
 msgid "Сохранить"
+msgstr ""
+
+#: Template/Applicants/registration.ctp:209
+msgid "Отправить"
 msgstr ""
 
 #: Template/Layout/default.ctp:23
@@ -1130,10 +1134,18 @@ msgid "Номер тех. поддержки"
 msgstr ""
 
 #: Template/Users/login_sms.ctp:8
+msgid "Добро пожаловать в единую базу данных граждан, желающих работать за рубежом."
+msgstr ""
+
+#: Template/Users/login_sms.ctp:10
+msgid "Пожалуйства, заполните все данные анкеты. Ваша анкета сохранится в нашей базе. Информация о вас станет доступна для компанией, занимающихся отправкой за рубеж. После заполнения анкеты с вами может связаться компания для предложения работы за рубежом."
+msgstr ""
+
+#: Template/Users/login_sms.ctp:17
 msgid "Введите номер телефона"
 msgstr ""
 
-#: Template/Users/login_sms.ctp:20
+#: Template/Users/login_sms.ctp:29
 msgid "Получить код"
 msgstr ""
 
